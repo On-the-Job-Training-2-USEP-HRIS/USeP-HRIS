@@ -32,8 +32,7 @@ class PagesController extends Controller
         return view('PDS_section/PDSmenu',compact('result'));
     }
 
-    public function PDSField(){
-      return view('pds_section/PDSField');
-    }
-
+     public function PDSField(){
+	  return view('pds_section/PDSField');
+	 }
 }
