@@ -16,7 +16,7 @@
 
 	@section('card-body')
 		<div class="container">
-			<b>SECTION</b>
+			<b> SECTION </b>
 			<hr>
 			<input type="checkbox" name="sectioname">
 			<label>Section Name</label>
