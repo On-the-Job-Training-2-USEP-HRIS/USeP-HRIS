@@ -16,7 +16,7 @@
 
 	@section('card-body')
 		<div class="container">
-			<b>Section</b>
+			<b>SECTION</b>
 			<hr>
 			<input type="checkbox" name="sectioname">
 			<label>Section Name</label>
@@ -36,6 +36,8 @@
 						<td style="width:410px;"> <?php echo $value['Section Name'] ?> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
 						<td > <?php echo $value['Sequence'] ?> </td>
+						<td> <a href="#"> Edit </a></td>
+						<td> <a href="#"> Delete </a></td>
 					</tr>
 				</table>
 			<?php

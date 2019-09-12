@@ -15,6 +15,8 @@ Route::get('/','PagesController@home');
 
 Route::get('/PDSmenu','PagesController@PDSmenu');
 
+Route::get('/layout','PagesController@PDSmenulist');
+
 Route::post('/PDSmenu','PagesController@store');
 
 Route::post('/PDSField','PagesController@PDSField');

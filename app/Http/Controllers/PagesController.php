@@ -16,6 +16,12 @@ class PagesController extends Controller
     	return view('PDS_section/PDSmenu',compact('result'));
     }
 
+    public function PDSmenulist(){
+    	$getSection = \DB::select('call getPDS_Section');
+        $result = json_decode(json_encode($getSection),true);
+    	return view('/layout',compact('result'));
+    }
+
     public function store(Request $request){
     	$section = $request->input('section_name');
         $sequence = $request->input('sequence');
@@ -26,6 +32,8 @@ class PagesController extends Controller
         return view('PDS_section/PDSmenu',compact('result'));
     }
 
-     public function PDSField(){
+    public function PDSField(){
       return view('pds_section/PDSField');
+    }
+
 }

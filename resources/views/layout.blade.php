@@ -17,12 +17,14 @@
 	</ul>
 	<div class="container-fluid" style="width:240px;height:100px;position:relative;top:130px;left:3px;display:none;" id="show1">
 		<ul class="list-group list-group-flush" style="font-size:12px;">
-			<li class="list-group-item">Personal Information</li>
-			<li class="list-group-item">Family Background</li>
-			<li class="list-group-item">Educational Background</li>
-			<li class="list-group-item">Civil Service Eligibility</li>
-			<li class="list-group-item">Work Experience</li>
-			<li class="list-group-item">Voluntary Work ...</li>
+
+			<?php
+				foreach ($result as $value) {
+			?>
+				<a href="#" style="text-decoration:none;"> <li class="list-group-item"> <?php 	echo $value['Section Name']; ?> </li> </a>
+			<?php
+				}
+			?>
 		</ul>
 	</div>
 </div>
