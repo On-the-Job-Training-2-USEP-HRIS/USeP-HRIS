@@ -11,15 +11,21 @@ class PagesController extends Controller
     }
 
     public function PDSmenu(){
-    	$getSection = \DB::select('select * from pds_section');
-    	return view('PDS_section/PDSmenu',['getSection' => $getSection]);
+    	$getSection = \DB::select('call getPDS_Section');
+        $result = json_decode(json_encode($getSection),true);
+    	return view('PDS_section/PDSmenu',compact('result'));
     }
 
     public function store(Request $request){
     	$section = $request->input('section_name');
-    	$data = array('Name' => $section,'Sequence' => 1);
+        $sequence = $request->input('sequence');
+    	$data = array('Name' => $section,'Sequence' => $sequence);
     	\DB::table('pds_section')->insert($data);
-    	$getSection = \DB::select('select * from pds_section');
-    	return view('PDS_section/PDSmenu',['getSection' => $getSection]);
+    	$getSection = \DB::select('call getPDS_Section');
+        $result = json_decode(json_encode($getSection),true);
+        return view('PDS_section/PDSmenu',compact('result'));
     }
+
+     public function PDSField(){
+      return view('pds_section/PDSField');
 }

@@ -17,6 +17,8 @@ Route::get('/PDSmenu','PagesController@PDSmenu');
 
 Route::post('/PDSmenu','PagesController@store');
 
+Route::post('/PDSField','PagesController@PDSField');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
