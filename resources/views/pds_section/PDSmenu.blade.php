@@ -16,7 +16,7 @@
 			<form class="form-inline" style="float:right;">
 			<input type="search" class="form-control" placeholder="Search">
 				<div class="form-input-group-append">
-					<span class="input-group-text"><i class="fas fa-search text-grey" aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
+					<span class="input-group-text"><i aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
 				</div>
 			</form>
 		</div>
