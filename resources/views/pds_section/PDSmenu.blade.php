@@ -12,6 +12,13 @@
 	@section('card-header')
 		<div class="container">
 			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
+
+			<form class="form-inline" style="float:right;">
+			<input type="search" class="form-control" placeholder="Search">
+				<div class="form-input-group-append">
+					<span class="input-group-text"><i class="fas fa-search text-grey" aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
+				</div>
+			</form>
 		</div>
 	@endsection
 
