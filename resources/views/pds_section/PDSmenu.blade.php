@@ -2,23 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title></title>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
-	@section('title', 'PDS')
 	@section('card-header')
 		<div class="container">
 			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
-			
-			<form class="form-inline" style="float:right;">
-			<input type="search" class="form-control" placeholder="Search">
-				<div class="form-input-group-append">
-					<span class="input-group-text"><i class="fas fa-search text-grey" aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
-				</div>
-			</form>
 		</div>
 	@endsection
 
@@ -65,7 +58,7 @@
 				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="close">
 				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
 				 	
-				 			<form action="/PDSmenu" id="addSectionForm" method="post">
+				 			<form action="/PDSmenu" method="post">
 				 				{{csrf_field() }}
 				 				<div class="container-fluid" style="position:absolute;width:230px;">
 				 					<center>
@@ -95,7 +88,7 @@
 				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="closeEditSection">
 				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
 				 	
-				 			<form method="post">
+				 			<form action="/PDSmenu" method="post">
 				 				{{csrf_field() }}
 				 				<div class="container-fluid" style="position:absolute;width:230px;">
 				 					<center>
@@ -123,7 +116,7 @@
         overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="showDeleteSection">
 			<div class="container" style="position:relative;background-color:white;width:500px;height:200px;">
 				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
-						<p style="position:absolute;top:28px;left:75px;"> Are you sure you want to delete this section? </p>						
+						<p style="position:absolute;top:28px;left:73px;"> Are you sure you want to delete this section? </p>						
 						<button type="submit" class="btn" style="position:absolute;top:70px;left:150px;background-color:#680000;color:white;"> Confirm </button>
 					 	<button type="submit" id="closeDeleteSection" class="btn" style="position:absolute;top:70px;left:240px;background-color:#680000;color:white;"> Cancel </button>	 
 				 	</div> 
@@ -166,5 +159,5 @@
      	}) 
    });
 
-}
+   
 </script>
