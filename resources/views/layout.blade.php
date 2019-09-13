@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>@yield('title', 'USEP - HRIS')</title>
+	<title>@yield('title', 'USEP-HRIS')</title>
 	<link rel='shortcut icon' type='image/png' href="{{ asset('favicon.ico') }}">
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
