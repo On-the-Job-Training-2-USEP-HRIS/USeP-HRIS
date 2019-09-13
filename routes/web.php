@@ -15,11 +15,19 @@ Route::get('/','PagesController@home');
 
 Route::get('/PDSmenu','PagesController@PDSmenu');
 
+Route::post('/PDSmenu','PagesController@addSection');
+
 Route::get('/layout','PagesController@PDSmenulist');
 
 Route::post('/PDSmenu','PagesController@store');
 
-Route::post('/PDSField','PagesController@PDSField');
+Route::get('/PDSField','PagesController@PDSField');
+
+Route::post('/PDSField','PagesController@addFields');
+
+Route::get('/PDSSubfield','PagesController@PDSSubfields');
+
+Route::post('/PDSSubfield','PagesController@addSubfields');
 
 Auth::routes();
 
