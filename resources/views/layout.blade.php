@@ -25,14 +25,14 @@
 			<?php
 				foreach ($result as $value) {
 			?>
-				<a href="#" style="text-decoration:none;"> <li class="list-group-item"> <?php 	echo $value['Section Name']; ?> </li> </a>
+				<li class="list-group-item"> <?php 	echo $value['Section Name']; ?> </li>
 			<?php
 				}
 			?>
 		</ul>
 	</div>
 </div>
-<div class="card" style="position:absolute;top:50px;left:230px;width:1136px;box-shadow: 1px 2px 4px rgba(0,0,0,.2);">
+<div class="card" style="position:absolute;top:50px;left:230px;width:1130px;box-shadow: 1px 2px 4px rgba(0,0,0,.2);">
 	<div class="card-header">
 		@yield('card-header')
 	</div>
@@ -40,7 +40,7 @@
 		@yield('card-body')
 	</div>
 </div>
-<div class="container" style="width:100px;height:100px;position:absolute;top:252px;left:230px;width:1100px;border-color:grey;">
+<div class="container" style="width:100px;height:100px;position:absolute;top:252px;left:222px;width:1100px;border-color:grey;">
 	@yield('sectionContent')
 </div>
 @yield('modal') 
