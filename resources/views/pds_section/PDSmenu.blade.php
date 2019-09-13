@@ -2,22 +2,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
+	@section('title', 'PDS')
 	@section('card-header')
 		<div class="container">
 			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
+			
+			<form class="form-inline" style="float:right;">
+			<input type="search" class="form-control" placeholder="Search">
+				<div class="form-input-group-append">
+					<span class="input-group-text"><i class="fas fa-search text-grey" aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
+				</div>
+			</form>
 		</div>
 	@endsection
 
 	@section('card-body')
 		<div class="container">
+<<<<<<< HEAD
 			<b> SECTION </b>
+=======
+			<b>SECTIONS</b>
+>>>>>>> 6a1111ebc716f08a8d88e5ec33e0bde86db4c4bc
 			<hr>
 			<input type="checkbox" name="sectioname">
 			<label style="position:absolute;left:70px;"> <b> Section Name </b> </label>
