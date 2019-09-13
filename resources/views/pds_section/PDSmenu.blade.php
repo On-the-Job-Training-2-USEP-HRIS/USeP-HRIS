@@ -2,21 +2,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
+	@section('title', 'PDS')
 	@section('card-header')
 		<div class="container">
 			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
+			
+			<form class="form-inline" style="float:right;">
+			<input type="search" class="form-control" placeholder="Search">
+				<div class="form-input-group-append">
+					<span class="input-group-text"><i class="fas fa-search text-grey" aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
+				</div>
+			</form>
 		</div>
 	@endsection
 
 	@section('card-body')
 		<div class="container">
-			<b>SECTION</b>
+			<b>SECTIONS</b>
 			<hr>
 			<input type="checkbox" name="sectioname">
 			<label>Section Name</label>
@@ -31,7 +38,7 @@
 				foreach($result as $value)
 				{	
 			?>
-				<table class="table">
+				<table class="table table-hover">
 					<tr>
 						<td> <input type="checkbox" name="chkbxsecname"> </td>
 						<td style="width:410px;"> <?php echo $value['Section Name'] ?> </td>

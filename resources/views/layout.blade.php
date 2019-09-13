@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>@yield('title', 'USEP - HRIS')</title>
 	<link rel='shortcut icon' type='image/png' href="{{ asset('favicon.ico') }}">
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
@@ -15,9 +15,9 @@
 	<h1 style="text-align: center; margin-top:30px">ONEUSeP</h1>
 	<p style="font-family: verdana; font-size: 12px; text-align:center">HUMAN RESOURCE SYSTEM</p>
 	<ul class="list-group" style="position:relative;top:30px;">
-		<li class="list-group-item">Dashboard</li>
-		<li class="list-group-item">PDS</li>
-		<li class="list-group-item" id="dropdown1">Section</li>
+		<li class="list-group-item list-group-item-action">Dashboard</li>
+		<li class="list-group-item list-group-item-action">PDS</li>
+		<li class="list-group-item list-group-item-action" id="dropdown1">Section<img src="/images/dropdown.png" style="float:right;width:10px;height:10px;margin-top:7px;"></li>
 	</ul>
 	<div class="container-fluid" style="width:240px;height:100px;position:relative;top:30px;left:3px;display:none;" id="show1">
 		<ul class="list-group list-group-flush" style="font-size:12px;">
@@ -25,7 +25,11 @@
 			<?php
 				foreach ($result as $value) {
 			?>
-				<a href="#" style="text-decoration:none;"> <li class="list-group-item"> <?php 	echo $value['Section Name']; ?> </li> </a>
+				<a href="#" style="text-decoration:none;"> 
+					<li class="list-group-item list-group-item-action"> 
+						<?php 	echo $value['Section Name']; ?> 
+					</li> 
+				</a>
 			<?php
 				}
 			?>
