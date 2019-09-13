@@ -17,6 +17,10 @@ Route::get('/PDSmenu','PagesController@PDSmenu');
 
 Route::post('/PDSmenu','PagesController@addSection');
 
+Route::get('/layout','PagesController@PDSmenulist');
+
+Route::post('/PDSmenu','PagesController@store');
+
 Route::get('/PDSField','PagesController@PDSField');
 
 Route::post('/PDSField','PagesController@addFields');
