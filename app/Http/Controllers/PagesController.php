@@ -12,8 +12,8 @@ class PagesController extends Controller
 
     public function PDSmenu(){
     	$getSection = \DB::select('call getPDS_Section');
-        $result = json_decode(json_encode($getSection),true);
-    	return view('PDS_section/PDSmenu',compact('result'));
+        $result2 = json_decode(json_encode($getSection),true);
+    	return view('PDS_section/PDSmenu',compact('result2'));
     }
 
     public function addSection(Request $request){
@@ -31,7 +31,10 @@ class PagesController extends Controller
         $getID = $request->only('id');
         $getFields = \DB::select("call getPDS_Field('{$getID['id']}')");
         $result = json_decode(json_encode($getFields),true);
-        return view('pds_field/PDSField',compact('result','id'));
+
+        $getSection2 = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection2),true);
+        return view('pds_field/PDSField',compact('result','id','result2'));
     }
 
     public function addFields(Request $request){
