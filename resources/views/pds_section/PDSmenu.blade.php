@@ -24,11 +24,7 @@
 
 	@section('card-body')
 		<div class="container">
-<<<<<<< HEAD
-			<b> SECTION </b>
-=======
 			<b>SECTIONS</b>
->>>>>>> 6a1111ebc716f08a8d88e5ec33e0bde86db4c4bc
 			<hr>
 			<input type="checkbox" name="sectioname">
 			<label style="position:absolute;left:70px;"> <b> Section Name </b> </label>
