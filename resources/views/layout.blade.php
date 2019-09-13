@@ -27,7 +27,7 @@
 		<ul class="list-group list-group-flush" style="font-size:12px;">
 
 			<?php
-				foreach ($result as $value) {
+				foreach ($result2 as $value) {
 			?>
 				<a href="#" style="text-decoration:none;"> 
 					<li class="list-group-item list-group-item-action"> 

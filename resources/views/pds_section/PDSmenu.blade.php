@@ -27,22 +27,21 @@
 			<b>SECTIONS</b>
 			<hr>
 			<input type="checkbox" name="sectioname">
-			<label style="position:absolute;left:70px;"> <b> Section Name </b> </label>
-			<label style="position:absolute;left:413px;"> <b> Number of fields </b> </label>
-			<label style="position:absolute;left:770px;"> <b> Sequence </b> </label>
+			<label>Section Name</label>
+			<label style="position:absolute;left:400px;">Number of fields</label>
+			<label style="position:absolute;left:800px;">Sequence</label>
 		</div>
 	@endsection
 
 	@section('sectionContent')
 		<div class="container-fluid" style="background-color:white;overflow:auto;height:370px;">
 			<?php
-				foreach($result as $value)
+				foreach($result2 as $value)
 				{	
 			?>
 				<table class="table table-hover">
 					<tr>
-						<td> <input type="checkbox" class="checkbox" name="check"> </td>
-						<td style="width:410px;"> <?php echo $value['Section Name'] ?> </td>
+						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>"><?php echo $value['Section Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
 						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
 						<td colspan="2"> <i class="fa fa-edit" id="editsection" style="font-size:20px"></i> </td>

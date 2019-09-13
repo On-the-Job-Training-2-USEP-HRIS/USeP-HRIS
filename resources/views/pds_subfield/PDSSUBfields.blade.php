@@ -10,43 +10,20 @@
 <body>
 @section('card-header')
 <div class="container">
-			<input type="button" id="addField" class='btn btn-success' name="addField" value="New Fields" style="width:120px;">
+			<input type="button" id="addSubField" class='btn btn-success' name="addSubField" value="New Subfields" style="width:120px;">
 		</div>
 @endsection
 
 @section('card-body')
 <div class="container">
-			<b>
-				{{$id['name']}}
-			</b>
+			<b>{{$id['name']}}</b>
 			<hr>
 			<input type="checkbox" name="sectioname">
-			<label>Field Name</label>
-			<label style="position:absolute;left:400px;">Number of Subfields</label>
+			<label>Subfield Name</label>
+			<label style="position:absolute;left:400px;">Input Type</label>
 			<label style="position:absolute;left:800px;">Sequence</label>
 		</div>
 @endsection
-
-@section('sectionContent')
-		<div class="container-fluid" style="background-color:white;overflow:auto;height:370px;">
-			<?php
-				foreach($result as $value)
-				{	
-			?>
-				<table class="table">
-					<tr>
-						<td style="display:none;"><?php echo $value['id'] ?></td>
-						<td style="width:410px;"> <a href="/PDSSubfield?id=<?php echo $value['id']; ?>&name=<?php echo $value['Field Name']; ?>"><?php echo $value['Field Name'] ?></a> </td>
-						<td style="width:360px;"> <?php echo $value['Number of Subfields'] ?> </td>
-						<td > <?php echo $value['Sequence'] ?> </td>
-					</tr>
-				</table>
-			<?php
-				}	
-			?>
-		</div>
-		
-	@endsection
 
 @section('modal')
 		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
@@ -55,12 +32,12 @@
 				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="close">
 				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
 				 	
-				 			<form action="/PDSField?id={{$id['id']}}&name={{$id['name']}}" method="post">
+				 			<form action="/PDSField" method="post">
 				 				{{csrf_field() }}
 				 				<div class="container-fluid" style="position:absolute;width:230px;">
 				 					<center>
-							 			<input type="text" class="form-control" name="field_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter field name</label>
+							 			<input type="text" class="form-control" name="Subfield_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
+							 			<label style="position:relative;">Enter Subfield name</label>
 						 			</center>
 					 			</div>
 					 			<div class="container-fluid" style="position:absolute;width:180px;left:230px;">
@@ -82,7 +59,7 @@
 </html>
 <script>
    $(document).ready(function(){
-     	$('#addField').click(function(){
+     	$('#addSubField').click(function(){
      		$('#show').fadeIn();
      	}) 
      	$('#close').click(function(){
