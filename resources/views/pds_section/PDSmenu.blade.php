@@ -44,8 +44,8 @@
 						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>"><?php echo $value['Section Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
 						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
-						<td colspan="2"> <i class="fa fa-edit" id="editsection" style="font-size:20px"></i> </td>
-						<td> <i class="fa fa-trash" id="deletesection" style="font-size:20px"></i> </a></td>
+						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
+						<td> <i class="fa fa-trash" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>" style="font-size:20px"></i> </a></td>
 					</tr>
 				</table>
 			<?php
@@ -145,25 +145,45 @@
      	}) 
    });
 
-   //Edit Section
-    $(document).ready(function(){
-     	$('#editsection').click(function(){
-     		$('#showEditSection').fadeIn();
-     	}) 
-     	$('#closeEditSection').click(function(){
-     		$('#showEditSection').fadeOut();
-     	}) 
-   });
+	//Edit Section
+//     $(document).ready(function (){
+// 		var editID = document.getElementByID('sectionID').value;
+// 		alert(editID);
+//      	$('#editsection1').click(function(){
+//      		$('#showEditSection').fadeIn();
+//      	}) 
+//      	$('#closeEditSection').click(function(){
+//      		$('#showEditSection').fadeOut();
+//      	}) 
+//    });
 
-   //Delete Section
-   $(document).ready(function(){
-     	$('#deletesection').click(function(){
-     		$('#showDeleteSection').fadeIn();
-     	}) 
-     	$('#closeDeleteSection').click(function(){
-     		$('#showDeleteSection').fadeOut();
-     	}) 
-   });
+   function editModal (id)
+   {
+		$('#editsection'+id).click(function(){
+			$('#showEditSection').fadeIn();
+		}) 
+		$('#closeEditSection').click(function(){
+			$('#showEditSection').fadeOut();
+		}) 
+   }
 
-   
+   function deleteModal (id)
+   {
+		$('#deletesection'+id).click(function(){
+			$('#showDeleteSection').fadeIn();
+		}) 
+		$('#closeDeleteSection').click(function(){
+			$('#showDeleteSection').fadeOut();
+		}) 
+   }
+
+//    //Delete Section
+//    $(document).ready(function(){
+//      	$('#deletesection').click(function(){
+//      		$('#showDeleteSection').fadeIn();
+//      	}) 
+//      	$('#closeDeleteSection').click(function(){
+//      		$('#showDeleteSection').fadeOut();
+//      	}) 
+//    });
 </script>
