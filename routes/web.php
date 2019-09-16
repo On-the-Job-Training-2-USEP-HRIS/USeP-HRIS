@@ -15,15 +15,15 @@ Route::get('/','PagesController@home');
 
 Route::get('/PDSmenu','PagesController@PDSmenu');
 
-Route::post('/PDSmenu','PagesController@addSection');
+Route::post('/PDSmenu','InsertController@addSection');
 
 Route::get('/PDSField','PagesController@PDSField');
 
-Route::post('/PDSField','PagesController@addFields');
+Route::post('/PDSField','InsertController@addFields');
 
 Route::get('/PDSSubfield','PagesController@PDSSubfields');
 
-Route::post('/PDSSubfield','PagesController@addSubfields');
+Route::post('/PDSSubfield','InsertController@addSubfields');
 
 Auth::routes();
 

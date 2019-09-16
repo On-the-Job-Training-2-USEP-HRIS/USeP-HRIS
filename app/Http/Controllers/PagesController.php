@@ -16,16 +16,6 @@ class PagesController extends Controller
     	return view('PDS_section/PDSmenu',compact('result2'));
     }
 
-    public function addSection(Request $request){
-    	$section = $request->input('section_name');
-        $sequence = $request->input('sequence');
-    	$data = array('Name' => $section,'Sequence' => $sequence);
-    	 \DB::statement("CALL insert_section('$section','$sequence')");
-    	$getSection = \DB::select('call getPDS_Section');
-        $result = json_decode(json_encode($getSection),true);
-        return view('PDS_section/PDSmenu',compact('result'));
-    }
-
      public function PDSField(Request $request){
         $id = $request->input();
         $getID = $request->only('id');
@@ -37,26 +27,17 @@ class PagesController extends Controller
         return view('pds_field/PDSField',compact('result','id','result2'));
     }
 
-    public function addFields(Request $request){
-        $id = $request->input();
-        $getID = $request->only('id');
-        $field = $request->input('field_name');
-        $sequence = $request->input('sequence');
-        $data = array('Name' => $field,'Sequence' => $sequence);
-        \DB::statement("CALL insert_field('$field','$sequence')");
-        \DB::statement("CALL insert_sectionfield('{$getID['id']}')");
-        $getFields = \DB::select("call getPDS_Field('{$getID['id']}')");
-        $result = json_decode(json_encode($getFields),true);
-        return view('pds_field/PDSField',compact('result','id'));   
-    }
-
     public function PDSSubfields(Request $request){
         $id = $request->input();
-        return view('pds_subfield/PDSSubfields',compact('id'));
-    }
+        $getSection2 = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection2),true);
 
-    public function addSubfields(Request $request){
-        $field = $request->input('field_name');
-        $sequence = $request->input('sequence');
+        $getSubfield = \DB::select('call getPDS_Subfield');
+        $result3 = json_decode(json_encode($getSubfield),true);
+
+        $getInputType = \DB::select('call getPDS_inputtype');
+        $result4 = json_decode(json_encode($getInputType),true);
+
+        return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4'));
     }
 }
