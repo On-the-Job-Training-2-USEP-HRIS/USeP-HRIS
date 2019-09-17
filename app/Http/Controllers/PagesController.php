@@ -16,7 +16,7 @@ class PagesController extends Controller
     	return view('PDS_section/PDSmenu',compact('result2'));
     }
 
-     public function PDSField(Request $request){
+    public function PDSField(Request $request){
         $id = $request->input();
         $getID = $request->only('id');
         $getFields = \DB::select("call getPDS_Field('{$getID['id']}')");

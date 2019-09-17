@@ -26,10 +26,10 @@
 		<div class="container">
 			<b>SECTIONS</b>
 			<hr>
-			<input type="checkbox" name="sectioname">
-			<label>Section Name</label>
+			<input type="checkbox" id="selectAll" name="selectAll">
+			<label style="position:absolute;left:73px;">Section Name</label>
 			<label style="position:absolute;left:400px;">Number of fields</label>
-			<label style="position:absolute;left:800px;">Sequence</label>
+			<label style="position:absolute;left:755px;">Sequence</label>
 		</div>
 	@endsection
 
@@ -41,7 +41,8 @@
 			?>
 				<table class="table table-hover">
 					<tr>
-						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>"><?php echo $value['Section Name'] ?></a> </td>
+						<td> <input type="checkbox" id="select" name="select"> </td>
+						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>" style="text-decoration:none;"><?php echo $value['Section Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
 						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
 						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
@@ -109,7 +110,7 @@
 						 			</center>
 					 			</div>
 					 			
-					 			<button type="submit" class="btn" style="position:absolute;top:90px;left:200px;background-color:#680000;color:white;"> Update </button>
+					 			<button type="submit" class="btn" name="update" style="position:absolute;top:90px;left:200px;background-color:#680000;color:white;"> Update </button>
 					
 				 			</form>
 				 		
@@ -177,13 +178,11 @@
 		}) 
    }
 
-//    //Delete Section
-//    $(document).ready(function(){
-//      	$('#deletesection').click(function(){
-//      		$('#showDeleteSection').fadeIn();
-//      	}) 
-//      	$('#closeDeleteSection').click(function(){
-//      		$('#showDeleteSection').fadeOut();
-//      	}) 
-//    });
+   $(document).ready(function(){
+		$('#selectAll').click(function(){
+			$(':checkbox').attr({checked: 'true'});
+			// $(':checkbox').attr({checked: 'true'});
+			//alert("this");
+		});
+   });
 </script>
