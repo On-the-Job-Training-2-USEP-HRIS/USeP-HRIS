@@ -38,6 +38,9 @@ class PagesController extends Controller
         $getInputType = \DB::select('call getPDS_inputtype');
         $result4 = json_decode(json_encode($getInputType),true);
 
-        return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4'));
+        $getInputGroup = \DB::select('call getPDS_inputgroup');
+        $result5 = json_decode(json_encode($getInputGroup),true);
+
+        return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4','result5'));
     }
 }
