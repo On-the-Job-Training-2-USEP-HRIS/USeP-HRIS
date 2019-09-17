@@ -13,7 +13,11 @@ class InsertController extends Controller
     	
         $getSection = \DB::select('call getPDS_Section');
         $result2 = json_decode(json_encode($getSection),true);
-        return view('PDS_section/PDSmenu',compact('result2'));
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        return view('PDS_section/PDSmenu',compact('result2', 'resultCount'));
     }
 
     

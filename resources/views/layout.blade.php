@@ -3,7 +3,7 @@
 <head>
 	<title>@yield('title', 'USEP - HRIS')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -13,7 +13,11 @@
 
 <body style="background-color:#f5f5f5;">
 <div class="page-header" style="position:relative;height:50px;background-color:#680000;">
-	<img src="/images/usep_logo.png" alt="University of Southeastern Philippines" style="img:100%; width:50px; height:50px;">
+	<img src="/images/usep_logo.png" alt="University of Southeastern Philippines" style="img:100%; width:50px; height:50px; float:left;">
+	<!-- <h1 style="display:block; margin:auto; color:white; float:left">University of Southeastern Philippines</h1> -->
+	<img src="/images/user.png" alt="User" style="img:100%; width:30px; height:30px; float:right; margin-right:20px; margin-top:10px ">
+	<img src="/images/inbox.png" alt="Message" style="img:100%; width:30px; height:30px; float:right; margin-right:20px; margin-top:10px">
+	<img src="/images/notification.png" alt="Notification" style="img:100%; width:30px; height:30px; float:right; margin-right:20px; margin-top:10px">
 </div>
 <div class="card" style="width:230px;height:595px;position:relative;">
 	<h1 style="text-align: center; margin-top:30px">ONEUSeP</h1>
@@ -55,7 +59,7 @@
 		@yield('card-body')
 	</div>
 </div>
-<div class="container" style="width:100px;height:100px;position:absolute;top:252px;left:222px;width:1100px;border-color:grey;">
+<div class="container" style="width:100px;height:100px;position:absolute;top:270px;left:222px;width:1100px;border-color:grey;">
 	@yield('sectionContent')
 </div>
 @yield('modal') 
