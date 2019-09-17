@@ -21,7 +21,14 @@
 	<ul class="list-group" style="position:relative;top:30px;">
 		<li class="list-group-item list-group-item-action">Dashboard</li>
 		<li class="list-group-item list-group-item-action">PDS</li>
-		<li class="list-group-item list-group-item-action" id="dropdown1">Section<img src="/images/dropdown.png" style="float:right;width:10px;height:10px;margin-top:7px;"></li>
+		<li class="list-group-item list-group-item-action" id="dropdown1">Section
+		<?php foreach($resultCount as $sectionCount) {
+			?>
+			<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
+		<?php
+			} 
+		?>
+		<img src="/images/dropdown.png" style="float:right;width:10px;height:10px;margin-top:7px;"></li>
 	</ul>
 	<div class="container-fluid" style="width:240px;height:100px;position:relative;top:30px;left:3px;display:none;" id="show1">
 		<ul class="list-group list-group-flush" style="font-size:12px;">

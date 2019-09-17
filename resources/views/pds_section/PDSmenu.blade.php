@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
+	@section('title', 'Menu')
 	@section('card-header')
 		<div class="container">
 			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
