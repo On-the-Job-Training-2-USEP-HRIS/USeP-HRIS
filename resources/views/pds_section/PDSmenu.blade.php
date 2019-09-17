@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
+	@section('title', 'Menu')
 	@section('card-header')
 		<div class="container">
 			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
@@ -26,10 +26,10 @@
 		<div class="container">
 			<b>SECTIONS</b>
 			<hr>
-			<input type="checkbox" name="sectioname">
-			<label>Section Name</label>
+			<input type="checkbox" id="selectAll" name="selectAll">
+			<label style="position:absolute;left:73px;">Section Name</label>
 			<label style="position:absolute;left:400px;">Number of fields</label>
-			<label style="position:absolute;left:800px;">Sequence</label>
+			<label style="position:absolute;left:755px;">Sequence</label>
 		</div>
 	@endsection
 
@@ -41,11 +41,12 @@
 			?>
 				<table class="table table-hover">
 					<tr>
-						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>"><?php echo $value['Section Name'] ?></a> </td>
+						<td> <input type="checkbox" id="select" name="select"> </td>
+						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>" style="text-decoration:none;"><?php echo $value['Section Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
 						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
-						<td colspan="2"> <i class="fa fa-edit" id="editsection" style="font-size:20px"></i> </td>
-						<td> <i class="fa fa-trash" id="deletesection" style="font-size:20px"></i> </a></td>
+						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
+						<td> <i class="fa fa-trash" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>" style="font-size:20px"></i> </a></td>
 					</tr>
 				</table>
 			<?php
@@ -109,7 +110,7 @@
 						 			</center>
 					 			</div>
 					 			
-					 			<button type="submit" class="btn" style="position:absolute;top:90px;left:200px;background-color:#680000;color:white;"> Update </button>
+					 			<button type="submit" class="btn" name="update" style="position:absolute;top:90px;left:200px;background-color:#680000;color:white;"> Update </button>
 					
 				 			</form>
 				 		
@@ -145,25 +146,43 @@
      	}) 
    });
 
-   //Edit Section
-    $(document).ready(function(){
-     	$('#editsection').click(function(){
-     		$('#showEditSection').fadeIn();
-     	}) 
-     	$('#closeEditSection').click(function(){
-     		$('#showEditSection').fadeOut();
-     	}) 
-   });
+	//Edit Section
+//     $(document).ready(function (){
+// 		var editID = document.getElementByID('sectionID').value;
+// 		alert(editID);
+//      	$('#editsection1').click(function(){
+//      		$('#showEditSection').fadeIn();
+//      	}) 
+//      	$('#closeEditSection').click(function(){
+//      		$('#showEditSection').fadeOut();
+//      	}) 
+//    });
 
-   //Delete Section
+   function editModal (id)
+   {
+		$('#editsection'+id).click(function(){
+			$('#showEditSection').fadeIn();
+		}) 
+		$('#closeEditSection').click(function(){
+			$('#showEditSection').fadeOut();
+		}) 
+   }
+
+   function deleteModal (id)
+   {
+		$('#deletesection'+id).click(function(){
+			$('#showDeleteSection').fadeIn();
+		}) 
+		$('#closeDeleteSection').click(function(){
+			$('#showDeleteSection').fadeOut();
+		}) 
+   }
+
    $(document).ready(function(){
-     	$('#deletesection').click(function(){
-     		$('#showDeleteSection').fadeIn();
-     	}) 
-     	$('#closeDeleteSection').click(function(){
-     		$('#showDeleteSection').fadeOut();
-     	}) 
+		$('#selectAll').click(function(){
+			$(':checkbox').attr({checked: 'true'});
+			// $(':checkbox').attr({checked: 'true'});
+			//alert("this");
+		});
    });
-
-   
 </script>

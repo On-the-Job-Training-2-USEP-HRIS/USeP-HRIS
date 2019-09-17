@@ -2,11 +2,15 @@
 <html>
 <head>
 	<title>@yield('title', 'USEP - HRIS')</title>
-	<link rel='shortcut icon' type='image/png' href="{{ asset('favicon.ico') }}">
-	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
-	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
-	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body style="background-color:#f5f5f5;">
 <div class="page-header" style="position:relative;height:50px;background-color:#680000;">
 	<img src="/images/usep_logo.png" alt="University of Southeastern Philippines" style="img:100%; width:50px; height:50px;">
@@ -17,7 +21,14 @@
 	<ul class="list-group" style="position:relative;top:30px;">
 		<li class="list-group-item list-group-item-action">Dashboard</li>
 		<li class="list-group-item list-group-item-action">PDS</li>
-		<li class="list-group-item list-group-item-action" id="dropdown1">Section<img src="/images/dropdown.png" style="float:right;width:10px;height:10px;margin-top:7px;"></li>
+		<li class="list-group-item list-group-item-action" id="dropdown1">Section
+		<?php foreach($resultCount as $sectionCount) {
+			?>
+			<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
+		<?php
+			} 
+		?>
+		<img src="/images/dropdown.png" style="float:right;width:10px;height:10px;margin-top:7px;"></li>
 	</ul>
 	<div class="container-fluid" style="width:240px;height:100px;position:relative;top:30px;left:3px;display:none;" id="show1">
 		<ul class="list-group list-group-flush" style="font-size:12px;">

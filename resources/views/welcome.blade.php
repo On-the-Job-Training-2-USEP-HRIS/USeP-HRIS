@@ -1,5 +1,3 @@
-@extends('layout')
-
 @section('card-header')
 <h2>Admin</h2>
 @endsection
