@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
+@section('title', "{$id['name']}")
 @section('card-header')
 <div class="container">
 			<input type="button" id="addSubField" class='btn btn-success' name="addSubField" value="New Subfields" style="width:120px;">
@@ -16,7 +16,14 @@
 
 @section('card-body')
 <div class="container">
-			<b>{{$id['name']}}</b>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/PDSmenu"><b>Section</b></a></li>
+				<li class="breadcrumb-item active"> <a href="/PDSField?id={{$id['id2']}}&name={{$id['name']}}&name={{$id['name2']}}"> <b> {{$id['name2']}} </b></a></li>
+				<li class="breadcrumb-item active" aria-current="page"> <b>{{$id['name']}}</b> </li>
+			</ol>
+		</nav>
+			
 			<hr>
 			<input type="checkbox" name="sectioname">
 			<label>Subfield Name</label>

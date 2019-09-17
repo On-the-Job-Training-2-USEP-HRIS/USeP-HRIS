@@ -24,7 +24,12 @@
 
 	@section('card-body')
 		<div class="container">
-			<b>SECTIONS</b>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item" aria-current="PDSmenu"><b>Section</b></li>
+				<!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
+			</ol>
+		</nav>
 			<hr>
 			<input type="checkbox" id="selectAll" name="selectAll">
 			<label style="position:absolute;left:73px;">Section Name</label>
@@ -34,7 +39,7 @@
 	@endsection
 
 	@section('sectionContent')
-		<div class="container-fluid" style="background-color:white;overflow:auto;height:370px;">
+		<div class="container-fluid" style="background-color:white; overflow:auto; height:370px;">
 			<?php
 				foreach($result2 as $value)
 				{	
@@ -61,7 +66,7 @@
 		<!-- Add Section Modal -->
 		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
         overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="show">
-			<div class="container" style="position:relative;background-color:white;width:500px;height:200px;">
+			<div class="container" style="position:relative;background-color:white;width:500px;height:200px; border-radius: 15px;">
 				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="close">
 				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
 				 	
@@ -70,7 +75,7 @@
 				 				<div class="container-fluid" style="position:absolute;width:230px;">
 				 					<center>
 							 			<input type="text" class="form-control" name="section_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter section name</label>
+							 			<label style="position:relative;">Enter Section Name</label>
 						 			</center>
 					 			</div>
 					 			<div class="container-fluid" style="position:absolute;width:180px;left:230px;">
@@ -100,7 +105,7 @@
 				 				<div class="container-fluid" style="position:absolute;width:230px;">
 				 					<center>
 							 			<input type="text" class="form-control" name="section_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter section name</label>
+							 			<label style="position:relative;">Enter Section Name</label>
 						 			</center>
 					 			</div>
 					 			<div class="container-fluid" style="position:absolute;width:180px;left:230px;">
