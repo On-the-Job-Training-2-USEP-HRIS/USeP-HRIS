@@ -13,7 +13,11 @@ class InsertController extends Controller
     	
         $getSection = \DB::select('call getPDS_Section');
         $result2 = json_decode(json_encode($getSection),true);
-        return view('PDS_section/PDSmenu',compact('result2'));
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        return view('PDS_section/PDSmenu',compact('result2', 'resultCount'));
     }
 
     
@@ -29,7 +33,11 @@ class InsertController extends Controller
 
         $getSection = \DB::select('call getPDS_Section');
         $result2 = json_decode(json_encode($getSection),true);
-        return view('pds_field/PDSField',compact('result','id','result2'));   
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        return view('pds_field/PDSField',compact('result','id','result2', 'resultCount'));   
     }
     
     public function addSubfields(Request $request){
@@ -98,6 +106,9 @@ class InsertController extends Controller
         $getInputType = \DB::select('call getPDS_inputtype');
         $result4 = json_decode(json_encode($getInputType),true);
 
-        return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4'));
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4', 'resultCount'));
     }
 }
