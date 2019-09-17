@@ -4,17 +4,16 @@
 <head>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
 	@section('title', 'Menu')
 	@section('card-header')
 		<div class="container">
-			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
+			<input style="position:absolute;left:48px;"type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
 
 			<form class="form-inline" style="float:right;">
-			<input type="search" class="form-control" placeholder="Search">
+				<input type="search" class="form-control" placeholder="Search">
 				<div class="form-input-group-append">
 					<span class="input-group-text"><i aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
 				</div>
@@ -27,9 +26,9 @@
 			<b>SECTIONS</b>
 			<hr>
 			<input type="checkbox" id="selectAll" name="selectAll">
-			<label style="position:absolute;left:73px;">Section Name</label>
-			<label style="position:absolute;left:400px;">Number of fields</label>
-			<label style="position:absolute;left:755px;">Sequence</label>
+			<label style="position:relative;left:73px;">Section Name</label>
+			<label style="position:relative;left:400px;">Number of fields</label>
+			<label style="position:relative;left:755px;">Sequence</label>
 		</div>
 	@endsection
 
@@ -45,8 +44,8 @@
 						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>" style="text-decoration:none;"><?php echo $value['Section Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
 						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
-						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
-						<td> <i class="fa fa-trash" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>" style="font-size:20px"></i> </a></td>
+						<td colspan="2"> <img src="images/edit.png" width="23px" height="23px" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>"> </td>
+						<td> <img src="images/delete.png" width="22px" height="22px" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>"> </td>
 					</tr>
 				</table>
 			<?php
@@ -62,7 +61,7 @@
 		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
         overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="show">
 			<div class="container" style="position:relative;background-color:white;width:500px;height:200px;">
-				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="close">
+				 <img src="{{asset('images/exit.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="close">
 				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
 				 	
 				 			<form action="/PDSmenu" method="post">
@@ -92,7 +91,7 @@
 		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
         overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="showEditSection">
 			<div class="container" style="position:relative;background-color:white;width:500px;height:200px;">
-				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="closeEditSection">
+				 <img src="{{asset('images/exit.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="closeEditSection">
 				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
 				 	
 				 			<form action="/PDSmenu" method="post">
