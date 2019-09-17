@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
+@section('title', "{$id['name']}")
 @section('card-header')
 <div class="container">
 			<input type="button" id="addSubField" class='btn btn-success' name="addSubField" value="New Subfields" style="width:120px;">
@@ -16,12 +16,19 @@
 
 @section('card-body')
 <div class="container">
-			<b>{{$id['name']}}</b>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/PDSmenu"><b>Section</b></a></li>
+				<li class="breadcrumb-item active"> <a href="/PDSField?id={{$id['id2']}}&name={{$id['name']}}&name={{$id['name2']}}"> <b> {{$id['name2']}} </b></a></li>
+				<li class="breadcrumb-item active" aria-current="page"> <b>{{$id['name']}}</b> </li>
+			</ol>
+		</nav>
+			
 			<hr>
-			<input type="checkbox" name="sectioname">
-			<label>Subfield Name</label>
+			<input type="checkbox" id="selectAll" name="selectAll">
+			<label style="position:absolute;left:73px;">Subfield Name</label>
 			<label style="position:absolute;left:400px;">Input Type</label>
-			<label style="position:absolute;left:800px;">Sequence</label>
+			<label style="position:absolute;left:755px;">Sequence</label>
 		</div>
 @endsection
 
@@ -31,12 +38,15 @@
 				foreach($result3 as $value)
 				{	
 			?>
-				<table class="table">
+				<table class="table table-hover">
 					<tr>
+						<td> <input type="checkbox" id="select" name="select"> </td>
 						<td style="display:none;"><?php echo $value['id'] ?></td>
 						<td style="width:410px;"> <?php echo $value['Subfield Name'] ?></td>
 						<td style="width:360px;"> <?php echo $value['Input Type'] ?> </td>
-						<td > <?php echo $value['Sequence'] ?> </td>
+						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
+						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
+						<td> <i class="fa fa-trash" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>" style="font-size:20px"></i> </a></td>
 					</tr>
 				</table>
 			<?php
@@ -104,5 +114,13 @@
      	$('#close').click(function(){
      		$('#show').fadeOut();
      	}) 
+   });
+
+   $(document).ready(function(){
+		$('#selectAll').click(function(){
+			$(':checkbox').attr({checked: 'true'});
+			// $(':checkbox').attr({checked: 'true'});
+			//alert("this");
+		});
    });
 </script>

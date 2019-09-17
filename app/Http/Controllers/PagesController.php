@@ -25,6 +25,9 @@ class PagesController extends Controller
         $getID = $request->only('id');
         $getFields = \DB::select("call getPDS_Field('{$getID['id']}')");
         $result = json_decode(json_encode($getFields),true);
+        
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
 
         $getSectionCount =\DB::select('call getPDS_SectionCount');
         $resultCount = json_decode(json_encode($getSectionCount), true);
