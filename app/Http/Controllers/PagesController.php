@@ -36,13 +36,14 @@ class PagesController extends Controller
 
     public function PDSSubfields(Request $request){
         $id = $request->input();
+        $getID = $request->only('id');
         $getSection2 = \DB::select('call getPDS_Section');
         $result2 = json_decode(json_encode($getSection2),true);
 
         $getSectionCount =\DB::select('call getPDS_SectionCount');
         $resultCount = json_decode(json_encode($getSectionCount), true);
 
-        $getSubfield = \DB::select('call getPDS_Subfield');
+        $getSubfield = \DB::select("call getPDS_Subfield('{$getID['id']}')");
         $result3 = json_decode(json_encode($getSubfield),true);
 
         $getInputType = \DB::select('call getPDS_inputtype');
