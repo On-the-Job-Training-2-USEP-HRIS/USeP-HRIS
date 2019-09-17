@@ -29,6 +29,9 @@ class PagesController extends Controller
         $getSectionCount =\DB::select('call getPDS_SectionCount');
         $resultCount = json_decode(json_encode($getSectionCount), true);
 
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
         $getSection2 = \DB::select('call getPDS_Section');
         $result2 = json_decode(json_encode($getSection2),true);
         return view('pds_field/PDSField',compact('result','id','result2', 'resultCount'));
@@ -39,15 +42,21 @@ class PagesController extends Controller
         $getSection2 = \DB::select('call getPDS_Section');
         $result2 = json_decode(json_encode($getSection2),true);
 
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
         $getSubfield = \DB::select('call getPDS_Subfield');
         $result3 = json_decode(json_encode($getSubfield),true);
 
         $getInputType = \DB::select('call getPDS_inputtype');
         $result4 = json_decode(json_encode($getInputType),true);
 
+        $getInputGroup = \DB::select('call getPDS_inputgroup');
+        $result5 = json_decode(json_encode($getInputGroup),true);
+
         $getSectionCount =\DB::select('call getPDS_SectionCount');
         $resultCount = json_decode(json_encode($getSectionCount), true);
 
-        return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4', 'resultCount'));
+        return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4','result5','resultCount'));
     }
 }
