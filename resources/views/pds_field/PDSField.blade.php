@@ -53,13 +53,15 @@
 				foreach($result as $value)
 				{	
 			?>
-				<table class="table">
+				<table class="table table-hover">
 					<tr>
 						<td> <input type="checkbox" id="select" name="select"> </td>
 						<td style="display:none;"><?php echo $value['id'] ?></td>
 						<td style="width:410px;"> <a href="/PDSSubfield?id=<?php echo $value['id']; ?>&name=<?php echo $value['Field Name']; ?>&name2={{$id['name']}}&id2={{$id['id']}}"><?php echo $value['Field Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Subfields'] ?> </td>
-						<td > <?php echo $value['Sequence'] ?> </td>
+						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
+						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
+						<td> <i class="fa fa-trash" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>" style="font-size:20px"></i> </a></td>
 					</tr>
 				</table>
 			<?php
@@ -110,6 +112,11 @@
    $(document).ready(function(){
 		$('#selectAll').click(function(){
 			$(':checkbox').attr({checked: 'true'});
+<<<<<<< HEAD
+=======
+			// $(':checkbox').attr({checked: 'true'});
+			//alert("this");
+>>>>>>> 1df6bdd80da41df5cdf00bce2b9076d92d3f039c
 		});
    });
 </script>
