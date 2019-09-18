@@ -26,8 +26,8 @@
 		<h1 id="heading_oneUsep"> ONEUSeP </h1>
 		<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 		<ul class="list-group" id="list_menuSection">
-			<li class="list-group-item list-group-item-action"><a href="#">Dashboard</a></li>
-			<li class="list-group-item list-group-item-action"><a href="/PDSForm">PDS</a></li>
+			<li class="list-group-item list-group-item-action"><img src="images/dashboard.png" id="icon_dashboard"><a href="#">Dashboard</a></li>
+			<li class="list-group-item list-group-item-action"><img src="images/file.png" id="icon_pds"><a href="/PDSForm">PDS</a></li>
 			<li class="list-group-item list-group-item-action" id="dropdown1"><a href="/PDSmenu">Section
 			<?php foreach($resultCount as $sectionCount) {
 				?>
@@ -38,7 +38,7 @@
 			<img src="/images/dropdown.png" id="icon_dropdown"></a></li>
 		</ul>
 		
-		<div class="container-fluid" style="" id="sectionDropdown">
+		<div class="container-fluid" id="sectionDropdown">
 			<ul class="list-group list-group-flush" style="font-size:12px;">
 				<?php
 					foreach ($result2 as $value) {

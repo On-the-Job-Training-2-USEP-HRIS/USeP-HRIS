@@ -122,3 +122,10 @@ body {
     top:17px;
     left:13px;
 }
+
+#icon_dashboard, #icon_pds, #icon_section {
+    margin-bottom: 5px;
+    margin-right: 2px;
+    width:15px;
+    height:15px;
+}

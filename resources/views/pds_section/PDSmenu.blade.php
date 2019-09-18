@@ -35,9 +35,9 @@
 		</nav>
 			<hr>
 			<input type="checkbox" id="selectAll" name="selectAll">
-			<label id="label_sectionName"> Section Name </label>
-			<label id="label_numFields"> Number of fields </label>
-			<label id="label_sequence"> Sequence </label>
+			<label id="label_sectionName"> <span class="badge badge-light"> Section Name </span> </label>
+			<label id="label_numFields"> <span class="badge badge-light">  Number of fields </span> </label>
+			<label id="label_sequence"> <span class="badge badge-light"> Sequence </span> </label>
 		</div>
 	@endsection
 
@@ -51,8 +51,8 @@
 					<tr>
 						<td> <input type="checkbox" id="select" name="select"> </td>
 						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>" style="text-decoration:none;"><?php echo $value['Section Name'] ?></a> </td>
-						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
-						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
+						<td style="width:360px;"> <span class="badge badge-light"> <?php echo $value['Number of Fields'] ?> </span> </td>
+						<td style="width:200px;"> <span class="badge badge-light"> <?php echo $value['Sequence'] ?> </span> </td>
 						<td colspan="2"> <img src="images/edit.png" width="23px" height="23px" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>"> </td>
 						<td> <img src="images/delete.png" width="22px" height="22px" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>"> </td>
 					</tr>
