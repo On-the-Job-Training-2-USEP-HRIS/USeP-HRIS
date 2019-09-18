@@ -13,8 +13,8 @@
 
 <body style="background-color:#f5f5f5;">
 <div class="page-header" style="position:relative;height:50px;background-color:#680000;">
-	<img src="/images/usep_logo.png" alt="University of Southeastern Philippines" style="img:100%; width:50px; height:50px; float:left;">
-	<!-- <h1 style="display:block; margin:auto; color:white; float:left">University of Southeastern Philippines</h1> -->
+	<img src="/images/usep_logo.png" alt="University of Southeastern Philippines" style="img:100%; width:40px; height:40px; margin: 5px; float:left;">
+	<!-- <h3 style="display:block; margin: 5px; color:white; float:left">University of Southeastern Philippines</h3> -->
 	<img src="/images/user.png" alt="User" style="img:100%; width:30px; height:30px; float:right; margin-right:20px; margin-top:10px ">
 	<img src="/images/inbox.png" alt="Message" style="img:100%; width:30px; height:30px; float:right; margin-right:20px; margin-top:10px">
 	<img src="/images/notification.png" alt="Notification" style="img:100%; width:30px; height:30px; float:right; margin-right:20px; margin-top:10px">
