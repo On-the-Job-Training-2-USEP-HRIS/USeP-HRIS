@@ -12,7 +12,7 @@
 	@section('title', "{$id['name']}")
 	@section('card-header')
 	<div class="container">
-		<input type="button" id="addsubField" class='btn' name="addSubField" value="New Subfield">
+		<input type="button" id="addsubField" class='btn btn-success' name="addSubField" value="New Subfield">
 
 		<form class="form-inline" style="float:right;">
 			<input type="search" class="form-control" placeholder="Search">

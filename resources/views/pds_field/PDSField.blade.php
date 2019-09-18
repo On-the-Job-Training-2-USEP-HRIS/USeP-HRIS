@@ -13,7 +13,7 @@
 	@section("title", "{$id['name']}")
 	@section('card-header')
 	<div class="container">
-		<input type="button" id="addField" class='btn' name="addField" value="New Field">
+		<input type="button" id="addField" class='btn btn-success' name="addField" value="New Field">
 
 		<form class="form-inline" style="float:right;">
 			<input type="search" class="form-control" placeholder="Search">
@@ -112,11 +112,6 @@
    $(document).ready(function(){
 		$('#selectAll').click(function(){
 			$(':checkbox').attr({checked: 'true'});
-<<<<<<< HEAD
-=======
-			// $(':checkbox').attr({checked: 'true'});
-			//alert("this");
->>>>>>> 1df6bdd80da41df5cdf00bce2b9076d92d3f039c
 		});
    });
 </script>

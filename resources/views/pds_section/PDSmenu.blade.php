@@ -12,7 +12,7 @@
 	@section('title', 'Menu')
 	@section('card-header')
 		<div class="container">
-			<input type="button"  class="btn" id="addsection" name="addSection" value="New Section">
+			<input type="button"  class="btn btn-success" id="addsection" name="addSection" value="New Section">
 
 			<form class="form-inline" style="float:right;">
 				<input type="search" class="form-control" placeholder="Search">
