@@ -68,17 +68,9 @@ class PagesController extends Controller
         $getSectionCount =\DB::select('call getPDS_SectionCount');
         $resultCount = json_decode(json_encode($getSectionCount), true);
 
-        // return view('PDS_form/PDSForm',compact('result2', 'resultCount'));
-        //////////////////////////////////////////////////////
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
-
-        $sectionNameData =\DB::select('call getPDS_SectionName');
-        $sectionNameResult = json_decode(json_encode($sectionNameData),true);
-
-        $fieldNameData =\DB::select('call getPDS_FieldName');
-        $fieldNameResult = json_decode(json_encode($fieldNameData),true);
         
-        return view('PDS_form/PDSForm', compact('result', 'sectionNameResult', 'fieldNameResult', 'result2', 'resultCount'));
+        return view('PDS_form/PDSForm', compact('result', 'result2', 'resultCount'));
     }
 }

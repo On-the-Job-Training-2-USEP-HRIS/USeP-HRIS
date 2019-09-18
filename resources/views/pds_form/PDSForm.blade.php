@@ -49,7 +49,7 @@
                     foreach($result as $value){
                         if($section != $value['Section Name']){
                             $section = $value['Section Name'];
-                            echo "<hr><h1>" . $section . "</h1>";
+                            echo "<hr><div class='card' style='background-color: gray; color: white;'><h1>" . $section . "</h1></div>";
                         } 
                         
                         if($field != $value['Field Name']){
@@ -67,6 +67,7 @@
                                 echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'>  ";
 
                             }
+                            // echo "</div>";
                                                     }
 
                         

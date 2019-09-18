@@ -52,7 +52,7 @@ class InsertController extends Controller
 
         $textList = ['checkbox','Radio Button','Dropdown','Text','Paragraph'];
 
-        if ($input_type == 'Checkbox' || $input_type == 'Radio Button' || $input_type == 'Dropdown' || $input_type == 'Text' ||  $input_type == 'Paragraph') {
+        if ($input_type == 'Checkbox' || $input_type == 'Radio' || $input_type == 'Dropdown' || $input_type == 'Text' ||  $input_type == 'Paragraph') {
 
             $get_input_text = \DB::select('call get_input_text');
             $get_input_type = \DB::select("call get_type_id('$input_type')");
