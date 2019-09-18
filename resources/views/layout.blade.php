@@ -26,16 +26,16 @@
 		<h1 id="heading_oneUsep"> ONEUSeP </h1>
 		<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 		<ul class="list-group" id="list_menuSection">
-			<li class="list-group-item list-group-item-action">Dashboard</li>
-			<li class="list-group-item list-group-item-action">PDS</li>
-			<li class="list-group-item list-group-item-action" id="dropdown1">Section
+			<li class="list-group-item list-group-item-action"><a href="#">Dashboard</a></li>
+			<li class="list-group-item list-group-item-action"><a href="/PDSForm">PDS</a></li>
+			<li class="list-group-item list-group-item-action" id="dropdown1"><a href="/PDSmenu">Section
 			<?php foreach($resultCount as $sectionCount) {
 				?>
 				<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
 			<?php
 				} 
 			?>
-			<img src="/images/dropdown.png" id="icon_dropdown"></li>
+			<img src="/images/dropdown.png" id="icon_dropdown"></a></li>
 		</ul>
 		
 		<div class="container-fluid" style="" id="sectionDropdown">

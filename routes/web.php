@@ -25,6 +25,8 @@ Route::get('/PDSSubfield','PagesController@PDSSubfields');
 
 Route::post('/PDSSubfield','InsertController@addSubfields');
 
+Route::get('/PDSForm','PagesController@PDSForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
