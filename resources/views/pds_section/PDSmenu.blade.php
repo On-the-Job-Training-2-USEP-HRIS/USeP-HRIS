@@ -2,21 +2,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
+	<link href="{{ asset('libraries/custom-css/pds_menu.css') }}" rel="stylesheet">
+
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
 	@section('title', 'Menu')
 	@section('card-header')
 		<div class="container">
-			<input type="button" id="addsection" class='btn btn-success' name="addSection" value="New Section" style="width:120px;">
+			<input type="button"  class="btn btn-success" id="addsection" name="addSection" value="New Section">
 
 			<form class="form-inline" style="float:right;">
-			<input type="search" class="form-control" placeholder="Search">
+				<input type="search" class="form-control" placeholder="Search">
 				<div class="form-input-group-append">
-					<span class="input-group-text"><i aria-hidden="true"><img src="/images/search.png" style="height:15px;width:15px;"></i></span>
+					<span class="input-group-text">
+						<i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i>
+					</span>
 				</div>
 			</form>
 		</div>
@@ -32,14 +35,14 @@
 		</nav>
 			<hr>
 			<input type="checkbox" id="selectAll" name="selectAll">
-			<label style="position:absolute;left:73px;">Section Name</label>
-			<label style="position:absolute;left:400px;">Number of fields</label>
-			<label style="position:absolute;left:755px;">Sequence</label>
+			<label id="label_sectionName"> Section Name </label>
+			<label id="label_numFields"> Number of fields </label>
+			<label id="label_sequence"> Sequence </label>
 		</div>
 	@endsection
 
 	@section('sectionContent')
-		<div class="container-fluid" style="background-color:white; overflow:auto; height:370px;">
+		<div class="container" id="sectionCon">
 			<?php
 				foreach($result2 as $value)
 				{	
@@ -50,8 +53,8 @@
 						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>" style="text-decoration:none;"><?php echo $value['Section Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Fields'] ?> </td>
 						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
-						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
-						<td> <i class="fa fa-trash" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>" style="font-size:20px"></i> </a></td>
+						<td colspan="2"> <img src="images/edit.png" width="23px" height="23px" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>"> </td>
+						<td> <img src="images/delete.png" width="22px" height="22px" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>"> </td>
 					</tr>
 				</table>
 			<?php
@@ -64,73 +67,64 @@
 	@section('modal')
 		
 		<!-- Add Section Modal -->
-		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
-        overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="show">
-			<div class="container" style="position:relative;background-color:white;width:500px;height:200px; border-radius: 15px;">
-				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="close">
-				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
-				 	
-				 			<form action="/PDSmenu" method="post">
-				 				{{csrf_field() }}
-				 				<div class="container-fluid" style="position:absolute;width:230px;">
-				 					<center>
-							 			<input type="text" class="form-control" name="section_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter Section Name</label>
-						 			</center>
-					 			</div>
-					 			<div class="container-fluid" style="position:absolute;width:180px;left:230px;">
-				 					<center>
-							 			<input type="text" class="form-control" name="sequence" style="position:relative;width:70px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter Sequence</label>
-						 			</center>
-					 			</div>
-					 			
-					 			<button type="submit" class="btn" style="position:absolute;top:90px;left:200px;background-color:#680000;color:white;"> Submit</button>
-					
-				 			</form>
+		<div id="showAddSection">
+			<div class="container" id="addSectionModal_a">
+				 <img src="{{asset('images/exit.png')}}" id="icon_exit" width="20" height="20">
+				 	<div class="card" id="addSectionModal_b">
+						<form action="/PDSmenu" method="post">
+							{{csrf_field() }}
+							<div class="container-fluid" id="addSecForm">
+								<center>
+									<input type="text" class="form-control" id="input_section_name" name="section_name">
+									<label style="position:relative;">Enter Section Name</label>
+								</center>
+							</div>
+							<div class="container-fluid" id="addSecForm_a">
+								<center>
+									<input type="text" class="form-control" id="input_sequence" name="sequence">
+									<label style="position:relative;">Enter Sequence</label>
+								</center>
+							</div>
+							<button type="submit" class="btn" id="input_add"> Submit</button>
+						</form>
 				 		
 				 	</div> 
 			</div>
 		</div>
 
 		<!-- Edit Section Modal -->
-		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
-        overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="showEditSection">
-			<div class="container" style="position:relative;background-color:white;width:500px;height:200px;">
-				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="closeEditSection">
-				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
+		<div id="showEditSection">
+			<div class="container"  id="showEditSection_a">
+				 <img src="{{asset('images/exit.png')}}" width="20" height="20" id="closeEditSection">
+				 	<div class="card" id="showEditSection_b">
 				 	
 				 			<form action="/PDSmenu" method="post">
 				 				{{csrf_field() }}
-				 				<div class="container-fluid" style="position:absolute;width:230px;">
+				 				<div class="container-fluid" id="editSecForm">
 				 					<center>
-							 			<input type="text" class="form-control" name="section_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
+							 			<input type="text" class="form-control" name="section_name" id="input_section_name">
 							 			<label style="position:relative;">Enter Section Name</label>
 						 			</center>
 					 			</div>
-					 			<div class="container-fluid" style="position:absolute;width:180px;left:230px;">
+					 			<div class="container-fluid" id="editSecForm_a">
 				 					<center>
-							 			<input type="text" class="form-control" name="sequence" style="position:relative;width:70px;border-top:0px;border-right:0px;border-left:0px;">
+							 			<input type="text" class="form-control" name="sequence" id="input_sequence">
 							 			<label style="position:relative;">Enter Sequence</label>
 						 			</center>
 					 			</div>
-					 			
-					 			<button type="submit" class="btn" name="update" style="position:absolute;top:90px;left:200px;background-color:#680000;color:white;"> Update </button>
-					
+					 			<button type="submit" id="input_edit" class="btn" name="update"> Update </button>
 				 			</form>
-				 		
 				 	</div> 
 			</div>
 		</div>
 
 		<!-- Delete Section Modal -->
-		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
-        overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="showDeleteSection">
-			<div class="container" style="position:relative;background-color:white;width:500px;height:200px;">
-				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
-						<p style="position:absolute;top:28px;left:73px;"> Are you sure you want to delete this section? </p>						
-						<button type="submit" class="btn" style="position:absolute;top:70px;left:150px;background-color:#680000;color:white;"> Confirm </button>
-					 	<button type="submit" id="closeDeleteSection" class="btn" style="position:absolute;top:70px;left:240px;background-color:#680000;color:white;"> Cancel </button>	 
+		<div id="showDeleteSection">
+			<div class="container"  id="showDeleteSection_a">
+				 	<div class="card"  id="showDeleteSection_b">
+						<p id="text_que"> Are you sure you want to delete this section? </p>						
+						<button type="submit" id="input_confirm" class="btn"> Confirm </button>
+					 	<button type="submit" id="input_cancel" class="btn"> Cancel </button>	 
 				 	</div> 
 			</div>
 		</div>
@@ -139,30 +133,19 @@
 	@endsection
 </body>
 </html>
+
 <script>
 
 	//Add Section
    $(document).ready(function(){
      	$('#addsection').click(function(){
-     		$('#show').fadeIn();
+     		$('#showAddSection').fadeIn();
      	}) 
-     	$('#close').click(function(){
-     		$('#show').fadeOut();
+     	$('#icon_exit').click(function(){
+     		$('#showAddSection').fadeOut();
      	}) 
-   });
-
-	//Edit Section
-//     $(document).ready(function (){
-// 		var editID = document.getElementByID('sectionID').value;
-// 		alert(editID);
-//      	$('#editsection1').click(function(){
-//      		$('#showEditSection').fadeIn();
-//      	}) 
-//      	$('#closeEditSection').click(function(){
-//      		$('#showEditSection').fadeOut();
-//      	}) 
-//    });
-
+   })
+   
    function editModal (id)
    {
 		$('#editsection'+id).click(function(){
@@ -178,7 +161,7 @@
 		$('#deletesection'+id).click(function(){
 			$('#showDeleteSection').fadeIn();
 		}) 
-		$('#closeDeleteSection').click(function(){
+		$('#input_cancel').click(function(){
 			$('#showDeleteSection').fadeOut();
 		}) 
    }
@@ -186,8 +169,6 @@
    $(document).ready(function(){
 		$('#selectAll').click(function(){
 			$(':checkbox').attr({checked: 'true'});
-			// $(':checkbox').attr({checked: 'true'});
-			//alert("this");
 		});
    });
 </script>

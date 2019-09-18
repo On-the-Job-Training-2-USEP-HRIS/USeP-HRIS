@@ -4,18 +4,29 @@
 <head>
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
+	<link href="{{ asset('libraries/custom-css/pds_subField.css') }}" rel="stylesheet">
+
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
-@section('title', "{$id['name']}")
-@section('card-header')
-<div class="container">
-			<input type="button" id="addSubField" class='btn btn-success' name="addSubField" value="New Subfields" style="width:120px;">
-		</div>
-@endsection
+	@section('title', "{$id['name']}")
+	@section('card-header')
+	<div class="container">
+		<input type="button" id="addsubField" class='btn btn-success' name="addSubField" value="New Subfield">
 
-@section('card-body')
-<div class="container">
+		<form class="form-inline" style="float:right;">
+			<input type="search" class="form-control" placeholder="Search">
+			<div class="form-input-group-append">
+				<span class="input-group-text">
+					<i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i>
+				</span>
+			</div>
+		</form>
+	</div>
+	@endsection
+
+	@section('card-body')
+	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="/PDSmenu"><b>Section</b></a></li>
@@ -26,14 +37,14 @@
 			
 			<hr>
 			<input type="checkbox" id="selectAll" name="selectAll">
-			<label style="position:absolute;left:73px;">Subfield Name</label>
-			<label style="position:absolute;left:400px;">Input Type</label>
-			<label style="position:absolute;left:755px;">Sequence</label>
-		</div>
-@endsection
+			<label> Subfield Name </label>
+			<label id="label_inputType"> Input Type </label>
+			<label id="label_seqSubField"> Sequence </label>
+	</div>
+	@endsection
 
 @section('sectionContent')
-		<div class="container-fluid" style="background-color:white;overflow:auto;height:370px;">
+		<div class="container-fluid" id="sectionConSF">
 			<?php
 				foreach($result3 as $value)
 				{	
@@ -103,24 +114,24 @@
 				 	</div> 
 			</div>
 		</div>
+	</div>
 	@endsection
 </body>
 </html>
+
 <script>
    $(document).ready(function(){
-     	$('#addSubField').click(function(){
-     		$('#show').fadeIn();
+     	$('#addsubField').click(function(){
+     		$('#showSubField').fadeIn();
      	}) 
      	$('#close').click(function(){
-     		$('#show').fadeOut();
+     		$('#showSubField').fadeOut();
      	}) 
    });
 
    $(document).ready(function(){
 		$('#selectAll').click(function(){
 			$(':checkbox').attr({checked: 'true'});
-			// $(':checkbox').attr({checked: 'true'});
-			//alert("this");
 		});
    });
 </script>
