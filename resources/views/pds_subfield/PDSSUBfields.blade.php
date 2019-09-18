@@ -63,7 +63,7 @@
 				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:565px;top:7px;" width="20" height="20" id="close">
 				 	<div class="card" style="width:570px;height:200px;position:absolute;top:40px;padding:10px;">
 				 	
-				 			<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}" method="post">
+				 			<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}&name2={{$id['name']}}&id2={{$id['id']}}" method="post">
 				 				{{csrf_field() }}
 				 				<div class="container-fluid" style="position:absolute;width:230px;left:2px;top:24px;">
 				 					<center>
