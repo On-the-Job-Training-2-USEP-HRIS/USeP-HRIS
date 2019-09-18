@@ -72,7 +72,7 @@
 		<div class="container" id="showSubField_a">
 			<img src="{{asset('images/exit.png')}}"width="20" height="20" id="close">
 			<div class="card" id="showSubField_b">
-				<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}&name2={{$id['name']}}&id2={{$id['id']}}" method="post">
+				<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}&name2={{$id['name2']}}&id2={{$id['id2']}}" method="post">
 					{{csrf_field() }}
 					<div class="container-fluid" id="addSubFieldForm">
 						<center>
