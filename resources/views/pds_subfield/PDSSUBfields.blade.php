@@ -67,52 +67,45 @@
 		
 	@endsection
 
-@section('modal')
-		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:170px;left:0;top:0;width:100%;height:100%;
-        overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="show">
-			<div class="container" style="position:relative;background-color:white;width:600px;height:260px;">
-				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:565px;top:7px;" width="20" height="20" id="close">
-				 	<div class="card" style="width:570px;height:200px;position:absolute;top:40px;padding:10px;">
-				 	
-				 			<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}&name2={{$id['name']}}&id2={{$id['id']}}" method="post">
-				 				{{csrf_field() }}
-				 				<div class="container-fluid" style="position:absolute;width:230px;left:2px;top:24px;">
-				 					<center>
-							 			<input type="text" class="form-control" name="Subfield_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter Subfield name</label>
-						 			</center>
-					 			</div>
-					 			<div class="container-fluid" style="position:absolute;width:180px;left:200px;top:24px;">
-				 					<center>
-							 			<input type="text" class="form-control" name="sequence" style="position:relative;width:70px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter Sequence</label>
-						 			</center>
-					 			</div>
-					 			<div class="container-fluid" style="position:absolute;width:170px;left:380px;" >
-					 				<center>
-					 					<div class="form-group">
-					 						<select class="form-control" name="input_type">
-					 						<?php
-													foreach($result4 as $value)
-													{	
-												?>
-													
-							 							<option><?php echo $value['Name'] ?></option>
-							 						
-												<?php
-													}	
-												?>
-					 						</select>
-					 					</div>
-					 					<label style="position:relative;">Select input type</label>
-					 				</center>
-					 			</div>
-					 			<button type="submit" class="btn" style="position:absolute;top:120px;left:250px;background-color:#680000;color:white;"> Submit</button>
-					
-				 			</form>
-				 		
-				 	</div> 
-			</div>
+	@section('modal')
+	<div id="showSubField">
+		<div class="container" id="showSubField_a">
+			<img src="{{asset('images/exit.png')}}"width="20" height="20" id="close">
+			<div class="card" id="showSubField_b">
+				<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}&name2={{$id['name']}}&id2={{$id['id']}}" method="post">
+					{{csrf_field() }}
+					<div class="container-fluid" id="addSubFieldForm">
+						<center>
+							<input type="text" class="form-control" id="input_subFieldName" name="Subfield_name">
+							<label style="position:relative;">Enter Subfield name</label>
+						</center>
+					</div>
+					<div class="container-fluid" id="addSubFieldForm_a">
+						<center>
+							<input type="text" class="form-control" id="input_seqSubField" name="sequence">
+							<label style="position:relative;">Enter Sequence</label>
+						</center>
+					</div>
+					<div class="container-fluid" id="addSubFieldForm_b">
+						<center>
+							<div class="form-group">
+								<select class="form-control" name="input_type">
+									<?php
+										foreach($result4 as $value)
+										{	
+									?>
+										<option><?php echo $value['Name'] ?></option>
+									<?php
+										}	
+									?>
+								</select>
+							</div>
+							<label style="position:relative;">Select input type</label>
+						</center>
+					</div>
+					<button type="submit" class="btn" id="input_addSubField"> Submit</button>
+				</form>
+			</div> 
 		</div>
 	</div>
 	@endsection
@@ -132,6 +125,8 @@
    $(document).ready(function(){
 		$('#selectAll').click(function(){
 			$(':checkbox').attr({checked: 'true'});
+			// $(':checkbox').attr({checked: 'true'});
+			//alert("this");
 		});
    });
 </script>
