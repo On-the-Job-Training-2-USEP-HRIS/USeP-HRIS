@@ -72,7 +72,7 @@
 		<div class="container" id="showSubField_a">
 			<img src="{{asset('images/exit.png')}}"width="20" height="20" id="close">
 			<div class="card" id="showSubField_b">
-				<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}" method="post">
+				<form action="/PDSSubfield?id={{$id['id']}}&name={{$id['name']}}&name2={{$id['name']}}&id2={{$id['id']}}" method="post">
 					{{csrf_field() }}
 					<div class="container-fluid" id="addSubFieldForm">
 						<center>
@@ -125,11 +125,8 @@
    $(document).ready(function(){
 		$('#selectAll').click(function(){
 			$(':checkbox').attr({checked: 'true'});
-<<<<<<< HEAD
-=======
 			// $(':checkbox').attr({checked: 'true'});
 			//alert("this");
->>>>>>> 1df6bdd80da41df5cdf00bce2b9076d92d3f039c
 		});
    });
 </script>
