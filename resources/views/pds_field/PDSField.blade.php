@@ -5,18 +5,29 @@
 	<!-- <title>{{$id['name']}}</title> -->
 	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
 	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
+	<link href="{{ asset('libraries/custom-css/pds_field.css') }}" rel="stylesheet">
+
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body>
-@section("title", "{$id['name']}")
-@section('card-header')
-<div class="container">
-			<input type="button" id="addField" class='btn btn-success' name="addField" value="New Fields" style="width:120px;">
-		</div>
-@endsection
+	@section("title", "{$id['name']}")
+	@section('card-header')
+	<div class="container">
+		<input type="button" id="addField" class='btn btn-success' name="addField" value="New Field">
 
-@section('card-body')
-<div class="container">
+		<form class="form-inline" style="float:right;">
+			<input type="search" class="form-control" placeholder="Search">
+			<div class="form-input-group-append">
+				<span class="input-group-text">
+					<i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i>
+				</span>
+			</div>
+		</form>
+	</div>
+	@endsection
+
+	@section('card-body')
+	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="/PDSmenu"><b>Section</b></a></li>
@@ -27,17 +38,17 @@
 				</li>
 			</ol>
 		</nav>
-			
-			<hr>
-			<input type="checkbox" id="selectAll" name="selectAll">
-			<label style="position:absolute;left:73px;">Field Name</label>
-			<label style="position:absolute;left:400px;">Number of Subfields</label>
-			<label style="position:absolute;left:755px;">Sequence</label>
-		</div>
-@endsection
+				
+		<hr>
+		<input type="checkbox" id="selectAll" name="selectAll">
+		<label> Field Name </label>
+		<label id="label_numSubField"> Number of Subfields </label>
+		<label id="label_sequenceSub"> Sequence </label>
+	</div>
+	@endsection
 
-@section('sectionContent')
-		<div class="container-fluid" style="background-color:white;overflow:auto;height:370px;">
+	@section('sectionContent')
+		<div class="container-fluid" id="contentField">
 			<?php
 				foreach($result as $value)
 				{	
@@ -57,56 +68,50 @@
 				}	
 			?>
 		</div>
-		
 	@endsection
 
-@section('modal')
-		<div style="position:fixed;top:1px;display:none;position: fixed;z-index:1;padding-top:190px;left:0;top:0;width:100%;height:100%;
-        overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);" id="show">
-			<div class="container" style="position:relative;background-color:white;width:500px;height:200px;">
-				 <img src="{{asset('libraries/Delete.png')}}" style="position:absolute;left:475px;top:5px;" width="20" height="20" id="close">
-				 	<div class="card" style="width:470px;height:150px;position:absolute;top:40px;padding:10px;">
-				 	
-				 			<form action="/PDSField?id={{$id['id']}}&name={{$id['name']}}" method="post">
-				 				{{csrf_field() }}
-				 				<div class="container-fluid" style="position:absolute;width:230px;">
-				 					<center>
-							 			<input type="text" class="form-control" name="field_name" style="position:relative;width:200px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter field name</label>
-						 			</center>
-					 			</div>
-					 			<div class="container-fluid" style="position:absolute;width:180px;left:230px;">
-				 					<center>
-							 			<input type="text" class="form-control" name="sequence" style="position:relative;width:70px;border-top:0px;border-right:0px;border-left:0px;">
-							 			<label style="position:relative;">Enter Sequence</label>
-						 			</center>
-					 			</div>
-					 			
-					 			<button type="submit" class="btn" style="position:absolute;top:90px;left:200px;background-color:#680000;color:white;"> Submit</button>
-					
-				 			</form>
-				 		
-				 	</div> 
+	@section('modal')
+		<div id="showFieldModal">
+			<div class="container" id="showFieldModal_a">
+				<img src="{{asset('images/exit.png')}}" width="20" height="20" id="close">
+				<div class="card" id="showFieldModal_b">
+				
+					<form action="/PDSField?id={{$id['id']}}&name={{$id['name']}}" method="post">
+						{{csrf_field() }}
+						<div class="container-fluid" id="addFieldForm">
+							<center>
+								<input type="text" id="input_field" class="form-control" name="field_name">
+								<label style="position:relative;">Enter field name</label>
+							</center>
+						</div>
+						<div class="container-fluid" id="addFieldForm_a">
+							<center>
+								<input type="text" id="input_sequenceField" class="form-control" name="sequence">
+								<label style="position:relative;">Enter Sequence</label>
+							</center>
+						</div>
+						<button type="submit" id="input_addField" class="btn"> Submit</button>
+					</form>
+				</div> 
 			</div>
 		</div>
 	@endsection
 </body>
 </html>
+
 <script>
    $(document).ready(function(){
      	$('#addField').click(function(){
-     		$('#show').fadeIn();
+     		$('#showFieldModal').fadeIn();
      	}) 
      	$('#close').click(function(){
-     		$('#show').fadeOut();
+     		$('#showFieldModal').fadeOut();
      	}) 
    });
 
    $(document).ready(function(){
 		$('#selectAll').click(function(){
 			$(':checkbox').attr({checked: 'true'});
-			// $(':checkbox').attr({checked: 'true'});
-			//alert("this");
 		});
    });
 </script>
