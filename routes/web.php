@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/','PagesController@home');
+// Route::get('/','PagesController@home');
+Route::get('/','PagesController@PDSForm');
 
 Route::get('/PDSmenu','PagesController@PDSmenu');
 

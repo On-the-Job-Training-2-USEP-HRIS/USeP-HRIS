@@ -26,16 +26,17 @@
 		<h1 id="heading_oneUsep"> ONEUSeP </h1>
 		<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 		<ul class="list-group" id="list_menuSection">
-			<li class="list-group-item list-group-item-action"><a href="#">Dashboard</a></li>
-			<li class="list-group-item list-group-item-action"><a href="/PDSForm">PDS</a></li>
-			<li class="list-group-item list-group-item-action" id="dropdown1"><a href="/PDSmenu">Section
+			<li class="list-group-item list-group-item-action"><h5><a style="display: block; color: black; text-decoration: none;" href="#">Dashboard</a></h5></li>
+			<li class="list-group-item list-group-item-action"><h5><a style="display: block; color: black; text-decoration: none;" href="/PDSForm">PDS</a></h5></li>
+			<div><li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style="display: inline-block; margin-right: 10px; color: black; text-decoration: none; width: 100px;" href="/PDSmenu">Section
 			<?php foreach($resultCount as $sectionCount) {
 				?>
 				<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
 			<?php
 				} 
 			?>
-			<img src="/images/dropdown.png" id="icon_dropdown"></a></li>
+			</a></h5></li></div>
+			<!-- <img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block;"> //Dropdown image -->
 		</ul>
 		
 		<div class="container-fluid" style="" id="sectionDropdown">

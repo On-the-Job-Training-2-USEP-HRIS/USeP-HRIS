@@ -37,7 +37,7 @@
 	@endsection
 
 	@section('sectionContent')
-		<div class="container" id="sectionCon" style="height: 410px;">
+		<div class="container-fluid" id="sectionCon" style="height: 410px;">
 
         <!-- <div class="container-fluid" style="overflow:auto; border: 1px solid #D3D3D3; border-radius: 5px; width: 530px;"> -->
 			
@@ -49,7 +49,7 @@
                     foreach($result as $value){
                         if($section != $value['Section Name']){
                             $section = $value['Section Name'];
-                            echo "<hr><div class='card' style='background-color: gray; color: white;'><h1>" . $section . "</h1></div>";
+                            echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
                         } 
                         
                         if($field != $value['Field Name']){
@@ -68,7 +68,7 @@
 
                             }
                             // echo "</div>";
-                                                    }
+                        }
 
                         
                     }
@@ -82,42 +82,3 @@
 
 </body>
 </html>
-
-<script>
-
-	//Add Section
-   $(document).ready(function(){
-     	$('#addsection').click(function(){
-     		$('#showAddSection').fadeIn();
-     	}) 
-     	$('#icon_exit').click(function(){
-     		$('#showAddSection').fadeOut();
-     	}) 
-   })
-   
-   function editModal (id)
-   {
-		$('#editsection'+id).click(function(){
-			$('#showEditSection').fadeIn();
-		}) 
-		$('#closeEditSection').click(function(){
-			$('#showEditSection').fadeOut();
-		}) 
-   }
-
-   function deleteModal (id)
-   {
-		$('#deletesection'+id).click(function(){
-			$('#showDeleteSection').fadeIn();
-		}) 
-		$('#input_cancel').click(function(){
-			$('#showDeleteSection').fadeOut();
-		}) 
-   }
-
-   $(document).ready(function(){
-		$('#selectAll').click(function(){
-			$(':checkbox').attr({checked: 'true'});
-		});
-   });
-</script>
