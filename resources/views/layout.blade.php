@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="card" id="sideMenu">
-		<h1 id="heading_oneUsep"> ONEUSeP </h1>
+		<h1 id="heading_oneUsep"> ONE<span style="color:#555555">USeP</span></h1>
 		<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 		<ul class="list-group" id="list_menuSection">
 			<li class="list-group-item list-group-item-action"><img src="images/dashboard.png" id="icon_dashboard"><a href="#">Dashboard</a></li>

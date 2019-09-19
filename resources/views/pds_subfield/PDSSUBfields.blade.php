@@ -51,11 +51,11 @@
 			?>
 				<table class="table table-hover">
 					<tr>
-						<td> <input type="checkbox" id="select" name="select"> </td>
+						<td> <input type="checkbox" name="checkAll" class="checkSingle"> </td>
 						<td style="display:none;"><?php echo $value['id'] ?></td>
 						<td style="width:410px;"> <?php echo $value['Subfield Name'] ?></td>
-						<td style="width:360px;"> <?php echo $value['Input Type'] ?> </td>
-						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
+						<td style="width:360px;"> <span class="badge badge-light"> <?php echo $value['Input Type'] ?> </span> </td>
+						<td style="width:200px;"> <span class="badge badge-light"> <?php echo $value['Sequence'] ?> </span> </td>
 						<td colspan="2"> <img src="images/edit.png" width="23px" height="23px" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>"> </td>
 						<td> <img src="images/delete.png" width="22px" height="22px" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>"> </td>
 					</tr>
@@ -186,4 +186,36 @@
 			//alert("this");
 		});
    });
+
+   $(document).ready(function() {
+    $("#selectAll").change(function() {
+        if (this.checked) {
+            $(".checkSingle").each(function() {
+                this.checked=true;
+            });
+        } else {
+            $(".checkSingle").each(function() {
+                this.checked=false;
+            });
+        }
+    });
+
+    $(".checkSingle").click(function () {
+        if ($(this).is(":checked")) {
+            var isAllChecked = 0;
+
+            $(".checkSingle").each(function() {
+                if (!this.checked)
+                    isAllChecked = 1;
+            });
+
+            if (isAllChecked == 0) {
+                $("#selectAll").prop("checked", true);
+            }     
+        }
+        else {
+            $("#selectAll").prop("checked", false);
+        }
+    });
+});
 </script>

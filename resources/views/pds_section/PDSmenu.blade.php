@@ -49,7 +49,7 @@
 			?>
 				<table class="table table-hover">
 					<tr>
-						<td> <input type="checkbox" id="select" name="select"> </td>
+						<td> <input type="checkbox"	name="checkAll" class="checkSingle"> </td>
 						<td style="width:410px;"> <a href="/PDSField?id=<?php echo $value['id']; ?>&name=<?php echo $value['Section Name']; ?>" style="text-decoration:none;"><?php echo $value['Section Name'] ?></a> </td>
 						<td style="width:360px;"> <span class="badge badge-light"> <?php echo $value['Number of Fields'] ?> </span> </td>
 						<td style="width:200px;"> <span class="badge badge-light"> <?php echo $value['Sequence'] ?> </span> </td>
@@ -166,9 +166,35 @@
 		}) 
    }
 
-   $(document).ready(function(){
-		$('#selectAll').click(function(){
-			$(':checkbox').attr({checked: 'true'});
-		});
-   });
+$(document).ready(function() {
+    $("#selectAll").change(function() {
+        if (this.checked) {
+            $(".checkSingle").each(function() {
+                this.checked=true;
+            });
+        } else {
+            $(".checkSingle").each(function() {
+                this.checked=false;
+            });
+        }
+    });
+
+    $(".checkSingle").click(function () {
+        if ($(this).is(":checked")) {
+            var isAllChecked = 0;
+
+            $(".checkSingle").each(function() {
+                if (!this.checked)
+                    isAllChecked = 1;
+            });
+
+            if (isAllChecked == 0) {
+                $("#selectAll").prop("checked", true);
+            }     
+        }
+        else {
+            $("#selectAll").prop("checked", false);
+        }
+    });
+});
 </script>
