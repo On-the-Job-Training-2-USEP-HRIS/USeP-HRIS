@@ -60,4 +60,17 @@ class PagesController extends Controller
 
         return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4','result5','resultCount'));
     }
+
+    public function PDSForm(){
+    	$getSection = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection),true);
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        $data = \DB::select('call getPDS_Dashboard');
+        $result = json_decode(json_encode($data),true);
+        
+        return view('PDS_form/PDSForm', compact('result', 'result2', 'resultCount'));
+    }
 }

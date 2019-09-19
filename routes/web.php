@@ -12,6 +12,7 @@
 */
 
 Route::get('/','PagesController@home');
+// Route::get('/','PagesController@PDSForm');
 
 Route::get('/PDSmenu','PagesController@PDSmenu');
 
@@ -24,6 +25,8 @@ Route::post('/PDSField','InsertController@addFields');
 Route::get('/PDSSubfield','PagesController@PDSSubfields');
 
 Route::post('/PDSSubfield','InsertController@addSubfields');
+
+Route::get('/PDSForm','PagesController@PDSForm');
 
 Auth::routes();
 

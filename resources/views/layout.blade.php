@@ -95,7 +95,7 @@
 
 <script>
    $(document).ready(function(){
-     	$('#dropdown1').click(function(){
+     	$('#icon_dropdown').click(function(){
      		$('#sectionDropdown').toggle();
      	}) 
    });

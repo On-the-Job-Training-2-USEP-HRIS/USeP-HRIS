@@ -41,9 +41,9 @@
 				
 		<hr>
 		<input type="checkbox" id="selectAll" name="selectAll">
-		<label id="label_fieldName"> Field Name </label>
-		<label id="label_numSubField"> Number of Subfields </label>
-		<label id="label_sequenceSub"> Sequence </label>
+		<label> <span class="badge badge-light"> Field Name </span> </label>
+		<label id="label_numSubField"> <span class="badge badge-light"> Number of Subfields </span> </label>
+		<label id="label_sequenceSub"> <span class="badge badge-light"> Sequence </span> </label>
 	</div>
 	@endsection
 
@@ -60,8 +60,8 @@
 						<td style="width:410px;"> <a href="/PDSSubfield?id=<?php echo $value['id']; ?>&name=<?php echo $value['Field Name']; ?>&name2={{$id['name']}}&id2={{$id['id']}}"><?php echo $value['Field Name'] ?></a> </td>
 						<td style="width:360px;"> <?php echo $value['Number of Subfields'] ?> </td>
 						<td style="width:200px;"> <?php echo $value['Sequence'] ?> </td>
-						<td colspan="2"> <i class="fa fa-edit" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>" style="font-size:20px"></i> </td>
-						<td> <i class="fa fa-trash" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>" style="font-size:20px"></i> </a></td>
+						<td colspan="2"> <img src="images/edit.png" width="23px" height="23px" onClick="editModal(<?php echo $value['id']; ?>)" id="editsection<?php echo $value['id']; ?>"> </td>
+						<td> <img src="images/delete.png" width="22px" height="22px" onClick="deleteModal(<?php echo $value['id']; ?>)" id="deletesection<?php echo $value['id']; ?>"> </td>
 					</tr>
 				</table>
 			<?php
@@ -96,6 +96,44 @@
 			</div>
 		</div>
 	@endsection
+
+	<!-- Edit Section Modal -->
+	<div id="showEditSection">
+			<div class="container"  id="showEditSection_a">
+				 <img src="{{asset('images/exit.png')}}" width="20" height="20" id="closeEditSection">
+				 	<div class="card" id="showEditSection_b">
+				 	
+				 			<form action="/PDSmenu" method="post">
+				 				{{csrf_field() }}
+				 				<div class="container-fluid" id="editSecForm">
+				 					<center>
+							 			<input type="text" class="form-control" name="section_name" id="input_section_name">
+							 			<label style="position:relative;">Enter Section Name</label>
+						 			</center>
+					 			</div>
+					 			<div class="container-fluid" id="editSecForm_a">
+				 					<center>
+							 			<input type="text" class="form-control" name="sequence" id="input_sequence">
+							 			<label style="position:relative;">Enter Sequence</label>
+						 			</center>
+					 			</div>
+					 			<button type="submit" id="input_edit" class="btn" name="update"> Update </button>
+				 			</form>
+				 	</div> 
+			</div>
+		</div>
+
+		<!-- Delete Section Modal -->
+		<div id="showDeleteSection">
+			<div class="container"  id="showDeleteSection_a">
+				 	<div class="card"  id="showDeleteSection_b">
+						<p id="text_que"> Are you sure you want to delete this section? </p>						
+						<button type="submit" id="input_confirm" class="btn"> Confirm </button>
+					 	<button type="submit" id="input_cancel" class="btn"> Cancel </button>	 
+				 	</div> 
+			</div>
+		</div>
+			
 </body>
 </html>
 
@@ -104,10 +142,30 @@
      	$('#addField').click(function(){
      		$('#showFieldModal').fadeIn();
      	}) 
-     	$('#close').click(function(){
+     	$('#close').click(function(){	
      		$('#showFieldModal').fadeOut();
      	}) 
    });
+
+   function editModal (id)
+   {
+		$('#editsection'+id).click(function(){
+			$('#showEditSection').fadeIn();
+		}) 
+		$('#closeEditSection').click(function(){
+			$('#showEditSection').fadeOut();
+		}) 
+   }
+
+   function deleteModal (id)
+   {
+		$('#deletesection'+id).click(function(){
+			$('#showDeleteSection').fadeIn();
+		}) 
+		$('#input_cancel').click(function(){
+			$('#showDeleteSection').fadeOut();
+		}) 
+   }
 
    $(document).ready(function(){
 		$('#selectAll').click(function(){
