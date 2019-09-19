@@ -4,6 +4,16 @@ body {
     margin:auto;
 }
 
+a {
+    color: black;
+}
+
+a:hover {
+    color: #680000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 .page-header {
     position:relative;
     height:50px;

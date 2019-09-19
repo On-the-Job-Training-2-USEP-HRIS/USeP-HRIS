@@ -30,7 +30,7 @@
 	<div class="d-flex" id="sidebarSection">
 		<div id="sidebar">
 			<div class="heading"> 
-				<h1 id="heading_oneUsep"> ONEUSeP </h1>
+				<h1 id="heading_oneUsep"> ONE<span style="color:#555555">USeP</span></h1>
 				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 			</div>
 			<div class="list-group list-group-flush">
