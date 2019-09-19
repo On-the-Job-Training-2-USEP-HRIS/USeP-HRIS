@@ -15,30 +15,41 @@
 
 <body>
 
-	<div class="page-header">
-		<img src="/images/usep_logo.png"  id="icon_usepLogo" alt="University of Southeastern Philippines">
-		<img src="/images/user.png" id="icon_user" alt="User">
-		<img src="/images/inbox.png" id="icon_message" alt="Message">
-		<img src="/images/notification.png" id="icon_notification" alt="Notification">
+
+	<div class="row">
+		<div class="col-sm-12">
+		<div class="page-header">
+			<img src="/images/usep_logo.png"  id="icon_usepLogo" alt="University of Southeastern Philippines">
+			<img src="/images/user.png" id="icon_user" alt="User">
+			<img src="/images/inbox.png" id="icon_message" alt="Message">
+			<img src="/images/notification.png" id="icon_notification" alt="Notification">
+		</div>
+		</div>
 	</div>
 
-	<div class="card" id="sideMenu">
-		<h1 id="heading_oneUsep"> ONEUSeP </h1>
-		<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
-		<ul class="list-group" id="list_menuSection">
-			<li class="list-group-item list-group-item-action">Dashboard</li>
-			<li class="list-group-item list-group-item-action">PDS</li>
-			<li class="list-group-item list-group-item-action" id="dropdown1">Section
-			<?php foreach($resultCount as $sectionCount) {
-				?>
-				<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
-			<?php
-				} 
-			?>
-			<img src="/images/dropdown.png" id="icon_dropdown"></li>
-		</ul>
-		
-		<div class="container-fluid" style="" id="sectionDropdown">
+	<div class="d-flex" id="sidebarSection">
+		<div id="sidebar">
+			<div class="heading"> 
+				<h1 id="heading_oneUsep"> ONEUSeP </h1>
+				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
+			</div>
+			<div class="list-group list-group-flush">
+			<ul class="list-group" id="list_menuSection">
+				<li class="list-group-item list-group-item-action">Dashboard</li>
+				<li class="list-group-item list-group-item-action">PDS</li>
+				<li class="list-group-item list-group-item-action" id="dropdown1">Section
+					<?php foreach($resultCount as $sectionCount) 
+						{
+					?>
+						<span class="badge badge-dark"> 
+						<?php echo $sectionCount['AllSection']; ?> </span>
+					<?php
+						} 
+					?>
+				<img src="/images/dropdown.png" id="icon_dropdown"></a></li>
+			</ul>
+
+			<div id="sectionDropdown">
 			<ul class="list-group list-group-flush" style="font-size:12px;">
 				<?php
 					foreach ($result2 as $value) {
@@ -53,26 +64,32 @@
 				?>
 			</ul>
 		</div>
-	</div>
-
-	<div class="card" id="mainContent">
-		<div class="sidemenu-btn" onclick="toggleSideMenu()">
-			<img src="images/menu.png" height="20px" width="20px">
-		</div>
+      </div>
+    </div>
 	
-		<div class="card-header">
-			@yield('card-header')
-		</div>
-		<div class="card-body">
-			@yield('card-body')
+	  
+	<div id="content">
+		<div class="card">
+			<div class="card-header">
+				<div id="menu-toggle">
+					<img src="images/menu.png" height="30px" width="30px">
+				</div>
+					@yield('card-header')
+			</div>
+
+			<div class="card-body">
+				@yield('card-body')
+			</div>
+			
+			@yield('sectionContent')
+			<!-- <div class="card">
+				
+			</div> -->
+
+			@yield('modal') 
 		</div>
 	</div>
-
-	<div class="card" id="sectionContainer">
-		@yield('sectionContent')
-	</div>
-
-	@yield('modal') 
+	
 </body>
 </html>
 
@@ -88,4 +105,9 @@
 		document.getElementById("mainContent").classList.toggle('active');
 		document.getElementById("sectionContainer").classList.toggle('active');
 	}	
+
+	$("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#sidebarSection").toggleClass("toggled");
+    });
 </script>

@@ -80,14 +80,19 @@
 
 /* TEXT CSS */
 
+#label_fieldName {
+    position:relative;
+    left:18px;
+}
+
 #label_numSubField {
-    position:absolute;
-    left:400px;
+    position:relative;
+    left:295px;
 }
 
 #label_sequenceSub {
-    position:absolute;
-    left:800px;
+    position:relative;
+    left:533px;
 }
 
 /* ICONS OR IMAGES CSS */

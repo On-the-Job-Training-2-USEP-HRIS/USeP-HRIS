@@ -44,7 +44,7 @@
 	@endsection
 
 @section('sectionContent')
-		<div class="container-fluid" id="sectionConSF">
+		<div class="container" id="sectionConSF">
 			<?php
 				foreach($result3 as $value)
 				{	

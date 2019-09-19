@@ -41,14 +41,14 @@
 				
 		<hr>
 		<input type="checkbox" id="selectAll" name="selectAll">
-		<label> Field Name </label>
+		<label id="label_fieldName"> Field Name </label>
 		<label id="label_numSubField"> Number of Subfields </label>
 		<label id="label_sequenceSub"> Sequence </label>
 	</div>
 	@endsection
 
 	@section('sectionContent')
-		<div class="container-fluid" id="contentField">
+		<div class="container" id="contentField">
 			<?php
 				foreach($result as $value)
 				{	
