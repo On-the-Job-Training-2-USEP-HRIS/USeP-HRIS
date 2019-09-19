@@ -26,8 +26,8 @@
 		<h1 id="heading_oneUsep"> ONEUSeP </h1>
 		<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 		<ul class="list-group" id="list_menuSection">
-			<li class="list-group-item list-group-item-action"><h5><a style="display: block; color: black; text-decoration: none;" href="#">Dashboard</a></h5></li>
-			<li class="list-group-item list-group-item-action"><h5><a style="display: block; color: black; text-decoration: none;" href="/PDSForm">PDS</a></h5></li>
+			<li class="list-group-item list-group-item-action"><h5><img src="images/dashboard.png" id="icon_dashboard"><a style="color: black; text-decoration: none;" href="#">Dashboard</a></h5></li>
+			<li class="list-group-item list-group-item-action" style="border: 1px solid;"><h5><img src="images/file.png" id="icon_pds"><a style=" color: black; text-decoration: none;" href="/PDSForm">PDS</a></h5></li>
 			<div><li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style="display: inline-block; margin-right: 10px; color: black; text-decoration: none; width: 100px;" href="/PDSmenu">Section
 			<?php foreach($resultCount as $sectionCount) {
 				?>
@@ -39,7 +39,7 @@
 			<!-- <img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block;"> //Dropdown image -->
 		</ul>
 		
-		<div class="container-fluid" style="" id="sectionDropdown">
+		<div class="container-fluid" id="sectionDropdown">
 			<ul class="list-group list-group-flush" style="font-size:12px;">
 				<?php
 					foreach ($result2 as $value) {

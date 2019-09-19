@@ -41,9 +41,9 @@
 				
 		<hr>
 		<input type="checkbox" id="selectAll" name="selectAll">
-		<label> Field Name </label>
-		<label id="label_numSubField"> Number of Subfields </label>
-		<label id="label_sequenceSub"> Sequence </label>
+		<label> <span class="badge badge-light"> Field Name </span> </label>
+		<label id="label_numSubField"> <span class="badge badge-light"> Number of Subfields </span> </label>
+		<label id="label_sequenceSub"> <span class="badge badge-light"> Sequence </span> </label>
 	</div>
 	@endsection
 
@@ -119,6 +119,17 @@
 					 			</div>
 					 			<button type="submit" id="input_edit" class="btn" name="update"> Update </button>
 				 			</form>
+				 	</div> 
+			</div>
+		</div>
+
+		<!-- Delete Section Modal -->
+		<div id="showDeleteSection">
+			<div class="container"  id="showDeleteSection_a">
+				 	<div class="card"  id="showDeleteSection_b">
+						<p id="text_que"> Are you sure you want to delete this section? </p>						
+						<button type="submit" id="input_confirm" class="btn"> Confirm </button>
+					 	<button type="submit" id="input_cancel" class="btn"> Cancel </button>	 
 				 	</div> 
 			</div>
 		</div>

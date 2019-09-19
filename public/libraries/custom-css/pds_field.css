@@ -77,6 +77,22 @@
     color:white;
 }
 
+#input_confirm {
+    position:absolute;
+    top:70px;
+    left:150px;
+    background-color:#680000;
+    color:white;
+}
+
+#input_cancel {
+    position:absolute;
+    top:70px;
+    left:240px;
+    background-color:#680000;
+    color:white;
+}
+
 #icon_exit, #closeEditSection {
     position:absolute;
     left:475px;
@@ -151,4 +167,10 @@
     position:absolute;
     left:475px;
     top:5px;
+}
+
+#text_que {
+    position:absolute;
+    top:28px;
+    left:73px;
 }
