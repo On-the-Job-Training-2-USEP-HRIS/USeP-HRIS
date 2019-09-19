@@ -34,20 +34,19 @@
 				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 			</div>
 			<div class="list-group list-group-flush">
-			<ul class="list-group" id="list_menuSection">
-				<li class="list-group-item list-group-item-action">Dashboard</li>
-				<li class="list-group-item list-group-item-action">PDS</li>
-				<li class="list-group-item list-group-item-action" id="dropdown1">Section
-					<?php foreach($resultCount as $sectionCount) 
-						{
-					?>
-						<span class="badge badge-dark"> 
-						<?php echo $sectionCount['AllSection']; ?> </span>
-					<?php
-						} 
-					?>
-				<img src="/images/dropdown.png" id="icon_dropdown"></a></li>
-			</ul>
+			<ul class="list-group">
+			<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
+			<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px 5px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS</a></h5></li>
+			<div><li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style=" margin-right: 10px; color: black; padding: 5px 50px 5px 0px; text-decoration: none; width: 100px;" href="/PDSmenu">Section
+			<?php foreach($resultCount as $sectionCount) {
+				?>
+				<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
+			<?php
+				} 
+			?>
+			</a><img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block; height: 20px; width: 16px;"></h5></li></div>
+			<!-- <img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block;"> //Dropdown image -->
+		</ul>
 
 			<div id="sectionDropdown">
 			<ul class="list-group list-group-flush" style="font-size:12px;">
@@ -82,10 +81,6 @@
 			</div>
 			
 			@yield('sectionContent')
-			<!-- <div class="card">
-				
-			</div> -->
-
 			@yield('modal') 
 		</div>
 	</div>
@@ -99,12 +94,6 @@
      		$('#sectionDropdown').toggle();
      	}) 
    });
-
-   function toggleSideMenu(){
-		document.getElementById("sideMenu").classList.toggle('active');
-		document.getElementById("mainContent").classList.toggle('active');
-		document.getElementById("sectionContainer").classList.toggle('active');
-	}	
 
 	$("#menu-toggle").click(function(e) {
       e.preventDefault();

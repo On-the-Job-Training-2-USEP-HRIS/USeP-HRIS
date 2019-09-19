@@ -33,12 +33,16 @@
 				<!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
 			</ol>
 		</nav>
-			<hr>
-			<input type="checkbox" id="selectAll" name="selectAll">
-			<label id="label_sectionName"> <span class="badge badge-light"> Section Name </span> </label>
-			<label id="label_numFields"> <span class="badge badge-light">  Number of fields </span> </label>
-			<label id="label_sequence"> <span class="badge badge-light"> Sequence </span> </label>
-		</div>
+		<table class="table table-hover">
+			<tr>
+				<th> <input type="checkbox" id="selectAll" name="selectAll"> </th>
+				<th style="width:410px;"> Section Name </th>
+				<th style="width:400px;"> Number of Fields </th>
+				<th style="width:320px;"> Sequence </th>
+				<th colspan="2"></th>
+				<th></th>
+			</tr>
+		</table>
 	@endsection
 
 	@section('sectionContent')
