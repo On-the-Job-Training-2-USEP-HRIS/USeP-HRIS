@@ -26,16 +26,16 @@
 		<h1 id="heading_oneUsep"> ONEUSeP </h1>
 		<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 		<ul class="list-group" id="list_menuSection">
-			<li class="list-group-item list-group-item-action"><h5><img src="images/dashboard.png" id="icon_dashboard"><a style="color: black; text-decoration: none;" href="#">Dashboard</a></h5></li>
-			<li class="list-group-item list-group-item-action" style="border: 1px solid;"><h5><img src="images/file.png" id="icon_pds"><a style=" color: black; text-decoration: none;" href="/PDSForm">PDS</a></h5></li>
-			<div><li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style="display: inline-block; margin-right: 10px; color: black; text-decoration: none; width: 100px;" href="/PDSmenu">Section
+			<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
+			<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px 5px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS</a></h5></li>
+			<div><li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style=" margin-right: 10px; color: black; padding: 5px 50px 5px 0px; text-decoration: none; width: 100px;" href="/PDSmenu">Section
 			<?php foreach($resultCount as $sectionCount) {
 				?>
 				<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
 			<?php
 				} 
 			?>
-			</a></h5></li></div>
+			</a><img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block; height: 20px; width: 16px;"></h5></li></div>
 			<!-- <img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block;"> //Dropdown image -->
 		</ul>
 		
@@ -79,7 +79,7 @@
 
 <script>
    $(document).ready(function(){
-     	$('#dropdown1').click(function(){
+     	$('#icon_dropdown').click(function(){
      		$('#sectionDropdown').toggle();
      	}) 
    });
