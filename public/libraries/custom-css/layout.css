@@ -29,42 +29,43 @@ a:hover {
 
 #sidebar {
   min-height: 100vh;
-  margin-left: -15rem;
+  margin-left: -238px;
   -webkit-transition: margin .25s ease-out;
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
 }
 
-#sidebar .heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-}
-
 #sidebar .list-group {
-  width: 15rem;
+  width: 238px;
 }
 
-#content{
+#sideContent {
+  min-width: 100vw;
+}
+/* 
+#wrapper.toggled #sidebar {
+  margin-left: 0;
+} */
+
+
+#sidebarSection.toggled #sideContent {
   min-width: 100vw;
 }
 
-#wrapper.toggled #sidebar {
-  margin-left: 0;
-}
 
 @media (min-width: 500px) {
   #sidebar {
     margin-left: 0;
   }
 
-  #content {
+  #sideContent {
     min-width: 0;
     width: 100%;
   }
 
   #sidebarSection.toggled #sidebar {
-    margin-left: -15rem;
+    margin-left: -238px;
   }
 }
 

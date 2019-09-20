@@ -39,11 +39,18 @@
 			</ol>
 		</nav>
 				
-		<hr>
-		<input type="checkbox" id="selectAll" name="selectAll">
-		<label> <span class="badge badge-light"> Field Name </span> </label>
-		<label id="label_numSubField"> <span class="badge badge-light"> Number of Subfields </span> </label>
-		<label id="label_sequenceSub"> <span class="badge badge-light"> Sequence </span> </label>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<tr>
+					<th> <input type="checkbox" id="selectAll" name="selectAll"> </th>
+					<th style="width:410px;"> Field Name </span> </th>
+					<th style="width:400px;">  Number of Subfields </span></th>
+					<th style="width:320px;"> Sequence </span> </th>
+					<th colspan="2"></th>
+					<th></th>
+				</tr>
+			</table>
+		</div>
 	</div>
 	@endsection
 
