@@ -30,17 +30,21 @@
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item" aria-current="PDSmenu"><b>PERSONAL DATA SHEET FORM</b></li>
-				<!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
 			</ol>
+			<div class="container">
+				<div class="row p-2">
+					<div class="col"><b><em style="display: inline">By pressing the "Submit Data" button, I hereby declare that the details furnished below are true and correct 
+					to the best of my knowledge and belief and I undertake to inform you of any changes therein, immediately.</em></b></div>
+					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="pdsform" style="display: inline-block;" value="Submit Data"></form></div>
+				<div/>
+			</div>
 		</nav>
 		</div>
 	@endsection
 
 	@section('sectionContent')
 		<div class="container-fluid" id="sectionCon" style="height: 410px;">
-
-        <!-- <div class="container-fluid" style="overflow:auto; border: 1px solid #D3D3D3; border-radius: 5px; width: 530px;"> -->
-			
+			<form id="pdsform" name="pdsform" action="/redirecttestpage" method="POST">
                 <?php
                     $section = "";
                     $field = "";
@@ -54,28 +58,26 @@
                         
                         if($field != $value['Field Name']){
                             $field = $value['Field Name'];
-                            // echo "<br>";
-                            if($field != NULL){
+
+                            if($field != NULL && $field != $value['Subfield Name']){
                                 echo "<br><br><h5>" . $field . ":</h5>" . $value['Subfield Name'] . " ";
-                            }
+                            } else if ($field != NULL && $field == $value['Subfield Name']){
+								echo "<br><br>" . $field . ": ";
+							}
                             
                             if($value['InputType Name'] != NULL){
                                 echo "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'>  ";
-                            }    
+							}  
+							  
                         } else {
                             if($value['Subfield Name'] != NULL){
                                 echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'>  ";
 
-                            }
-                            // echo "</div>";
-                        }
-
-                        
+							}
+                        }                        
                     }
                 ?>
-			
-		<!-- </div>   -->
-			
+			</form>	
 		</div>
 		
 	@endsection

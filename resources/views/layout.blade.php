@@ -43,7 +43,7 @@
 			<?php
 				} 
 			?>
-			</a><img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block; height: 20px; width: 16px;"></h5></li></div>
+			</a><img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block; height: 20px; width: 16px; position: relative; bottom: 5px;"></h5></li></div>
 			<!-- <img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block;"> //Dropdown image -->
 		</ul>
 
