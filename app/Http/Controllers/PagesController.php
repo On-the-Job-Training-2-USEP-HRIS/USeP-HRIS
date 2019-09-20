@@ -73,4 +73,8 @@ class PagesController extends Controller
         
         return view('PDS_form/PDSForm', compact('result', 'result2', 'resultCount'));
     }
+
+    public function employee(){
+        return view('Employee/employee');
+    }
 }

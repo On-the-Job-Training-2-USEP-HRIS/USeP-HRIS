@@ -26,6 +26,8 @@ Route::get('/PDSSubfield','PagesController@PDSSubfields');
 
 Route::post('/PDSSubfield','InsertController@addSubfields');
 
+Route::get('/Employee', 'PagesController@employee');
+
 Route::get('/PDSForm','PagesController@PDSForm');
 
 Auth::routes();
