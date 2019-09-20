@@ -1,23 +1,23 @@
 
 body {
-    background-color:#f5f5f5;
-    margin:auto;
+  background-color:#f5f5f5;
+  margin:auto;
 }
 
 a {
-    color: black;
+  color: black;
 }
 
 a:hover {
-    color: #680000;
-    font-weight: bold;
-    text-decoration: none;
+  color: #680000;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .page-header {
-    position:relative;
-    height:50px;
-    background-color:#680000;
+  position:relative;
+  height:50px;
+  background-color:#680000;
 }
 
 /* SECTION DRAWER CSS */
@@ -54,7 +54,7 @@ a:hover {
 }
 
 
-@media (min-width: 500px) {
+@media (min-width: 576px) {
   #sidebar {
     margin-left: 0;
   }
@@ -76,58 +76,85 @@ a:hover {
 }
 
 #text_hrs {
-    font-family: verdana; 
-    font-size: 12px; 
-    text-align:center;
+  font-family: verdana; 
+  font-size: 12px; 
+  text-align:center;
+}
+
+/* A-HREF CSS */
+#a_dashboard {
+  display: inline-block; 
+  padding: 5px 58px 5px 0px; 
+  color: black; 
+  text-decoration: none;
+}
+
+#a_pds {
+  display: inline-block; 
+  padding: 5px 120px 5px 0px; 
+  color: black;
+  text-decoration: none;
+}
+
+#a_section {
+  margin-right: 10px; 
+  color: black;
+  padding: 5px 50px 5px 0px; 
+  text-decoration: none; 
+  width: 100px;
 }
 
 /* IMAGES OR ICONS CSS */
 #icon_usepLogo {
-    width:50px; 
-    height:50px; 
-    float:left;
+  width:50px; 
+  height:50px; 
+  float:left;
 }
 
 #icon_user {
-    width:30px; 
-    height:30px; 
-    float:right; 
-    margin-right:20px; 
-    margin-top:10px;
+  width:30px; 
+  height:30px; 
+  float:right; 
+  margin-right:20px; 
+  margin-top:10px;
 }
 
 #icon_message {
-    width:30px; 
-    height:30px; 
-    float:right; 
-    margin-right:20px; 
-    margin-top:10px;
+  width:30px; 
+  height:30px; 
+  float:right; 
+  margin-right:20px; 
+  margin-top:10px;
 }
 
 #icon_notification {
-    width:30px; 
-    height:30px; 
-    float:right; 
-    margin-right:20px; 
-    margin-top:10px;
+  width:30px; 
+  height:30px; 
+  float:right; 
+  margin-right:20px; 
+  margin-top:10px;
 }
 
 #icon_dropdown {
-    float:right;
-    width:10px;
-    height:10px;
-    margin-top:7px;
+  /* float:right;
+  width:10px;
+  height:10px;
+  margin-top:7px; */
+  margin-top:7px;
+  display: inline-block; 
+  height: 20px; 
+  width: 16px;
 }
 
 #menu-toggle {
-    position:absolute;
-    top:17px;
-    left:25px;
+  position:absolute;
+  top:17px;
+  left:25px;
 }
 
 #icon_dashboard, #icon_pds, #icon_section {
-    margin-bottom: 5px;
-    margin-right: 2px;
-    width:15px;
-    height:15px;
+  margin-bottom: 5px;
+  margin-right: 2px;
+  width:15px;
+  height:15px;
 }
