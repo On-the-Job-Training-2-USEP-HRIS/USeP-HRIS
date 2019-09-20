@@ -60,14 +60,14 @@
                             }
                             
                             if($value['InputType Name'] != NULL){
-                                echo "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'>  ";
+                                echo "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'required>  ";
                             }    
                         } else {
                             if($value['Subfield Name'] != NULL){
                                 echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'>  ";
 
                             }
-                            // echo "</div>";
+                            // echo "buang";
                         }
 
                         
