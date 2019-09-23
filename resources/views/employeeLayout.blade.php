@@ -25,21 +25,24 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="list-group list-group-flush">
-                <ul class="list-group">
-                    <li class="list-group-item" style="padding:10px;"> Dashboard </li>
-                    <li class="list-group-item" style="padding:10px;"> Personal Information </li>
-                    <li class="list-group-item" style="padding:10px;"> Payroll </li>
-                    <li class="list-group-item" style="padding:10px;"> Research and Extension </li>
-                </ul>
-            </div>  
-        </div>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-sm-2" style="height:95vh;">
+                <div class="list-group list-group-flush">
+                    <ul class="list-group">
+                        <li class="list-group-item" style="padding:10px;"> Dashboard </li>
+                        <li class="list-group-item" style="padding:10px;"> Personal Information </li>
+                        <li class="list-group-item" style="padding:10px;"> Payroll </li>
+                        <li class="list-group-item" style="padding:10px;"> Research and Extension </li>
+                    </ul>
+                </div>  
+            </div>
 
-        <div class="col-sm-8" style="background-color:white;">
-            
+            <div class="col-sm-8" style="background-color:white; height:95vh;">
+                <div>
+                    Contents Here
+                </div>
+            </div>
         </div>
-    </div>
 </body>
 </html>
