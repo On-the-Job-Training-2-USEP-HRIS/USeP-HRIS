@@ -15,9 +15,6 @@
         <div class="col-sm-12">
             <div class="page-header">
                 <img src="/images/usep_logo.png"  id="icon_usepLogo" alt="University of Southeastern Philippines">
-                <h1 id="heading_oneusep">OneUSeP-HRIS</h1>
-                <img src="/images/dropdown.png" id="dropdown_header">
-                <h5 id="heading_useraccount">User Account</h5>
                 <img src="images/user.png" id="icon_user">
                 <img src="images/inbox.png" id="icon_inbox">
                 <img src="images/notification.png" id="icon_notification">
@@ -25,24 +22,32 @@
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="row ">
-            <div class="col-sm-2" style="height:95vh;">
-                <div class="list-group list-group-flush">
-                    <ul class="list-group">
-                        <li class="list-group-item" style="padding:10px;"> Dashboard </li>
-                        <li class="list-group-item" style="padding:10px;"> Personal Information </li>
-                        <li class="list-group-item" style="padding:10px;"> Payroll </li>
-                        <li class="list-group-item" style="padding:10px;"> Research and Extension </li>
-                    </ul>
-                </div>  
+    <div class="row no-gutters" style="height:100vh;">
+        <div class="col">
+            <div class="heading"> 
+				<h1 id="heading_oneUsep"> ONE<span style="color:#555555">USeP</span></h1>
+				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
             </div>
+            <div class="list-group list-group-flush">
+				<ul class="list-group">
+                    <li class="list-group-item list-group-item-action"> Dashboard </li>
+                    <li class="list-group-item list-group-item-action"> PDS </li>
+                    <li class="list-group-item list-group-item-action"> Payroll </li>
+                    <li class="list-group-item list-group-item-action"> Research & Extension </li>
+					<li class="list-group-item list-group-item-action"> IPCPR </li>
+                </ul>
+            </div>
+        </div>
 
-            <div class="col-sm-8" style="background-color:white; height:95vh;">
-                <div>
-                    Contents Here
-                </div>
+        <div class="col-sm-8"  style="border-left: solid 1px #d6d6c2; border-right: solid 1px #d6d6c2;" >
+            
+        </div>
+
+        <div class="col">
+            <div class="heading">
+                <p id="text_recent"> RECENT ACTIVITIES </p>
             </div>
+            
         </div>
 </body>
 </html>

@@ -26,64 +26,62 @@
 		</div>
 	</div>
 
-	<div class="d-flex" id="sidebarSection">
+	<div class="d-inline-flex" id="sidebarSection">
 		<div id="sidebar">
 			<div class="heading"> 
 				<h1 id="heading_oneUsep"> ONE<span style="color:#555555">USeP</span></h1>
 				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 			</div>
 			<div class="list-group list-group-flush">
-			<ul class="list-group">
-			<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
-			<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px 5px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS</a></h5></li>
-			<div><li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style=" margin-right: 10px; color: black; padding: 5px 50px 5px 0px; text-decoration: none; width: 100px;" href="/PDSmenu">Section
-			<?php foreach($resultCount as $sectionCount) {
-				?>
-				<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
-			<?php
-				} 
-			?>
-			</a><img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block; height: 20px; width: 16px; position: relative; bottom: 5px;"></h5></li></div>
-			<!-- <img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block;"> //Dropdown image -->
-		</ul>
-
-			<div id="sectionDropdown">
-			<ul class="list-group list-group-flush" style="font-size:12px;">
-				<?php
-					foreach ($result2 as $value) {
-				?>
-					<a href="#" style="text-decoration:none;"> 
-						<li class="list-group-item list-group-item-action"> 
-							<?php 	echo $value['Section Name']; ?> 
-						</li> 
-					</a>
-				<?php
-					}
-				?>
-			</ul>
-		</div>
-      </div>
-    </div>
-	
-	  
-	<div id="content">
-		<div class="card">
-			<div class="card-header">
-				<div id="menu-toggle">
-					<img src="images/menu.png" height="30px" width="30px">
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-action"><h5><a id="a_dashboard" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
+					<li class="list-group-item list-group-item-action"><h5><a id="a_pds" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS</a></h5></li>
+					<li class="list-group-item list-group-item-action" id="dropdown1"><h5><a id="a_section" href="/PDSmenu">Section
+						<?php foreach($resultCount as $sectionCount) {
+							?>
+							<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
+						<?php
+							} 
+						?>
+						</a><img src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
+				</ul>
+				
+				<div id="sectionDropdown">
+					<ul class="list-group list-group-flush" style="font-size:12px;">
+						<?php
+							foreach ($result2 as $value) {
+						?>
+							<a href="#" style="text-decoration:none;"> 
+								<li class="list-group-item list-group-item-action"> 
+									<?php 	echo $value['Section Name']; ?> 
+								</li> 
+							</a>
+						<?php
+							}
+						?>
+					</ul>
 				</div>
-					@yield('card-header')
 			</div>
 
-			<div class="card-body">
-				@yield('card-body')
+			<div id="sideContent">
+				<div class="card">
+					<div class="card-header">
+						<div id="menu-toggle">
+							<img src="images/menu.png" height="30px" width="30px">
+						</div>
+						@yield('card-header')
+					</div>
+
+					<div class="card-body">
+						@yield('card-body')
+					</div>
+					
+					@yield('sectionContent')
+					@yield('modal') 
+				</div>
 			</div>
-			
-			@yield('sectionContent')
-			@yield('modal') 
-		</div>
-	</div>
-	
+      </div>
+    </div>	
 </body>
 </html>
 

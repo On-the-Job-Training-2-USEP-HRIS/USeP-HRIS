@@ -1,102 +1,46 @@
-
 body {
-    background-color:#f5f5f5;
-    margin:auto;
-}
-
-a {
-    color: black;
-}
-
-a:hover {
-    color: #680000;
-    font-weight: bold;
-    text-decoration: none;
+  background-color:#f5f5f5;
+  margin:auto;
 }
 
 .page-header {
-    position:relative;
-    height:50px;
-    background-color:#680000;
+  position:relative;
+  height:50px;
+  background-color:#680000;
 }
-
-/* SECTION DRAWER CSS */
-
-/* #sectionDropdown {
-    display:none;
-} */
 
 #icon_usepLogo {
-    width:50px; 
-    height:50px; 
-    float:left;
+  width:50px; 
+  height:50px; 
+  float:left;
 }
 
-#sidebar {
-  /* min-height: 100vh; */
-  margin-left: -15rem;
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
+#heading_oneUsep {
+  text-align: center; 
+  margin-top:30px;
 }
 
-#sidebar .heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
+#text_hrs, #text_recent {
+font-family: verdana; 
+font-size: 12px; 
+text-align:center;
 }
 
-#sidebar .list-group {
-  width: 15rem;
-}
 
-#content{
-  min-width: 100vw;
-}
-
-#wrapper.toggled #sidebar {
-  margin-left: 0;
-}
-
-@media (min-width: 500px) {
-  #sidebar {
-    margin-left: 0;
-  }
-
-  #content {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #sidebarSection.toggled #sidebar {
-    margin-left: -15rem;
-  }
-}
-
-#dropdown_header {
-    width: 25px;
-    height: 25px;
-    float: right;
-}
-
-#heading_oneusep {
-    color: #f5f5f5;
-    margin-top: 5px;
-    float:left;
-}
-
-#heading_useraccount {
-    color: #f5f5f5;
-    margin-top: 15px;
-    float:right;
+#icon_user {
+  width:30px; 
+  height:30px; 
+  float:right; 
+  margin-right:20px; 
+  margin-top:10px;
 }
 
 #icon_inbox {
-    float: right;
-    width: 25px;
-    height: 25px;
-    margin-top: 10px;
-    margin-right: 30px;
+  width:30px; 
+  height:30px; 
+  float:right; 
+  margin-right:20px; 
+  margin-top:10px;
 }
 
 #icon_notification {
@@ -118,4 +62,9 @@ a:hover {
     position:absolute;
     top:17px;
     left:25px;
+  width:30px; 
+  height:30px; 
+  float:right; 
+  margin-right:20px; 
+  margin-top:10px;
 }

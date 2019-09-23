@@ -34,12 +34,19 @@
 				<li class="breadcrumb-item active" aria-current="page"> <b>{{$id['name']}}</b> </li>
 			</ol>
 		</nav>
-			
-			<hr>
-			<input type="checkbox" id="selectAll" name="selectAll">
-			<label id="label_subfieldname"> <span class="badge badge-light"> Subfield Name </span> </label>
-			<label id="label_inputType"> <span class="badge badge-light"> Input Type </span> </label>
-			<label id="label_seqSubField"> <span class="badge badge-light"> Sequence </span> </label>
+		
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<tr>
+					<th> <input type="checkbox" id="selectAll" name="selectAll"> </th>
+					<th style="width:410px;"> Subfield Name </span> </th>
+					<th style="width:400px;">  Input Type </span></th>
+					<th style="width:320px;"> Sequence </span> </th>
+					<th colspan="2"></th>
+					<th></th>
+				</tr>
+			</table>
+		</div>
 	</div>
 	@endsection
 

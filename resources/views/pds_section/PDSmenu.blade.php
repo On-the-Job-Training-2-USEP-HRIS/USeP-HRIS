@@ -11,38 +11,43 @@
 <body>
 	@section('title', 'Menu')
 	@section('card-header')
-		<div class="container">
-			<input type="button"  class="btn btn-success" id="addsection" name="addSection" value="New Section">
-
-			<form class="form-inline" style="float:right;">
-				<input type="search" class="form-control" placeholder="Search">
-				<div class="form-input-group-append">
-					<span class="input-group-text">
-						<i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i>
-					</span>
-				</div>
-			</form>
+		<div class="d-flex flex-row">
+			<div class="ml-auto">
+				<input type="button"  class="btn btn-success" id="addsection" name="addSection" value="New Section">
+			</div>
 		</div>
+
+		<div class="d-flex flex-row-reverse">
+				<form class="form-inline"s>
+					<input type="search" class="form-control" placeholder="Search">
+				</form>
+				<span class="input-group-text">
+					<i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i>
+				</span>
+			</div>
 	@endsection
 
 	@section('card-body')
 		<div class="container">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="PDSmenu"><b>Section</b></li>
-				<!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
-			</ol>
-		</nav>
-		<table class="table table-hover">
-			<tr>
-				<th> <input type="checkbox" id="selectAll" name="selectAll"> </th>
-				<th style="width:410px;"> Section Name </th>
-				<th style="width:400px;"> Number of Fields </th>
-				<th style="width:320px;"> Sequence </th>
-				<th colspan="2"></th>
-				<th></th>
-			</tr>
-		</table>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" aria-current="PDSmenu"><b>Section</b></li>
+					<!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
+				</ol>
+			</nav>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<tr>
+						<th> <input type="checkbox" id="selectAll" name="selectAll"> </th>
+						<th style="width:410px;"> Section Name </th>
+						<th style="width:400px;"> Number of Fields </th>
+						<th style="width:320px;"> Sequence </th>
+						<th colspan="2"></th>
+						<th></th>
+					</tr>
+				</table>
+			</div>
+		</div>
 	@endsection
 
 	@section('sectionContent')
