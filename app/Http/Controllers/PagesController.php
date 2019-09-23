@@ -75,6 +75,15 @@ class PagesController extends Controller
     }
 
     public function employee(){
-        return view('Employee/employee');
+        $getSection = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection),true);
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        $data = \DB::select('call getPDS_Dashboard');
+        $result = json_decode(json_encode($data),true);
+
+        return view('Employee/employee', compact('result', 'result2', 'resultCount'));
     }
 }

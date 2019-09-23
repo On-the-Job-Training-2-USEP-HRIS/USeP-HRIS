@@ -24,23 +24,23 @@
 
     <div class="row no-gutters" style="height:100vh;">
         <div class="col">
-            <div class="heading"> 
+            <div class="heading" id="heading_container"> 
 				<h1 id="heading_oneUsep"> ONE<span style="color:#555555">USeP</span></h1>
 				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
             </div>
             <div class="list-group list-group-flush">
 				<ul class="list-group">
-                    <li class="list-group-item list-group-item-action"> Dashboard </li>
-                    <li class="list-group-item list-group-item-action"> PDS </li>
-                    <li class="list-group-item list-group-item-action"> Payroll </li>
-                    <li class="list-group-item list-group-item-action"> Research & Extension </li>
-					<li class="list-group-item list-group-item-action"> IPCPR </li>
+                    <li class="list-group-item list-group-item-action"><a href="#"> Dashboard </a> </li>
+                    <li class="list-group-item list-group-item-action"><a href="#"> PDS </a> </li>
+                    <li class="list-group-item list-group-item-action"><a href="#"> Payroll </a> </li>
+                    <li class="list-group-item list-group-item-action"><a href="#"> Research & Extension </a> </li>
+					<li class="list-group-item list-group-item-action"><a href="#"> IPCPR </a> </li>
                 </ul>
             </div>
         </div>
 
         <div class="col-sm-8"  style="border-left: solid 1px #d6d6c2; border-right: solid 1px #d6d6c2;" >
-            
+            @yield('content')
         </div>
 
         <div class="col">
