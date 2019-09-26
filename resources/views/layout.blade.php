@@ -51,7 +51,7 @@
 						<?php
 							} 
 						?>
-						</a><img src="/images/dropdown.png" id="icon_dropdown" style="display: inline-block; height: 20px; width: 16px;"></h5></li></div>
+						</a><img src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
 				</ul>
 			@endguest
 				
