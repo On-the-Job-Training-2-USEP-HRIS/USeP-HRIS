@@ -30,11 +30,11 @@ Route::get('/Employee', 'PagesController@employee');
 
 //PDS Form
 Route::get('/PDSForm','PagesController@PDSForm');
-Route::post('/PDSForm','InsertController@addForm');
+// Route::post('/PDSForm','InsertController@addForm'); Should not be used in this page
 
 //Employment
 Route::get('/Employment','PagesController@Employment');
-Route::post('/Employment','InsertController@addEmployee');
+Route::post('/Employment','InsertController@addForm');
 
 //Authentication
 Auth::routes();

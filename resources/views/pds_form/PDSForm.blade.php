@@ -31,13 +31,13 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item" aria-current="PDSmenu"><b>PERSONAL DATA SHEET FORM</b></li>
 			</ol>
-			<div class="container">
+			<!-- <div class="container">
 				<div class="row p-2">
 					<div class="col"><b><em style="display: inline">By pressing the "Submit Data" button, I hereby declare that the details furnished below are true and correct 
 					to the best of my knowledge and belief and I undertake to inform you of any changes therein, immediately.</em></b></div>
 					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="pdsform" style="display: inline-block;" value="Submit Data"></form></div>
 				<div/>
-			</div>
+			</div> -->
 		</nav>
 		</div>
 	@endsection
@@ -76,14 +76,14 @@
                             if($value['InputType Name'] != NULL){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]'>  " . $value['FieldSubfield Id']  . " " . $value['InputGroup Id'];
+								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' disabled>  ";
 							}  
 							  
                         } else {
                             if($value['Subfield Name'] != NULL){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-                                echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]'>  " . $value['FieldSubfield Id'] . " " . $value['InputGroup Id'];
+                                echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]'  disabled>  ";
 							}
 						}                       
                     }

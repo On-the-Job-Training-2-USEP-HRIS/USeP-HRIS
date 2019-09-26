@@ -47,26 +47,26 @@ class InsertController extends Controller
         $sequence = $request->input('sequence');
         $input_type = $request->input('input_type');
 
-        // dd($input_type);
-        switch ($input_type) {
-            case 1 : $input_type = 2; break;
-            case 2 : \DB::statement("CALL insert_datatext('$datavalue[2]')"); break;
-            case 3 : \DB::statement("CALL insert_datafile('$datavalue[2]')"); break;
-            case 4 : $input_type = 2; break;
-            case 5 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-            case 6 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-            case 7 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-            case 8 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-            case 9 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-            case 10 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-            case 11 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        }
+        dd($input_type);
+        // switch ($input_type) {
+        //     case 1 : $input_type = 2; break;
+        //     case 2 : \DB::statement("CALL insert_datatext('$datavalue[2]')"); break;
+        //     case 3 : \DB::statement("CALL insert_datafile('$datavalue[2]')"); break;
+        //     case 4 : $input_type = 2; break;
+        //     case 5 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+        //     case 6 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+        //     case 7 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+        //     case 8 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+        //     case 9 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+        //     case 10 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+        //     case 11 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+        // }
         // dd($input_type);
 
         \DB::statement("CALL insert_Subfield('$Subfield_name','$sequence')");
         \DB::statement("CALL insert_fieldsubfield('{$getID['id']}')");
 
-        \DB::statement("CALL insert_SubfieldInputGroup('$input_type')");
+        \DB::statement("CALL insert_SubfieldInputType('$input_type')");
 
         $getSubfield = \DB::select("call getPDS_Subfield('{$getID['id']}')");
         $result3 = json_decode(json_encode($getSubfield),true);
@@ -102,9 +102,11 @@ class InsertController extends Controller
     public function addForm (Request $request){
         $formcontent = $request->input();
         $formdataresult = json_decode(json_encode($formcontent),true);
-        dd($formcontent);
 
         foreach($formdataresult as $key => $datavalue){
+            if($key == "employee_type"){
+                \DB::statement("CALL insert_employee('$datavalue')");
+            }
             if($key > 0){
                 // echo $datavalue[0] . "<br>"; Group ID
                 // echo $datavalue[1] . "<br>"; Fieldsubfied ID
@@ -118,6 +120,9 @@ class InsertController extends Controller
                         $datavalue[2] = null;
                     }
                  }
+
+                 //Filtering of data
+                 
                 \DB::statement("CALL insert_employeedata('$datavalue[1]')");
                 switch ($datavalue[0]) {
                     case 1 : \DB::statement("CALL insert_datadigit('$datavalue[2]')"); break;
@@ -136,7 +141,10 @@ class InsertController extends Controller
 
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
+
+        $getEmployeeType = \DB::select('call getPDS_employeetype');
+        $result1 = json_decode(json_encode($getEmployeeType),true);
         
-        return view('PDS_form/PDSForm', compact('result', 'result2', 'resultCount'));
+        return view('Employment/employment', compact('result', 'result1', 'result2', 'resultCount'));
     }
 }
