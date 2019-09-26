@@ -101,7 +101,7 @@
 										foreach($result4 as $value)
 										{	
 									?>
-										<option><?php echo $value['Name'] ?></option>
+										<option  value="<?php echo $value['id']?>"><?php echo $value['id'] ?></option>
 									<?php
 										}	
 									?>

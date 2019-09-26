@@ -7,7 +7,7 @@
 #sectionCon {
     background-color:white; 
     overflow:auto; 
-    height:370px;
+    height:430px;
 }
 
 #showAddSection, #showEditSection, #showDeleteSection{

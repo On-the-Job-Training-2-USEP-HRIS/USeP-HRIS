@@ -41,5 +41,6 @@
             
         </div>
     </div>
+    @yield('sectionContent')
 </body>
 </html>

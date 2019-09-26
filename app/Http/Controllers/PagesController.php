@@ -49,7 +49,7 @@ class PagesController extends Controller
         $getSubfield = \DB::select("call getPDS_Subfield('{$getID['id']}')");
         $result3 = json_decode(json_encode($getSubfield),true);
 
-        $getInputType = \DB::select('call getPDS_inputtype');
+        $getInputType = \DB::select('call get_input_type_group');
         $result4 = json_decode(json_encode($getInputType),true);
 
         $getInputGroup = \DB::select('call getPDS_inputgroup');
@@ -76,5 +76,29 @@ class PagesController extends Controller
 
     public function employee(){
         return view('Employee/employee');
+    }
+
+    public function employment(){
+        $getSection = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection),true);
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        $getEmployeeType = \DB::select('call getPDS_employeetype');
+        $result1 = json_decode(json_encode($getEmployeeType),true);
+
+        return view('employment/employment',compact('result1', 'result2', 'resultCount'));
+        
+        // $getSection = \DB::select('call getPDS_Section');
+        // $result2 = json_decode(json_encode($getSection),true);
+
+        // $getSectionCount =\DB::select('call getPDS_SectionCount');
+        // $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        // $data = \DB::select('call getPDS_Dashboard');
+        // $result = json_decode(json_encode($data),true);
+        
+        // return view('employment/employment', compact('result', 'result2', 'resultCount'));
     }
 }

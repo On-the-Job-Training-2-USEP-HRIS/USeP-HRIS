@@ -8,7 +8,7 @@
 
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
-<body>
+<body style="overflow-y: scroll;">
 	@section('title', 'PDS Form')
 	@section('card-header')
 		<div class="container">
@@ -43,44 +43,65 @@
 	@endsection
 
 	@section('sectionContent')
-		<div class="container-fluid" id="sectionCon" style="height: 410px;">
-			<form id="pdsform" name="pdsform" action="/redirecttestpage" method="POST">
+		<div class="container-fluid" id="sectionCon" style="height: auto; width: 1200px; margin-bottom: 30px;">
+			<form id="pdsform" name="pdsform" action="/PDSForm" method="POST" style="height: auto;">
+			@csrf
                 <?php
                     $section = "";
                     $field = "";
-                    $subfield = "";
 
                     foreach($result as $value){
+
+						if($value['Section Name'] != 'Personal Information'){	//Limit to Personal Information
+							break;
+						}
+						
                         if($section != $value['Section Name']){
                             $section = $value['Section Name'];
                             echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
-                        } 
+						}
+						
                         
                         if($field != $value['Field Name']){
-                            $field = $value['Field Name'];
+							$field = $value['Field Name'];
 
-                            if($field != NULL && $field != $value['Subfield Name']){
-                                echo "<br><br><h5>" . $field . ":</h5>" . $value['Subfield Name'] . " ";
-                            } else if ($field != NULL && $field == $value['Subfield Name']){
-								echo "<br><br>" . $field . ": ";
+							if($field != NULL){ 
+								if($field != $value['Subfield Name']){
+									echo "<br><br><h5>" . $field . ":</h5>" . $value['Subfield Name'] . " ";
+								} else if ($field == $value['Subfield Name']){
+									echo "<br><br>" . $field . ": ";
+								}
 							}
                             
                             if($value['InputType Name'] != NULL){
-                                echo "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]'>  " . $value['FieldSubfield Id']  . " " . $value['InputGroup Id'];
 							}  
 							  
                         } else {
                             if($value['Subfield Name'] != NULL){
-                                echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['Field Name'] . "'>  ";
-
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+                                echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]'>  " . $value['FieldSubfield Id'] . " " . $value['InputGroup Id'];
 							}
-                        }                        
+						}                       
                     }
                 ?>
 			</form>	
 		</div>
-		
 	@endsection
 
 </body>
 </html>
+
+<script>
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
