@@ -16,7 +16,7 @@
 	<div class="row" style="position: sticky; top: 0; z-index: 1;">
 		<div class="col-sm-12">
 		<div class="page-header">
-			<img src="/images/usep_logo.png"  id="icon_usepLogo" alt="University of Southeastern Philippines">
+			<a href="/"><img src="/images/usep_logo.png"  id="icon_usepLogo" alt="University of Southeastern Philippines"></a>
 			<img src="/images/user.png" id="icon_user" alt="User">
 			<img src="/images/inbox.png" id="icon_message" alt="Message">
 			<img src="/images/notification.png" id="icon_notification" alt="Notification">
@@ -51,7 +51,7 @@
 						<?php
 							} 
 						?>
-						</a><img src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
+						</a><img style="float:right" src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
 				</ul>
 			@endguest
 				

@@ -47,22 +47,6 @@ class InsertController extends Controller
         $sequence = $request->input('sequence');
         $input_type = $request->input('input_type');
 
-        dd($input_type);
-        // switch ($input_type) {
-        //     case 1 : $input_type = 2; break;
-        //     case 2 : \DB::statement("CALL insert_datatext('$datavalue[2]')"); break;
-        //     case 3 : \DB::statement("CALL insert_datafile('$datavalue[2]')"); break;
-        //     case 4 : $input_type = 2; break;
-        //     case 5 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        //     case 6 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        //     case 7 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        //     case 8 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        //     case 9 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        //     case 10 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        //     case 11 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
-        // }
-        // dd($input_type);
-
         \DB::statement("CALL insert_Subfield('$Subfield_name','$sequence')");
         \DB::statement("CALL insert_fieldsubfield('{$getID['id']}')");
 
@@ -105,7 +89,7 @@ class InsertController extends Controller
 
         foreach($formdataresult as $key => $datavalue){
             if($key == "employee_type"){
-                \DB::statement("CALL insert_employee('$datavalue')");
+                \DB::statement("CALL insert_employee('$datavalue')"); //Adds new Employee with employee_type
             }
             if($key > 0){
                 // echo $datavalue[0] . "<br>"; Group ID
@@ -113,7 +97,9 @@ class InsertController extends Controller
                 // echo $datavalue[2] . "<br>"; Data
                 if ( ! isset($datavalue[2])) {
                     if ($datavalue[0] == 4){
-                        $datavalue[2] = date('Y-m-d H:i:s'); //Datetime problem if Null
+                        // $datavalue[2] = date('Y-m-d H:i:s'); //Datetime problem if Null
+                        $date_default = '00-00-0000 00:00:00'; //1970-01-01 00:00:00 will be input in the database
+                        $datavalue[2] = date ("Y-m-d H:i:s", strtotime($date_default));
                     } else if ($datavalue[0] == 1){
                         $datavalue[2] = "0";    //Digit does not accept Null
                     } else {
@@ -121,7 +107,7 @@ class InsertController extends Controller
                     }
                  }
 
-                 //Filtering of data
+                 //Filtering of data to be inserted into database table according to data group
                  
                 \DB::statement("CALL insert_employeedata('$datavalue[1]')");
                 switch ($datavalue[0]) {
