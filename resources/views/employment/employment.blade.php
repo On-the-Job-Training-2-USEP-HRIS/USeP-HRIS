@@ -9,10 +9,10 @@
 	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 </head>
 <body style="overflow-y: scroll;">
-	@section('title', 'PDS Form')
+	@section('title', 'Employment')
 	@section('card-header')
 		<div class="container">
-			<input type="button"  class="btn btn-success" id="addsection" name="addSection" value="Refresh Form">
+			<input type="button"  class="btn btn-success" id="addsection" name="addSection" value="Refresh Page">
 
 			<form class="form-inline" style="float:right;">
 				<input type="search" class="form-control" placeholder="Search">
@@ -26,26 +26,46 @@
 	@endsection
 
 	@section('card-body')
-		<div class="container">
+		<div class="container-fluid">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="PDSmenu"><b>PERSONAL DATA SHEET FORM</b></li>
+				<li class="breadcrumb-item" aria-current="Employment"><b>EMPLOYMENT</b></li>
 			</ol>
-			<!-- <div class="container">
+			<div class="container"  style="width: 750px;">
 				<div class="row p-2">
-					<div class="col"><b><em style="display: inline">By pressing the "Submit Data" button, I hereby declare that the details furnished below are true and correct 
-					to the best of my knowledge and belief and I undertake to inform you of any changes therein, immediately.</em></b></div>
-					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="pdsform" style="display: inline-block;" value="Submit Data"></form></div>
+				<div class="col-10"><b><em style="display: inline">By pressing the "Save Data" button, I hereby declare that the details furnished below are true and correct 
+					to the best of my knowledge and belief and I undertake to inform the department in charge of any changes therein, immediately.</em></b></div>
+					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="employment" style="display: inline-block;" value="Save Data"></form></div>	
 				<div/>
-			</div> -->
+			</div>
 		</nav>
 		</div>
 	@endsection
 
 	@section('sectionContent')
-		<div class="container-fluid" id="sectionCon" style="height: auto; width: 1200px; margin-bottom: 30px;">
-			<form id="pdsform" name="pdsform" action="/PDSForm" method="POST" style="height: auto;">
+    <div class="container-fluid" id="sectionCon" style="height: auto; width: 1200px; margin-bottom: 30px;">
+			<form id="employment" name="employment" action="/Employment" method="POST" style="height: auto;">
 			@csrf
+			<div class="container" style="width: 750px;">
+				<div class="row p-2 breadcrumb" style="border-radius: 5px;">
+					<div class="col pt-2">
+						<b><em>Please select employee type before submitting data.</em></b>
+					</div>
+					<div class="col">
+						<select style="display: inline-block; width: 300px;" class="form-control" name="employee_type" required>
+								<option hidden value="">Select Employee type</option>
+							<?php
+								foreach($result1 as $value)
+								{	
+							?>
+								<option value="<?php echo $value['id']?>"><?php echo $value['Name']?></option>
+							<?php
+								}	
+							?>
+						</select>
+					</div>
+				</div>  
+			</div>
                 <?php
                     $section = "";
                     $field = "";
@@ -76,14 +96,14 @@
                             if($value['InputType Name'] != NULL){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' disabled>  ";
+								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' >  ";
 							}  
 							  
                         } else {
                             if($value['Subfield Name'] != NULL){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-                                echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]'  disabled>  ";
+                                echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' >  ";
 							}
 						}                       
                     }
@@ -92,16 +112,21 @@
 		</div>
 	@endsection
 
+    @section('modal')
+	@endsection
+
 </body>
 </html>
 
 <script>
-$(document).ready(function() {
-  $(window).keydown(function(event){
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-});
+
+	//Add Section
+   $(document).ready(function(){
+     	$('#addsection').click(function(){
+     		$('#showAddSection').fadeIn();
+     	}) 
+     	$('#icon_exit').click(function(){
+     		$('#showAddSection').fadeOut();
+     	}) 
+   })
 </script>

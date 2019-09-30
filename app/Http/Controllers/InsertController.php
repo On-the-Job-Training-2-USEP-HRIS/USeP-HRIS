@@ -50,53 +50,7 @@ class InsertController extends Controller
         \DB::statement("CALL insert_Subfield('$Subfield_name','$sequence')");
         \DB::statement("CALL insert_fieldsubfield('{$getID['id']}')");
 
-        $textList = ['checkbox','Radio Button','Dropdown','Text','Paragraph'];
-
-        if ($input_type == 'Checkbox' || $input_type == 'Radio' || $input_type == 'Dropdown' || $input_type == 'Text' ||  $input_type == 'Paragraph') {
-
-            $get_input_text = \DB::select('call get_input_text');
-            $get_input_type = \DB::select("call get_type_id('$input_type')");
-            $id1 = $get_input_text[0]->id;
-            $id2 = $get_input_type[0]->id; 
-
-
-            \DB::statement("CALL insert_input_type_group('$id2','$id1')");
-           \DB::statement("CALL insert_SubfieldInputTypeGroup");
-
-        }else{
-            if ($input_type == 'Date' || $input_type == 'Time') {
-                $get_input_date = \DB::select('call get_input_Date');
-                $get_input_type = \DB::select("call get_type_id('$input_type')");
-
-                $id1 = $get_input_date[0]->id;
-                $id2 = $get_input_type[0]->id;
-
-                \DB::statement("CALL insert_input_type_group('$id2','$id1')");
-                \DB::statement("CALL insert_SubfieldInputTypeGroup");
-            }else{
-               if ($input_type == 'PDF' || $input_type == 'Image') {
-                    $get_input_file = \DB::select('call get_input_file');
-                    $get_input_type = \DB::select("call get_type_id('$input_type')");
-
-                    $id1 = $get_input_file[0]->id;
-                    $id2 = $get_input_type[0]->id;
-
-                    \DB::statement("CALL insert_input_type_group('$id2','$id1')");
-                    \DB::statement("CALL insert_SubfieldInputTypeGroup");
-               }else{
-                    if ($input_type == 'Int' || $input_type == 'Double') {
-                        $get_input_digit = \DB::select('call get_input_digit');
-                        $get_input_type = \DB::select("call get_type_id('$input_type')");
-
-                        $id1 = $get_input_digit[0]->id;
-                        $id2 = $get_input_type[0]->id;
-
-                        \DB::statement("CALL insert_input_type_group('$id2','$id1')");
-                        \DB::statement("CALL insert_SubfieldInputTypeGroup");
-                    }
-               }
-            }
-        }
+        \DB::statement("CALL insert_SubfieldInputType('$input_type')");
 
         $getSubfield = \DB::select("call getPDS_Subfield('{$getID['id']}')");
         $result3 = json_decode(json_encode($getSubfield),true);
@@ -104,13 +58,80 @@ class InsertController extends Controller
         $getSection2 = \DB::select('call getPDS_Section');
         $result2 = json_decode(json_encode($getSection2),true);
 
-        $getInputType = \DB::select('call getPDS_inputtype');
+        $getInputType = \DB::select('call get_input_type_group');
         $result4 = json_decode(json_encode($getInputType),true);
 
         $getSectionCount =\DB::select('call getPDS_SectionCount');
         $resultCount = json_decode(json_encode($getSectionCount), true);
 
         return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4','resultCount'));
+    }
+
+    public function addEmployee(Request $request){
+    	$employee_type = $request->input('employee_type');
+    	 \DB::statement("CALL insert_employee('$employee_type')");
+    	
+        $getSection = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection),true);
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        $getEmployeeType = \DB::select('call getPDS_employeetype');
+        $result1 = json_decode(json_encode($getEmployeeType),true);
+
+        return view('employment/employment',compact('result1', 'result2', 'resultCount'));
+    }
+
+    public function addForm (Request $request){
+        $formcontent = $request->input();
+        $formdataresult = json_decode(json_encode($formcontent),true);
+
+        foreach($formdataresult as $key => $datavalue){
+            if($key == "employee_type"){
+                \DB::statement("CALL insert_employee('$datavalue')"); //Adds new Employee with employee_type
+            }
+            if($key > 0){
+                // echo $datavalue[0] . "<br>"; Group ID
+                // echo $datavalue[1] . "<br>"; Fieldsubfied ID
+                // echo $datavalue[2] . "<br>"; Data
+                if ( ! isset($datavalue[2])) {
+                    if ($datavalue[0] == 4){
+                        // $datavalue[2] = date('Y-m-d H:i:s'); //Datetime problem if Null
+                        $date_default = '00-00-0000 00:00:00'; //1970-01-01 00:00:00 will be input in the database
+                        $datavalue[2] = date ("Y-m-d H:i:s", strtotime($date_default));
+                    } else if ($datavalue[0] == 1){
+                        $datavalue[2] = "0";    //Digit does not accept Null
+                    } else {
+                        $datavalue[2] = null;
+                    }
+                 }
+
+                 //Filtering of data to be inserted into database table according to data group
+                 
+                \DB::statement("CALL insert_employeedata('$datavalue[1]')");
+                switch ($datavalue[0]) {
+                    case 1 : \DB::statement("CALL insert_datadigit('$datavalue[2]')"); break;
+                    case 2 : \DB::statement("CALL insert_datatext('$datavalue[2]')"); break;
+                    case 3 : \DB::statement("CALL insert_datafile('$datavalue[2]')"); break;
+                    case 4 : \DB::statement("CALL insert_datadate('$datavalue[2]')"); break;
+                }
+            }
+        }
+
+        $getSection = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection),true);
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
+        $data = \DB::select('call getPDS_Dashboard');
+        $result = json_decode(json_encode($data),true);
+
+        $getEmployeeType = \DB::select('call getPDS_employeetype');
+        $result1 = json_decode(json_encode($getEmployeeType),true);
+        
+        return view('Employment/employment', compact('result', 'result1', 'result2', 'resultCount'));
     }
 
     public function empType(Request $request){

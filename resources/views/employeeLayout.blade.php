@@ -51,9 +51,7 @@
             </div>
             
         </div>
-
-        <div>
-            @yield('submitModal')
-        </div>
+    </div>
+    @yield('sectionContent')
 </body>
 </html>

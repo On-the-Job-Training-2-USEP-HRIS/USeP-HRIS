@@ -13,12 +13,10 @@
 </head>
 
 <body>
-
-
-	<div class="row">
+	<div class="row" style="position: sticky; top: 0; z-index: 1;">
 		<div class="col-sm-12">
 		<div class="page-header">
-			<img src="/images/usep_logo.png"  id="icon_usepLogo" alt="University of Southeastern Philippines">
+			<a href="/"><img src="/images/usep_logo.png"  id="icon_usepLogo" alt="University of Southeastern Philippines"></a>
 			<img src="/images/user.png" id="icon_user" alt="User">
 			<img src="/images/inbox.png" id="icon_message" alt="Message">
 			<img src="/images/notification.png" id="icon_notification" alt="Notification">
@@ -33,21 +31,32 @@
 				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 			</div>
 			<div class="list-group list-group-flush">
+			@guest
 				<ul class="list-group">
-					<li class="list-group-item list-group-item-action"><h5><a id="a_dashboard" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
-					<li class="list-group-item list-group-item-action"><h5><a id="a_pds" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS</a></h5></li>
-					<li class="list-group-item list-group-item-action" id="dropdown1"><h5><a id="a_section" href="/PDSmenu">Section
+					<!-- <li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li> -->
+					<!-- <li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="/Employment"><img src="images/employment.png" id="icon_pds">Employment</a></h5></li> -->
+					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px 5px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS</a></h5></li>
+					</div>
+				</ul>
+
+			@else
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
+					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="/Employment"><img src="images/employment.png" id="icon_pds">Employment</a></h5></li>
+					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px -1px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS Template</a></h5></li>
+					<li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style=" margin-right: 10px; color: black; padding: 5px 50px 5px 0px; text-decoration: none; width: 100px;" href="/PDSmenu">Section
 						<?php foreach($resultCount as $sectionCount) {
 							?>
 							<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
 						<?php
 							} 
 						?>
-						</a><img src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
+						</a><img style="float:right" src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
 				</ul>
+			@endguest
 				
 				<div id="sectionDropdown">
-					<ul class="list-group list-group-flush" style="font-size:12px;">
+					<ul class="list-group list-group-flush" style="font-size:12px; height: 355px; overflow: auto">
 						<?php
 							foreach ($result2 as $value) {
 						?>
