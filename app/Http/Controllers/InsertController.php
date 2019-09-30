@@ -67,49 +67,30 @@ class InsertController extends Controller
         return view('pds_subfield/PDSSubfields',compact('id','result2','result3','result4','resultCount'));
     }
 
-    public function addEmployee(Request $request){
-    	$employee_type = $request->input('employee_type');
-    	 \DB::statement("CALL insert_employee('$employee_type')");
-    	
-        $getSection = \DB::select('call getPDS_Section');
-        $result2 = json_decode(json_encode($getSection),true);
-
-        $getSectionCount =\DB::select('call getPDS_SectionCount');
-        $resultCount = json_decode(json_encode($getSectionCount), true);
-
-        $getEmployeeType = \DB::select('call getPDS_employeetype');
-        $result1 = json_decode(json_encode($getEmployeeType),true);
-
-        return view('employment/employment',compact('result1', 'result2', 'resultCount'));
-    }
-
     public function addForm (Request $request){
         $formcontent = $request->input();
         $formdataresult = json_decode(json_encode($formcontent),true);
 
         foreach($formdataresult as $key => $datavalue){
-            // dd($formdataresult);
+
             // Employee user generation
             if($key == "1"){
-                $username_first = $datavalue[2];
+                $username_first = $datavalue[2]; // First half of username generation : Surname
             }
             if($key == "2"){
-                $username_last = $datavalue[2];
-                $last_empid = \DB::select('call getPDS_employeeID');
+                $username_last = $datavalue[2]; // Second half of username generation
+                $last_empid = \DB::select('call getPDS_employeeID'); // Select the latest employee ID to be added to username : First Name
                 $last_empid_result = $last_empid[0] -> maxID;
-                $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_empid_result);
-                // dd($user_comb);
+                $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_empid_result); // Username combination of first and second half with the latest employee ID
                 $default_pass = password_hash("emp@123", PASSWORD_DEFAULT);
-                // dd($default_pass);
 
                 \DB::statement("CALL insert_PDS_user('$user_comb', '$default_pass')");
+            // End of Employee user generation
 
             }
             
-
-
             if($key == "employee_type"){
-                \DB::statement("CALL insert_employee('$datavalue')"); //Adds new Employee with employee_type
+                \DB::statement("CALL insert_employee('$datavalue')"); // Adds new Employee with employee_type
             }
             if($key > 0){
                 // echo $datavalue[0] . "<br>"; Group ID
@@ -117,17 +98,17 @@ class InsertController extends Controller
                 // echo $datavalue[2] . "<br>"; Data
                 if ( ! isset($datavalue[2])) {
                     if ($datavalue[0] == 4){
-                        // $datavalue[2] = date('Y-m-d H:i:s'); //Datetime problem if Null
-                        $date_default = '00-00-0000 00:00:00'; //1970-01-01 00:00:00 will be input in the database
+                        // $datavalue[2] = date('Y-m-d H:i:s'); // Datetime problem if Null
+                        $date_default = '00-00-0000 00:00:00'; // 1970-01-01 00:00:00 will be input in the database
                         $datavalue[2] = date ("Y-m-d H:i:s", strtotime($date_default));
                     } else if ($datavalue[0] == 1){
-                        $datavalue[2] = "0";    //Digit does not accept Null
+                        $datavalue[2] = "0";    // Digit does not accept Null
                     } else {
                         $datavalue[2] = null;
                     }
                  }
 
-                 //Filtering of data to be inserted into database table according to data group
+                 // Filtering of data to be inserted into database table according to data group
                  
                 \DB::statement("CALL insert_employeedata('$datavalue[1]')");
                 switch ($datavalue[0]) {

@@ -52,10 +52,6 @@
 
                     foreach($result as $value){
 
-						if($value['Section Name'] != 'Personal Information'){	//Limit to Personal Information
-							break;
-						}
-						
                         if($section != $value['Section Name']){
                             $section = $value['Section Name'];
                             echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
@@ -73,17 +69,32 @@
 								}
 							}
                             
-                            if($value['InputType Name'] != NULL){
+                            if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF"){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' disabled>  ";
-							}  
+								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+							}
 							  
                         } else {
                             if($value['Subfield Name'] != NULL){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-                                echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]'  disabled>  ";
+								if($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
+									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
+								} if($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
+									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
+								} else {
+									echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' >  ";
+								}
+                                
 							}
 						}                       
                     }

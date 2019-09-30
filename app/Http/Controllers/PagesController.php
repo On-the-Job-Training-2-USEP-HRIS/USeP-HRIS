@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class PagesController extends Controller
 {
@@ -62,16 +63,16 @@ class PagesController extends Controller
     }
 
     public function PDSForm(){
-    	$getSection = \DB::select('call getPDS_Section');
-        $result2 = json_decode(json_encode($getSection),true);
-
-        $getSectionCount =\DB::select('call getPDS_SectionCount');
-        $resultCount = json_decode(json_encode($getSectionCount), true);
-
-        $data = \DB::select('call getPDS_Dashboard');
-        $result = json_decode(json_encode($data),true);
-        
-        return view('PDS_form/PDSForm', compact('result', 'result2', 'resultCount'));
+            $getSection = \DB::select('call getPDS_Section');
+            $result2 = json_decode(json_encode($getSection),true);
+    
+            $getSectionCount =\DB::select('call getPDS_SectionCount');
+            $resultCount = json_decode(json_encode($getSectionCount), true);
+    
+            $data = \DB::select('call getPDS_Dashboard');
+            $result = json_decode(json_encode($data),true);
+            
+            return view('PDS_form/PDSForm', compact('result', 'result2', 'resultCount'));	
     }
 
     public function employee(){

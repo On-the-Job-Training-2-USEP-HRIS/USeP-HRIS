@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 	<title>@yield('title', 'USEP - HRIS')</title>
@@ -13,6 +14,8 @@
 </head>
 
 <body>
+
+	
 	<div class="row" style="position: sticky; top: 0; z-index: 1;">
 		<div class="col-sm-12">
 		<div class="page-header">
