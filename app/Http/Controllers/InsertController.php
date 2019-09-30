@@ -153,4 +153,43 @@ class InsertController extends Controller
         
         return view('Employment/employment', compact('result', 'result1', 'result2', 'resultCount'));
     }
+
+    public function empType(Request $request){
+        //GET INPUT ID
+        $section = $request->input('emp_type');
+
+        $section = $request->input('emp_type');
+        
+        // DASHBOARD
+        $data = \DB::select('CALL getPDS_Dashboard');
+        $result = json_decode(json_encode($data),true);
+
+        // FOR DROPDOWN
+        $getEmployeeType = \DB::select('CALL getPDS_employeetype');
+        $empType = json_decode(json_encode($getEmployeeType),true);
+
+        // AUTO INCREMENT INSERT ID
+        \DB::select("CALL insert_employeeID");
+        $getEmpTypeID = \DB::select("CALL getPDS_employeeTypeID('$section')");
+
+
+        $empTypeID = $getEmpTypeID[0]->id; //return employee type id
+        $getEmpID = \DB::select("CALL getPDS_employeeID"); //return employee id
+        $maxID = $getEmpID[0]-> maxID;
+        
+        
+        //GET INPUT FIELDSUBID
+        $fieldSUBID = $request->input('fieldSubID');
+        $dec = json_decode($fieldSUBID);
+        // print_r($fieldSUBID);
+        dd($dec);
+        foreach ($dec as $value)
+        {
+            \DB::select("CALL insert_employeeData('$value', '$maxID')");
+        }
+
+        \DB::select("CALL insert_employmentHistory('$maxID', '$empTypeID')");
+
+        return view('Employee/employee', compact('result', 'empType'));
+    }
 }

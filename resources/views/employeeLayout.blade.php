@@ -6,7 +6,9 @@
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('libraries/custom-css/employee.css') }}" rel="stylesheet">
+    <link href="{{ asset('libraries/custom-css/employee.css') }}" rel="stylesheet">
+    
+    <script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 
     <title>@yield('title', 'USeP-HRIS')</title>
 </head>
