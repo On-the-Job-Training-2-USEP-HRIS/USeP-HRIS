@@ -52,7 +52,7 @@
 						<b><em>Please select employee type before submitting data.</em></b>
 					</div>
 					<div class="col">
-						<select style="display: inline-block; width: 300px;" class="form-control" name="employee_type" required>
+						<select style="display: inline-block; width: 300px; cursor:pointer;" class="form-control" name="employee_type" required>
 								<option hidden value="">Select Employee type</option>
 							<?php
 								foreach($result1 as $value)
