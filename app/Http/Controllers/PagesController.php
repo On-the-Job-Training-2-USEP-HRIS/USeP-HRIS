@@ -84,6 +84,9 @@ class PagesController extends Controller
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
 
-        return view('Employee/employee', compact('result', 'result2', 'resultCount'));
+        $getEmployeeType = \DB::select('call getPDS_employeetype');
+        $empType = json_decode(json_encode($getEmployeeType),true);
+
+        return view('Employee/employee', compact('result', 'result2', 'resultCount', 'empType'));
     }
 }
