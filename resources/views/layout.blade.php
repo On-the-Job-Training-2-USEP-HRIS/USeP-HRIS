@@ -31,15 +31,6 @@
 				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 			</div>
 			<div class="list-group list-group-flush">
-			@guest
-				<ul class="list-group">
-					<!-- <li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li> -->
-					<!-- <li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="/Employment"><img src="images/employment.png" id="icon_pds">Employment</a></h5></li> -->
-					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px 5px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS</a></h5></li>
-					</div>
-				</ul>
-
-			@else
 				<ul class="list-group">
 					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
 					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="/Employment"><img src="images/employment.png" id="icon_pds">Employment</a></h5></li>
@@ -53,7 +44,6 @@
 						?>
 						</a><img style="float:right" src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
 				</ul>
-			@endguest
 				
 				<div id="sectionDropdown">
 					<ul class="list-group list-group-flush" style="font-size:12px; height: 355px; overflow: auto">

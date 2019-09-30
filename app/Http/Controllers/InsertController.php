@@ -88,6 +88,26 @@ class InsertController extends Controller
         $formdataresult = json_decode(json_encode($formcontent),true);
 
         foreach($formdataresult as $key => $datavalue){
+            // dd($formdataresult);
+            // Employee user generation
+            if($key == "1"){
+                $username_first = $datavalue[2];
+            }
+            if($key == "2"){
+                $username_last = $datavalue[2];
+                $last_empid = \DB::select('call getPDS_employeeID');
+                $last_empid_result = $last_empid[0] -> maxID;
+                $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_empid_result);
+                // dd($user_comb);
+                $default_pass = password_hash("emp@123", PASSWORD_DEFAULT);
+                // dd($default_pass);
+
+                \DB::statement("CALL insert_PDS_user('$user_comb', '$default_pass')");
+
+            }
+            
+
+
             if($key == "employee_type"){
                 \DB::statement("CALL insert_employee('$datavalue')"); //Adds new Employee with employee_type
             }
