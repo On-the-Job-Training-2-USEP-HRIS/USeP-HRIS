@@ -42,5 +42,10 @@ Auth::routes();
 //Home page, authentication route
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Employee view
+Route::get('/emphome', 'EmployeeViewController@home');
+Route::get('/emplogin', 'EmployeeViewController@login');
+Route::post('/emphome','EmployeeInsertController@addForm');
+Route::post('/emphome/searchUser','EmployeeInsertController@searchbyUsername');
 
 

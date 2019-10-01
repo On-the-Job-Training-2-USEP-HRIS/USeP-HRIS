@@ -1,52 +1,61 @@
-@extends('layout')
+@extends('employeeLayout')
+
+@section('title', 'Employee')
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<link rel='stylesheet'  href="{{asset('libraries/icons/css/font-awesome.min.css')}}">
-	<link rel='stylesheet' type='text/css' href="{{asset('libraries/css/bootstrap.min.css')}}">
-	<link href="{{ asset('libraries/custom-css/pds_menu.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('libraries/custom-css/employee.css') }}" rel="stylesheet">
+    
+    <script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
+
 </head>
-<body style="overflow-y: scroll;">
-	@section('title', 'Employment')
-	@section('card-header')
-		<div class="container">
-			<input type="button"  class="btn btn-success" id="addsection" name="addSection" value="Refresh Page">
 
-			<form class="form-inline" style="float:right;">
-				<input type="search" class="form-control" placeholder="Search">
+<body style="overflow-y: auto">
+
+@section('card-body')
+		<div class="container">
+		<nav aria-label="breadcrumb">
+        <div class="row">
+            <div class="col-9">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item" aria-current="PERSONAL DATA SHEET"><b>PERSONAL DATA SHEET</b></li>
+			</ol>
+            </div>
+            <div class="col">
+				<form id="username_search" action="/emphome/searchUser" method="POST" class="form-inline pt-1">
+                @csrf
+				<input type="search" class="form-control" name="username_input"placeholder="Enter Username">
 				<div class="form-input-group-append">
 					<span class="input-group-text">
-						<i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i>
+                    <a href="#" onclick="document.getElementById('username_search').submit();"><i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i></a>
 					</span>
 				</div>
 			</form>
-		</div>
-	@endsection
-
-	@section('card-body')
-		<div class="container">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="Employment"><b>EMPLOYMENT</b></li>
-			</ol>
+            </div>
+        </div>
 			<div class="container"  style="width: 750px;">
 				<div class="row p-2">
 				<div class="col-10"><b><em style="display: inline">By pressing the "Save Data" button, I hereby declare that the details furnished below are true and correct 
 					to the best of my knowledge and belief and I undertake to inform the department in charge of any changes therein, immediately.</em></b></div>
-					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="employment" style="display: inline-block;" value="Save Data"></form></div>	
+					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="emphome" style="display: inline-block;" value="Save Data"></form></div>	
 				<div/>
 			</div>
 		</nav>
 		</div>
-	@endsection
+@endsection
 
-	@section('sectionContent')
-    <div class="container-fluid" id="sectionCon" style="height: auto; width: 1200px; margin-bottom: 30px;">
-			<form id="employment" name="employment" action="/Employment" method="POST" style="height: auto;">
+@section('content')
+<div class="container-fluid" id="sectionCon" style="height: auto; margin-bottom: 30px;">
+			<form id="emphome" name="emphome" action="/emphome" method="POST" style="height: auto;">
 			@csrf
-			<div class="container" style="width: 750px;">
+			<div class="container-fluid" style="width: 750px;">
 				<div class="row p-2 breadcrumb" style="border-radius: 5px;">
 					<div class="col pt-2">
 						<b><em>Please select employee type before submitting data.</em></b>
@@ -126,21 +135,6 @@
 		</div>
 	@endsection
 
-    @section('modal')
-	@endsection
-
 </body>
 </html>
 
-<script>
-
-	//Add Section
-   $(document).ready(function(){
-     	$('#addsection').click(function(){
-     		$('#showAddSection').fadeIn();
-     	}) 
-     	$('#icon_exit').click(function(){
-     		$('#showAddSection').fadeOut();
-     	}) 
-   })
-</script>

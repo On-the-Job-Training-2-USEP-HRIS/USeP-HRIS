@@ -71,6 +71,7 @@ class PagesController extends Controller
     
             $data = \DB::select('call getPDS_Dashboard');
             $result = json_decode(json_encode($data),true);
+            dd($result);
             
             return view('PDS_form/PDSForm', compact('result', 'result2', 'resultCount'));	
     }
