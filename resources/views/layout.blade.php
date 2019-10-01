@@ -34,35 +34,12 @@
 				<p id="text_hrs"> HUMAN RESOURCE SYSTEM </p>
 			</div>
 			<div class="list-group list-group-flush">
-		
 				<ul class="list-group">
 					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="#"><img src="images/dashboard.png" id="icon_dashboard">Dashboard</a></h5></li>
 					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 58px 5px 0px; color: black; text-decoration: none;" href="/Employment"><img src="images/employment.png" id="icon_pds">Employment</a></h5></li>
-					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px -1px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">PDS Template</a></h5></li>
-					<li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style=" margin-right: 10px; color: black; padding: 5px 50px 5px 0px; text-decoration: none; width: 100px;" href="/PDSmenu">Section
-						<?php foreach($resultCount as $sectionCount) {
-							?>
-							<span class="badge badge-dark"> <?php echo $sectionCount['AllSection']; ?> </span>
-						<?php
-							} 
-						?>
-						</a><img style="float:right" src="/images/dropdown.png" id="icon_dropdown"></h5></li></div>
+					<li class="list-group-item list-group-item-action"><h5><a style="display: inline-block; padding: 5px 120px -1px 0px; color: black; text-decoration: none;" href="/PDSForm"><img src="images/file.png" id="icon_pds">View PDS</a></h5></li>
+					<li class="list-group-item list-group-item-action" id="dropdown1"><h5><a style=" margin-right: 10px; color: black; padding: 5px 50px 5px 0px; text-decoration: none; width: 100px;" href="/PDSmenu">Edit PDS</a></h5></li>
 				</ul>
-				
-				<div id="sectionDropdown">
-					<ul class="list-group list-group-flush" style="font-size:12px; height: 355px; overflow: auto">
-						<?php
-							foreach ($result2 as $value) {
-						?>
-							<a href="#" style="text-decoration:none;"> 
-								<li class="list-group-item list-group-item-action"> 
-									<?php 	echo $value['Section Name']; ?> 
-								</li> 
-							</a>
-						<?php
-							}
-						?>
-					</ul>
 				</div>
 			</div>
 

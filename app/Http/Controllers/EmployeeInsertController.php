@@ -10,27 +10,26 @@ class EmployeeInsertController extends Controller
         $formcontent = $request->input();
         $formdataresult = json_decode(json_encode($formcontent),true);
         // dd($formcontent);
+
         foreach($formdataresult as $key => $datavalue){
 
-            // Employee user generation
+            // User generation
             if($key == "1"){
                 $username_first = $datavalue[2]; // First half of username generation : Surname
             }
             if($key == "2"){
                 $username_last = $datavalue[2]; // Second half of username generation
-                $last_empid = \DB::select('call getPDS_employeeID'); // Select the latest employee ID to be added to username : First Name
-                $last_empid_result = $last_empid[0] -> maxID;
-                $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_empid_result); // Username combination of first and second half with the latest employee ID
+                $last_userid = \DB::select('call getPDS_userID'); // Select the latest employee ID to be added to username : First Name
+                $last_userid_result = $last_userid[0] -> maxID;
+                $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_userid_result + 1); // Username combination of first and second half with the latest employee ID
                 $default_pass = password_hash("emp@123", PASSWORD_DEFAULT);
+                // dd($user_comb);
 
                 \DB::statement("CALL insert_PDS_user('$user_comb', '$default_pass')");
-            // End of Employee user generation
+            // End of User generation
 
             }
-            
-            if($key == "employee_type"){
-                \DB::statement("CALL insert_employee('$datavalue')"); // Adds new Employee with employee_type
-            }
+
             if($key > 0){
                 // echo $datavalue[0] . "<br>"; Group ID
                 // echo $datavalue[1] . "<br>"; Fieldsubfied ID
@@ -49,7 +48,7 @@ class EmployeeInsertController extends Controller
 
                  // Filtering of data to be inserted into database table according to data group
                  
-                \DB::statement("CALL insert_employeedata('$datavalue[1]')");
+                \DB::statement("CALL insert_userdata('$datavalue[1]')");
                 switch ($datavalue[0]) {
                     case 1 : \DB::statement("CALL insert_datadigit('$datavalue[2]')"); break;
                     case 2 : \DB::statement("CALL insert_datatext('$datavalue[2]')"); break;
@@ -59,37 +58,35 @@ class EmployeeInsertController extends Controller
             }
         }
 
+        $getSection = \DB::select('call getPDS_Section');
+        $result2 = json_decode(json_encode($getSection),true);
+
+        $getSectionCount =\DB::select('call getPDS_SectionCount');
+        $resultCount = json_decode(json_encode($getSectionCount), true);
+
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
-
-        $getEmployeeType = \DB::select('call getPDS_employeetype');
-        $result1 = json_decode(json_encode($getEmployeeType),true);
         
-        return view('Employee/emphome', compact('result', 'result1'));
+        return view('Employee/emphome', compact('result', 'result2', 'resultCount'));
     }
 
     public function searchbyUsername (Request $request){
         $formcontent = $request->input();
         $search_input = json_decode(json_encode($formcontent),true);
         // dd($search_input);
-
         foreach($search_input as $key => $datavalue){
             if($key == "username_input"){
                 // $username_first = $datavalue[2]; 
                 // dd($datavalue);
-                $emp_data = \DB::select("call get_Employee_DatabyUsername('$datavalue')");
+                $emp_data = \DB::select("call get_User_DatabyUsername('$datavalue')");
                 $emp_dataresult = json_decode(json_encode($emp_data),true);
                 // dd($emp_dataresult);
             }  
         }
-
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
-
-        $getEmployeeType = \DB::select('call getPDS_employeetype');
-        $result1 = json_decode(json_encode($getEmployeeType),true);
         // dd($emp_dataresult);
         
-        return view('Employee/empresult', compact('result', 'result1', 'emp_dataresult'));
+        return view('Employee/empresult', compact('result', 'emp_dataresult'));
     }
 }

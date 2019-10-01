@@ -46,26 +46,6 @@
     <div class="container-fluid" id="sectionCon" style="height: auto; width: 1200px; margin-bottom: 30px;">
 			<form id="employment" name="employment" action="/Employment" method="POST" style="height: auto;">
 			@csrf
-			<div class="container" style="width: 750px;">
-				<div class="row p-2 breadcrumb" style="border-radius: 5px;">
-					<div class="col pt-2">
-						<b><em>Please select employee type before submitting data.</em></b>
-					</div>
-					<div class="col">
-						<select style="display: inline-block; width: 300px; cursor:pointer;" class="form-control" name="employee_type" required>
-								<option hidden value="">Select Employee type</option>
-							<?php
-								foreach($result1 as $value)
-								{	
-							?>
-								<option value="<?php echo $value['id']?>"><?php echo $value['Name']?></option>
-							<?php
-								}	
-							?>
-						</select>
-					</div>
-				</div>  
-			</div>
                 <?php
                     $section = "";
                     $field = "";

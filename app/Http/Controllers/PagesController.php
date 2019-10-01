@@ -99,16 +99,13 @@ class PagesController extends Controller
         $getSectionCount =\DB::select('call getPDS_SectionCount');
         $resultCount = json_decode(json_encode($getSectionCount), true);
 
-        $getEmployeeType = \DB::select('call getPDS_employeetype');
-        $result1 = json_decode(json_encode($getEmployeeType),true);
-
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
 
-        return view('employment/employment',compact('result','result1', 'result2', 'resultCount'));
+        return view('employment/employment',compact('result', 'result2', 'resultCount'));
         
         // $getSection = \DB::select('call getPDS_Section');
-        // $result2 = json_decode(json_encode($getSection),true);
+    // $result2 = json_decode(json_encode($getSection),true);
 
         // $getSectionCount =\DB::select('call getPDS_SectionCount');
         // $resultCount = json_decode(json_encode($getSectionCount), true);

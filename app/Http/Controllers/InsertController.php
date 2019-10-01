@@ -70,28 +70,27 @@ class InsertController extends Controller
     public function addForm (Request $request){
         $formcontent = $request->input();
         $formdataresult = json_decode(json_encode($formcontent),true);
+        // dd($formcontent);
 
         foreach($formdataresult as $key => $datavalue){
 
-            // Employee user generation
+            // User generation
             if($key == "1"){
                 $username_first = $datavalue[2]; // First half of username generation : Surname
             }
             if($key == "2"){
                 $username_last = $datavalue[2]; // Second half of username generation
-                $last_empid = \DB::select('call getPDS_employeeID'); // Select the latest employee ID to be added to username : First Name
-                $last_empid_result = $last_empid[0] -> maxID;
-                $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_empid_result); // Username combination of first and second half with the latest employee ID
+                $last_userid = \DB::select('call getPDS_userID'); // Select the latest employee ID to be added to username : First Name
+                $last_userid_result = $last_userid[0] -> maxID;
+                $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_userid_result + 1); // Username combination of first and second half with the latest employee ID
                 $default_pass = password_hash("emp@123", PASSWORD_DEFAULT);
+                // dd($user_comb);
 
                 \DB::statement("CALL insert_PDS_user('$user_comb', '$default_pass')");
-            // End of Employee user generation
+            // End of User generation
 
             }
-            
-            if($key == "employee_type"){
-                \DB::statement("CALL insert_employee('$datavalue')"); // Adds new Employee with employee_type
-            }
+
             if($key > 0){
                 // echo $datavalue[0] . "<br>"; Group ID
                 // echo $datavalue[1] . "<br>"; Fieldsubfied ID
@@ -110,7 +109,7 @@ class InsertController extends Controller
 
                  // Filtering of data to be inserted into database table according to data group
                  
-                \DB::statement("CALL insert_employeedata('$datavalue[1]')");
+                \DB::statement("CALL insert_userdata('$datavalue[1]')");
                 switch ($datavalue[0]) {
                     case 1 : \DB::statement("CALL insert_datadigit('$datavalue[2]')"); break;
                     case 2 : \DB::statement("CALL insert_datatext('$datavalue[2]')"); break;
@@ -128,49 +127,8 @@ class InsertController extends Controller
 
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
-
-        $getEmployeeType = \DB::select('call getPDS_employeetype');
-        $result1 = json_decode(json_encode($getEmployeeType),true);
         
-        return view('Employment/employment', compact('result', 'result1', 'result2', 'resultCount'));
+        return view('Employment/employment', compact('result', 'result2', 'resultCount'));
     }
 
-    public function empType(Request $request){
-        //GET INPUT ID
-        $section = $request->input('emp_type');
-
-        $section = $request->input('emp_type');
-        
-        // DASHBOARD
-        $data = \DB::select('CALL getPDS_Dashboard');
-        $result = json_decode(json_encode($data),true);
-
-        // FOR DROPDOWN
-        $getEmployeeType = \DB::select('CALL getPDS_employeetype');
-        $empType = json_decode(json_encode($getEmployeeType),true);
-
-        // AUTO INCREMENT INSERT ID
-        \DB::select("CALL insert_employeeID");
-        $getEmpTypeID = \DB::select("CALL getPDS_employeeTypeID('$section')");
-
-
-        $empTypeID = $getEmpTypeID[0]->id; //return employee type id
-        $getEmpID = \DB::select("CALL getPDS_employeeID"); //return employee id
-        $maxID = $getEmpID[0]-> maxID;
-        
-        
-        //GET INPUT FIELDSUBID
-        $fieldSUBID = $request->input('fieldSubID');
-        $dec = json_decode($fieldSUBID);
-        // print_r($fieldSUBID);
-        dd($dec);
-        foreach ($dec as $value)
-        {
-            \DB::select("CALL insert_employeeData('$value', '$maxID')");
-        }
-
-        \DB::select("CALL insert_employmentHistory('$maxID', '$empTypeID')");
-
-        return view('Employee/employee', compact('result', 'empType'));
-    }
 }
