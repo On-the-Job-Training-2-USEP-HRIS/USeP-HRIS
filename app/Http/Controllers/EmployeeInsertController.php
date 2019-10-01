@@ -79,7 +79,7 @@ class EmployeeInsertController extends Controller
                 // dd($datavalue);
                 $emp_data = \DB::select("call get_Employee_DatabyUsername('$datavalue')");
                 $emp_dataresult = json_decode(json_encode($emp_data),true);
-                dd($emp_dataresult);
+                // dd($emp_dataresult);
             }  
         }
 
@@ -88,7 +88,8 @@ class EmployeeInsertController extends Controller
 
         $getEmployeeType = \DB::select('call getPDS_employeetype');
         $result1 = json_decode(json_encode($getEmployeeType),true);
+        // dd($emp_dataresult);
         
-        return view('Employee/emphome', compact('result', 'result1'));
+        return view('Employee/empresult', compact('result', 'result1', 'emp_dataresult'));
     }
 }

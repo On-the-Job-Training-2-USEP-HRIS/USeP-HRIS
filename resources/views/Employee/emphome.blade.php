@@ -31,7 +31,7 @@
             <div class="col">
 				<form id="username_search" action="/emphome/searchUser" method="POST" class="form-inline pt-1">
                 @csrf
-				<input type="search" class="form-control" name="username_input"placeholder="Enter Username">
+				<input type="search" class="form-control" name="username_input" placeholder="Enter Username">
 				<div class="form-input-group-append">
 					<span class="input-group-text">
                     <a href="#" onclick="document.getElementById('username_search').submit();"><i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i></a>
@@ -77,7 +77,9 @@
 			</div>
                 <?php
                     $section = "";
-                    $field = "";
+					$field = "";
+					// dd($emp_dataresult);
+					// print_r($emp_dataresult);
 
                     foreach($result as $value){
 

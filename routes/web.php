@@ -47,5 +47,6 @@ Route::get('/emphome', 'EmployeeViewController@home');
 Route::get('/emplogin', 'EmployeeViewController@login');
 Route::post('/emphome','EmployeeInsertController@addForm');
 Route::post('/emphome/searchUser','EmployeeInsertController@searchbyUsername');
+Route::get('/empresult','EmployeeInsertController@searchbyUsername');
 
 
