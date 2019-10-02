@@ -57,5 +57,6 @@
         </div>
     </div>
     @yield('sectionContent')
+    @yield('modal') 
 </body>
 </html>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class EmployeeInsertController extends Controller
 {
+    
     public function addForm (Request $request){
         $formcontent = $request->input();
         $formdataresult = json_decode(json_encode($formcontent),true);
@@ -26,7 +27,7 @@ class EmployeeInsertController extends Controller
                     $last_userid_result = 0;
                 }
                 $user_comb = strtolower(str_replace(' ', '', $username_first . "." . $username_last)) . "." . ($last_userid_result + 1); // Username combination of first and second half with the latest employee ID
-                $default_pass = password_hash("emp@123", PASSWORD_DEFAULT);
+                $default_pass = password_hash("user@123", PASSWORD_DEFAULT);
                 
                 
                 \DB::statement("CALL insert_PDS_user('$user_comb', '$default_pass')"); // Store to PDS_user table
@@ -76,7 +77,7 @@ class EmployeeInsertController extends Controller
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
         
-        return view('Employee/emphome', compact('result', 'result2', 'resultCount'));
+        return view('Employee/emphome', compact('result', 'result2', 'resultCount', 'user_comb'));
     }
 
     public function searchbyUsername (Request $request){

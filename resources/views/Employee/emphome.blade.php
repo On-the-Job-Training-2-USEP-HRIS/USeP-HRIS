@@ -116,7 +116,21 @@
 			</form>	
 		</div>
 	@endsection
+	
+
+	<!-- Popup for generated username after data submission -->
+	<?php
+		if(isset($user_comb)){
+			echo "<script>
+			alert('This is your username, please take note. ". $user_comb ."');
+			</script>";
+		}
+	?>
+	<!-- End of Popup -->
+
 
 </body>
 </html>
+
+
 
