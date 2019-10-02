@@ -42,25 +42,47 @@
         </div>
 		</nav>
 		</div>
+		
 @endsection
 
 @section('content')
 <div class="container-fluid" id="sectionCon" style="height: auto; margin-bottom: 30px;">
-			@csrf
-            
+
+<button id="showdataview">DATAVIEW</button>
+<button  id="showformview">FORMVIEW</button>
+
+<script>
+$("#showdataview").click(function(event) {
+  $("#formview").hide();
+  $("#dataview").show();
+});
+
+$("#showformview").click(function(event) {
+  $("#formview").show();
+  $("#dataview").hide();
+});
+</script>
+
+            <div id="dataview">
+				<hr>
                 <?php
-                    // $section = "";
-					// $field = "";
-                    // // dd($emp_dataresult);
-                    // echo "<div class='container-fluid' style='width: 500px; float: left; padding-left: 100px; position: absolute;'>";
-                    // // foreach($result as $value){
-                    // foreach($emp_dataresult as $data){
-                    //     echo "<br><div class='row' style='background-color: white;'>
-                    //     <div class='col'><h5><b>" . $data['SubfieldName'] . ":</b></h5></div>  
-                    //     <div class='col'><p style='display:inline;'>" . $data['DataString'] . "</p></div>
-                    //     </div>";
-                    // }   
-                    // echo "</div>"; 
+                    $section = "";
+					$field = "";
+                    // dd($emp_dataresult);
+                    echo "<div class='container-fluid' style='width: 500px; float: left; padding-left: 100px; position: absolute;'>";
+                    // foreach($result as $value){
+                    foreach($emp_dataresult as $data){
+                        echo "<br><div class='row' style='background-color: white;'>
+                        <div class='col'><h5><b>" . $data['SubfieldName'] . ":</b></h5></div>  
+                        <div class='col'><p style='display:inline;'>" . $data['DataString'] . "</p></div>
+                        </div>";
+                    }   
+					echo "</div>"; 
+				?>
+			</div>
+
+			<div id="formview" style="display: none;">
+				<?php
 
                     $section = "";
 					$field = "";
@@ -94,7 +116,11 @@
                             if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF"){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' value='". $value['DataString'] . "'>  ";
+								if($value['DataString'] == 'on') {
+									echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "' checked>  ";
+								} else {
+									echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'>  ";
+								}
 							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
@@ -127,9 +153,12 @@
                     }
                     echo"</div>";
                 ?>
+			</div>
 		</div>
 	@endsection
 
 </body>
 </html>
+
+
 
