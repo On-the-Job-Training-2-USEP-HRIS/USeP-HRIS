@@ -49,19 +49,83 @@
 			@csrf
             
                 <?php
+                    // $section = "";
+					// $field = "";
+                    // // dd($emp_dataresult);
+                    // echo "<div class='container-fluid' style='width: 500px; float: left; padding-left: 100px; position: absolute;'>";
+                    // // foreach($result as $value){
+                    // foreach($emp_dataresult as $data){
+                    //     echo "<br><div class='row' style='background-color: white;'>
+                    //     <div class='col'><h5><b>" . $data['SubfieldName'] . ":</b></h5></div>  
+                    //     <div class='col'><p style='display:inline;'>" . $data['DataString'] . "</p></div>
+                    //     </div>";
+                    // }   
+                    // echo "</div>"; 
+
                     $section = "";
 					$field = "";
-                    // dd($emp_dataresult);
-                    echo "<div class='container-fluid' style='width: 500px; float: left; padding-left: 100px; position: absolute;'>";
-                    // foreach($result as $value){
-                    foreach($emp_dataresult as $data){
-                        echo "<br><div class='row' style='background-color: white;'>
-                        <div class='col'><h5><b>" . $data['SubfieldName'] . ":</b></h5></div>  
-                        <div class='col'><p style='display:inline;'>" . $data['DataString'] . "</p></div>
-                        </div>";
-                    }   
-                    echo "</div>";                   
-                
+					// dd($);
+                    // print_r($emp_dataresult);
+                    
+                    echo"<div>";
+
+                    foreach($emp_dashdataresult as $value){
+
+						
+                        if($section != $value['Section Name']){
+                            $section = $value['Section Name'];
+                            echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
+						}
+
+						
+						
+                        
+                        if($field != $value['Field Name']){
+							$field = $value['Field Name'];
+
+							if($field != NULL){ 
+								if($field != $value['Subfield Name']){
+									echo "<br><br><h5>" . $field . ":</h5>" . $value['Subfield Name'] . " ";
+								} else if ($field == $value['Subfield Name']){
+									echo "<br><br>" . $field . ": ";
+								}
+							}
+                            
+                            if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF"){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' value='". $value['DataString'] . "'>  ";
+							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' value='". $value['DataString'] . "'>  ";
+							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' value='". $value['DataString'] . "'>  ";
+							}
+							  
+                        } else {
+                            
+                            if($value['Subfield Name'] != NULL){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								if($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
+									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'> ";
+								} if($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
+									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'>  ";
+								} else {
+									if($value['DataString'] == 'on') {
+                                        echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "' checked>  ";
+                                    } else {
+                                        echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'>  ";
+                                    }
+								}
+                                
+							}
+						}                       
+                    }
+                    echo"</div>";
                 ?>
 		</div>
 	@endsection
