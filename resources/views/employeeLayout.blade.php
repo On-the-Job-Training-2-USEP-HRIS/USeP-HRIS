@@ -11,6 +11,7 @@
     <script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 
     <title>@yield('title', 'USeP-HRIS')</title>
+    @yield('js')
 </head>
 <body>
     <div class="row" style="position: sticky; top: 0; z-index: 1;">
@@ -42,7 +43,7 @@
             </div> -->
         </div>
 
-        <div class="col-sm-10"  style="border-left: solid 1px #d6d6c2; border-right: solid 1px #d6d6c2;" >
+        <div class="col-sm-9"  style="border-left: solid 1px #d6d6c2; border-right: solid 1px #d6d6c2;" >
             <div class="card-body">
                 @yield('card-body')
             </div>

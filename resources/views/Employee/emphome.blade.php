@@ -1,5 +1,15 @@
 @extends('employeeLayout')
 
+@section('js')
+<script>
+	function clickEvent(param) {
+		var checked = param.checked; // Get check status
+		$('.' + $( param ).attr( "class" ) ).prop("checked", false); // Uncheck all
+		if (checked){ $(param).prop('checked', true); }
+	}
+</script>
+@endsection
+
 @section('title', 'Employee')
 
 
@@ -40,26 +50,26 @@
 			</form>
             </div>
         </div>
-			<div class="container"  style="width: 750px;">
+			<!-- <div class="container"  style="width: 750px;">
 				<div class="row p-2">
 				<div class="col-10"><b><em style="display: inline">By pressing the "Save Data" button, I hereby declare that the details furnished below are true and correct 
 					to the best of my knowledge and belief and I undertake to inform the department in charge of any changes therein, immediately.</em></b></div>
 					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="emphome" style="display: inline-block;" value="Save Data"></form></div>	
 				<div/>
-			</div>
+			</div> -->
 		</nav>
 		</div>
 @endsection
 
 @section('content')
 <div class="container-fluid" id="sectionCon" style="height: auto; margin-bottom: 30px;">
+<div><form><input type="submit" class="btn btn-success" form="emphome" style="display: inline-block;" value="Save Data"></form></div>
 			<form id="emphome" name="emphome" action="/emphome" method="POST" style="height: auto;">
+				
 			@csrf
                 <?php
                     $section = "";
 					$field = "";
-					// dd($emp_dataresult);
-					// print_r($emp_dataresult);
 
                     foreach($result as $value){
 
@@ -68,10 +78,7 @@
                             $section = $value['Section Name'];
                             echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
 						}
-
-						
-						
-                        
+    
                         if($field != $value['Field Name']){
 							$field = $value['Field Name'];
 
@@ -83,7 +90,7 @@
 								}
 							}
                             
-                            if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF"){
+                            if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF" && $value['InputType Name'] != "Image" && $value['InputType Name'] != "Checkbox"){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
 								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' >  ";
@@ -95,6 +102,10 @@
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
 								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								echo "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
 							}
 							  
                         } else {
@@ -105,9 +116,11 @@
 									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
 								} if($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
 									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
-								} else {
+								} if($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
+									echo $value['Subfield Name'] . " " . "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
+								}else {
 									echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' >  ";
-								}
+								} 
                                 
 							}
 						}                       

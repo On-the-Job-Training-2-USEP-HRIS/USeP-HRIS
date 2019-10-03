@@ -43,9 +43,7 @@ class EmployeeInsertController extends Controller
                     // echo $datavalue[2] . "<br>"; Data
                     if ( ! isset($datavalue[2])) {
                         if ($datavalue[0] == 4){
-                            // $datavalue[2] = date('Y-m-d H:i:s'); // Datetime problem if Null
-                            $date_default = '00-00-0000'; // 1970-01-01 00:00:00 will be input in the database
-                            $datavalue[2] = date ("Y-m-d", strtotime($date_default));
+                            $datavalue[2]= '0001-01-01'; // 1970-01-01 00:00:00 will be input in the database
                         } else if ($datavalue[0] == 1){
                             $datavalue[2] = "0";    // Digit does not accept Null
                         } else {

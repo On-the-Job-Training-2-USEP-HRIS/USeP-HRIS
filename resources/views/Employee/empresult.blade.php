@@ -1,5 +1,15 @@
 @extends('employeeLayout')
 
+@section('js')
+<script>
+	function clickEvent(param) {
+		var checked = param.checked; // Get check status
+		$('.' + $( param ).attr( "class" ) ).prop("checked", false); // Uncheck all
+		if (checked){ $(param).prop('checked', true); }
+	}
+</script>
+@endsection
+
 @section('title', 'Employee')
 
 
@@ -47,18 +57,30 @@
 
 @section('content')
 <div class="container-fluid" id="sectionCon" style="height: auto; margin-bottom: 30px;">
-
-<button id="showdataview">DATAVIEW</button>
-<button  id="showformview">FORMVIEW</button>
+<div class="container-fluid pl-4">
+	<div class="row">
+		<div class="col-5">
+			<form><input type="submit" class="btn btn-success" form="emphome" value="Update Data" id="showsave" style="display:none"></form>
+		</div>
+		<div class="col-2">
+			<button id="showdataview">DATAVIEW</button>
+		</div>
+		<div class="col-2">
+			<button id="showformview">FORMVIEW</button>
+		</div>
+	</div>
+</div>
 
 <script>
 $("#showdataview").click(function(event) {
   $("#formview").hide();
+  $("#showsave").hide();
   $("#dataview").show();
 });
 
 $("#showformview").click(function(event) {
   $("#formview").show();
+  $("#showsave").show();
   $("#dataview").hide();
 });
 </script>
@@ -69,11 +91,11 @@ $("#showformview").click(function(event) {
                     $section = "";
 					$field = "";
                     // dd($emp_dataresult);
-                    echo "<div class='container-fluid' style='width: 500px; float: left; padding-left: 100px; position: absolute;'>";
+                    echo "<div class='container-fluid'>";
                     // foreach($result as $value){
                     foreach($emp_dataresult as $data){
                         echo "<br><div class='row' style='background-color: white;'>
-                        <div class='col'><h5><b>" . $data['SubfieldName'] . ":</b></h5></div>  
+                        <div class='col-4'><h5><b>" . $data['SubfieldName'] . ":</b></h5></div>  
                         <div class='col'><p style='display:inline;'>" . $data['DataString'] . "</p></div>
                         </div>";
                     }   
@@ -86,10 +108,6 @@ $("#showformview").click(function(event) {
 
                     $section = "";
 					$field = "";
-					// dd($);
-                    // print_r($emp_dataresult);
-                    
-                    echo"<div>";
 
                     foreach($emp_dashdataresult as $value){
 
@@ -99,9 +117,6 @@ $("#showformview").click(function(event) {
                             echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
 						}
 
-						
-						
-                        
                         if($field != $value['Field Name']){
 							$field = $value['Field Name'];
 
@@ -113,14 +128,10 @@ $("#showformview").click(function(event) {
 								}
 							}
                             
-                            if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF"){
+                            if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF" && $value['InputType Name'] != "Image" && $value['InputType Name'] != "Checkbox"){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								if($value['DataString'] == 'on') {
-									echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "' checked>  ";
-								} else {
-									echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'>  ";
-								}
+								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "' onclick='clickEvent(this)'>  ";
 							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
@@ -129,6 +140,14 @@ $("#showformview").click(function(event) {
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
 								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' value='". $value['DataString'] . "'>  ";
+							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
+								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
+								if($value['DataString'] == 'on') {
+									echo "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "' checked onclick='clickEvent(this)'>  ";
+								} else {
+									echo "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'onclick='clickEvent(this)'>  ";
+								}
 							}
 							  
                         } else {
@@ -140,18 +159,19 @@ $("#showformview").click(function(event) {
 									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'> ";
 								} if($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
 									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'>  ";
-								} else {
+								} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
 									if($value['DataString'] == 'on') {
-                                        echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "' checked>  ";
-                                    } else {
-                                        echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'>  ";
-                                    }
+										echo $value['Subfield Name'] . " " ."<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "' checked onclick='clickEvent(this)'>  ";
+									} else {
+										echo $value['Subfield Name'] . " " ."<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'onclick='clickEvent(this)'>  ";
+									}
+								}else {
+									echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' value='". $value['DataString'] . "'>  ";
 								}
                                 
 							}
 						}                       
                     }
-                    echo"</div>";
                 ?>
 			</div>
 		</div>
