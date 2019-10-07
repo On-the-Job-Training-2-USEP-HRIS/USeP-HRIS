@@ -7,6 +7,13 @@
 		$('.' + $( param ).attr( "class" ) ).prop("checked", false); // Uncheck all
 		if (checked){ $(param).prop('checked', true); }
 	}
+	function divClick(id) {
+		var divs = document.getElementsByClassName('section');
+		for(var i = 0; i < divs.length; i++) {
+			divs[i].style.display = 'none';
+		}
+		document.getElementById(id).style.display = 'block';
+	}
 </script>
 @endsection
 
@@ -24,7 +31,9 @@
     <link href="{{ asset('libraries/custom-css/employee.css') }}" rel="stylesheet">
     
     <script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
-
+	<style> 
+		
+	</style>
 </head>
 
 <body style="overflow-y: auto">
@@ -70,13 +79,32 @@
                 <?php
                     $section = "";
 					$field = "";
+					echo "<br><br>";
+					foreach($result as $value) {
+						if($section == '') {
+							$section = $value['Section Name'];
+							echo '<a href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; padding: 0px 10px; margin: 5px 5px; display: inline-block;"><div id="tabDiv" 
+							>' . $value['Section Name'] . '</div></a>';
+						} else if($section != $value['Section Name']) {
+							$section = $value['Section Name'];
+							echo '<a href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; padding: 0px 10px; margin: 5px 5px; display: inline-block;" ><div id="tabDiv"
+							>' . $value['Section Name'] . '</div></a>';							
+						}
+					}
 
-                    foreach($result as $value){
-
-						
-                        if($section != $value['Section Name']){
-                            $section = $value['Section Name'];
-                            echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
+					$section = "";
+					$field = "";
+					
+                    foreach($result as $value){						
+						if($section == '') {
+							$section = $value['Section Name'];
+							echo "<div class='section' id='" . $section . "' style=' display: none'>";
+							echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
+						} else if($section != $value['Section Name']) {
+							echo '</div>';
+							$section = $value['Section Name'];
+							echo '<div class="section" id="' . $section . '" style=" display: none">';
+							echo "<hr><div class='card' style='background-color: gray; color: white; padding-left: 10px;'><h1>" . $section . "</h1></div>";
 						}
     
                         if($field != $value['Field Name']){
@@ -124,7 +152,8 @@
                                 
 							}
 						}                       
-                    }
+					}
+					echo '</div>';
                 ?>
 			</form>	
 		</div>
