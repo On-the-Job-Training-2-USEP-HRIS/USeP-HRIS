@@ -10,6 +10,7 @@ class EmployeeInsertController extends Controller
     public function addForm (Request $request){
         $formcontent = $request->input();
         $formdataresult = json_decode(json_encode($formcontent),true);
+        // dd($formdataresult);
 
         $user_created = false; // Declaration needed before inserting data into database
 

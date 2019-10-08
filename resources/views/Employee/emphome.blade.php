@@ -14,8 +14,6 @@
 		}
 		document.getElementById(id).style.display = 'block';
 	}
-
-	divClick('');
 </script>
 @endsection
 
@@ -124,35 +122,27 @@
 								}
 							}
                             
-                            if($value['InputType Name'] != NULL && $value['InputType Name'] != "PDF" && $value['InputType Name'] != "Image" && $value['InputType Name'] != "Checkbox"){
+                            if($value['InputType Name'] != NULL){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' >  ";
-							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
-								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
-								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
-							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
-								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
-								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
-							} if ($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
-								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
-								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								echo "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
-							}
-							  
+								if ($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF" or $value['InputType Name'] == "Image"){
+									echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+								} else if($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
+									echo "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
+								} else {
+									echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+								}
+							}  
+					
                         } else {
                             if($value['Subfield Name'] != NULL){
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
-								if($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF"){
-									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
-								} if($value['InputType Name'] != NULL && $value['InputType Name'] == "Image"){
-									echo $value['Subfield Name'] . " " . "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
-								} if($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
+								if($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF" or $value['InputType Name'] == "Image"){
+									echo "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
+								} else if($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
 									echo $value['Subfield Name'] . " " . "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
-								}else {
+								} else {
 									echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' >  ";
 								} 
                                 
