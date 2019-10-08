@@ -9,10 +9,16 @@
 	}
 	function divClick(id) {
 		var divs = document.getElementsByClassName('section');
+		var tabs = document.getElementsByClassName('tabs');
 		for(var i = 0; i < divs.length; i++) {
 			divs[i].style.display = 'none';
+			tabs[i].style.color = 'black';
+			tabs[i].style.backgroundColor = 'white';
+
 		}
 		document.getElementById(id).style.display = 'block';
+		document.getElementById(id+'tab').style.color = 'white';
+		document.getElementById(id+'tab').style.backgroundColor = '#686868';
 	}
 </script>
 @endsection
@@ -32,11 +38,27 @@
     
     <script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 	<style> 
-
 	.tabs:hover {
 		background-color: #686868;
 		color: white;
-	}		
+	}
+
+	.tabs {
+		border: 1px solid rgba(0, 0, 0, 0); 
+		width: 105px; 
+		text-align: center; 
+		height: 25px; 
+		overflow: hidden; 
+		padding: 0px 10px; 
+		margin: 5px 2px; 
+		display: inline-block;
+		border-radius: 5px;
+	}	
+
+	#tab-group {
+		margin: 0 auto;
+		text-align: center;
+	}	
 	</style>
 </head>
 
@@ -83,18 +105,19 @@
                 <?php
                     $section = "";
 					$field = "";
-					echo "<br><br>";
+					echo "<br><br><div id='tab-group'>";
 					foreach($result as $value) {
 						if($section == '') {
 							$section = $value['Section Name'];
-							echo '<a class="tabs" href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; width: 100px; text-align: center; height: 20px; overflow: hidden; padding: 0px 10px; margin: 5px 5px; display: inline-block;"><div id="tabDiv" 
+							echo '<a class="tabs" id="' . $section . 'tab" href="#" onclick="divClick(' ."'". $section . "'" . ')"><div id="tabDiv" 
 							>' . $value['Section Name'] . '</div></a>';
 						} else if($section != $value['Section Name']) {
 							$section = $value['Section Name'];
-							echo '<a class="tabs" href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; width: 100px; text-align: center; height: 20px; overflow: hidden; padding: 0px 10px; margin: 5px 5px; display: inline-block;" ><div id="tabDiv"
+							echo '<a class="tabs" id="' . $section . 'tab" href="#" onclick="divClick(' ."'". $section . "'" . ')"><div id="tabDiv"
 							>' . $value['Section Name'] . '</div></a>';							
 						}
 					}
+					echo "</div>";
 
 					$section = "";
 					$field = "";
