@@ -10,6 +10,6 @@ class EmployeeViewController extends Controller
 
         $data = \DB::select('call getPDS_Dashboard');
         $result = json_decode(json_encode($data),true);
-    	return view('Employee/emphome', compact('result','result1'));
+    	return view('Employee/emphome', compact('result'));
     }
 }

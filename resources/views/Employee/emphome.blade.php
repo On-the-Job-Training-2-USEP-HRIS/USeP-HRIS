@@ -14,10 +14,12 @@
 		}
 		document.getElementById(id).style.display = 'block';
 	}
+
+	divClick('');
 </script>
 @endsection
 
-@section('title', 'Employee')
+@section('title', 'Personal Data Sheet')
 
 
 <!DOCTYPE html>
@@ -32,7 +34,11 @@
     
     <script type='text/javascript' src="{{asset('libraries/jquery.js')}}"></script>
 	<style> 
-		
+
+	.tabs:hover {
+		background-color: #686868;
+		color: white;
+	}		
 	</style>
 </head>
 
@@ -83,11 +89,11 @@
 					foreach($result as $value) {
 						if($section == '') {
 							$section = $value['Section Name'];
-							echo '<a href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; padding: 0px 10px; margin: 5px 5px; display: inline-block;"><div id="tabDiv" 
+							echo '<a class="tabs" href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; width: 100px; text-align: center; height: 20px; overflow: hidden; padding: 0px 10px; margin: 5px 5px; display: inline-block;"><div id="tabDiv" 
 							>' . $value['Section Name'] . '</div></a>';
 						} else if($section != $value['Section Name']) {
 							$section = $value['Section Name'];
-							echo '<a href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; padding: 0px 10px; margin: 5px 5px; display: inline-block;" ><div id="tabDiv"
+							echo '<a class="tabs" href="#" onclick="divClick(' ."'". $section . "'" . ')" style="border: 1px solid black; width: 100px; text-align: center; height: 20px; overflow: hidden; padding: 0px 10px; margin: 5px 5px; display: inline-block;" ><div id="tabDiv"
 							>' . $value['Section Name'] . '</div></a>';							
 						}
 					}
@@ -156,6 +162,7 @@
 					echo '</div>';
                 ?>
 			</form>	
+			<script>divClick('Personal Information');</script>
 		</div>
 	@endsection
 	
