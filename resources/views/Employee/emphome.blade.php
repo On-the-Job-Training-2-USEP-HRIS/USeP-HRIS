@@ -20,6 +20,20 @@
 		document.getElementById(id+'tab').style.color = 'white';
 		document.getElementById(id+'tab').style.backgroundColor = '#686868';
 	}
+	
+	function inputRequire() {
+		var requiredIDs = [
+			// 1,2,3,5,6,14,15,16,46,47 // Specific IDs to add required tag on input attribute
+		]; 
+		for(var i = 0; i < requiredIDs.length; i++) {
+			document.getElementById(requiredIDs[i]).required = true;
+		}
+	}
+
+	window.onload = function() {
+		inputRequire(); // Require specific input with IDs on line 25
+		divClick('Personal Information'); // Display Personal Information
+	};
 </script>
 @endsection
 
@@ -149,11 +163,11 @@
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
 								if ($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF" or $value['InputType Name'] == "Image"){
-									echo "<input type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+									echo "<input id='". $value['FieldSubfield Id'] .  "' type='file' name='". $value['FieldSubfield Id'] .  "[]' >  ";
 								} else if($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
-									echo "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
+									echo "<input id='". $value['FieldSubfield Id'] .  "' class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
 								} else {
-									echo "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' >  ";
+									echo "<input id='". $value['FieldSubfield Id'] .  "' type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] .  "[]' >  ";
 								}
 							}  
 					
@@ -162,11 +176,11 @@
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['InputGroup Id'] . "' type='hidden'>  ";
 								echo "<input name='". $value['FieldSubfield Id'] .  "[]' value='" . $value['FieldSubfield Id'] . "' type='hidden'>  ";
 								if($value['InputType Name'] != NULL && $value['InputType Name'] == "PDF" or $value['InputType Name'] == "Image"){
-									echo "<input type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
+									echo "<input id='". $value['FieldSubfield Id'] .  "'  type='file' name='". $value['FieldSubfield Id'] . "[]' >  ";
 								} else if($value['InputType Name'] != NULL && $value['InputType Name'] == "Checkbox"){
-									echo $value['Subfield Name'] . " " . "<input class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
+									echo $value['Subfield Name'] . " " . "<input id='". $value['FieldSubfield Id'] .  "' class='". $value['Field Id'] ."' type='checkbox' name='". $value['FieldSubfield Id'] .  "[]' onclick='clickEvent(this)'>  ";
 								} else {
-									echo $value['Subfield Name'] . " " . "<input type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' >  ";
+									echo $value['Subfield Name'] . " " . "<input id='". $value['FieldSubfield Id'] .  "' type='" . $value['InputType Name'] . "' name='". $value['FieldSubfield Id'] . "[]' >  ";
 								} 
                                 
 							}
@@ -175,7 +189,6 @@
 					echo '</div>';
                 ?>
 			</form>	
-			<script>divClick('Personal Information');</script>
 		</div>
 	@endsection
 	
