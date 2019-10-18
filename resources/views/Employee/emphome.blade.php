@@ -23,7 +23,7 @@
 	
 	function inputRequire() {
 		var requiredIDs = [
-			// 1,2,3,5,6,14,15,16,46,47 // Specific IDs to add required tag on input attribute
+			1,2,3,5,6,14,15,16,46,47 // Specific IDs to add required tag on input attribute
 		]; 
 		for(var i = 0; i < requiredIDs.length; i++) {
 			document.getElementById(requiredIDs[i]).required = true;
@@ -67,6 +67,7 @@
 		margin: 5px 2px; 
 		display: inline-block;
 		border-radius: 5px;
+		margin-top: -30px;
 	}	
 
 	#tab-group {
@@ -79,42 +80,43 @@
 <body style="overflow-y: auto">
 
 @section('card-body')
-		<div class="container">
+	<div class="container">
 		<nav aria-label="breadcrumb">
-        <div class="row">
-            <div class="col-9">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="PERSONAL DATA SHEET"><b>PERSONAL DATA SHEET</b></li>
-			</ol>
-            </div>
-            <div class="col">
-				<form id="username_search" action="/emphome/searchUser" method="POST" class="form-inline pt-1">
-                @csrf
-				<input type="search" class="form-control" name="username_input" placeholder="Enter Username">
-				<div class="form-input-group-append">
-					<span class="input-group-text">
-                    <a href="#" onclick="document.getElementById('username_search').submit();"><i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i></a>
-					</span>
+			<div class="row">
+				<div class="col-7">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" aria-current="PERSONAL DATA SHEET"><b>PERSONAL DATA SHEET</b></li>
+				</ol>
 				</div>
-			</form>
-            </div>
-        </div>
-			<!-- <div class="container"  style="width: 750px;">
-				<div class="row p-2">
-				<div class="col-10"><b><em style="display: inline">By pressing the "Save Data" button, I hereby declare that the details furnished below are true and correct 
-					to the best of my knowledge and belief and I undertake to inform the department in charge of any changes therein, immediately.</em></b></div>
-					<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="emphome" style="display: inline-block;" value="Save Data"></form></div>	
-				<div/>
-			</div> -->
+				<div class="col-2 pt-1">
+					<form><input type="submit" class="btn btn-success" form="emphome" value="Save Data"></form>
+				</div>
+				<div class="col">
+					<form id="username_search" action="/emphome/searchUser" method="POST" class="form-inline pt-1">
+					@csrf
+					<input type="search" class="form-control" name="username_input" placeholder="Enter Username">
+					<div class="form-input-group-append">
+						<span class="input-group-text">
+						<a href="#" onclick="document.getElementById('username_search').submit();"><i aria-hidden="true"><img src="/images/search.png" height="20" width="20"></i></a>
+						</span>
+					</div>
+				</form>
+				</div>
+			</div>
+				<!-- <div class="container"  style="width: 750px;">
+					<div class="row p-2">
+					<div class="col-10"><b><em style="display: inline">By pressing the "Save Data" button, I hereby declare that the details furnished below are true and correct 
+						to the best of my knowledge and belief and I undertake to inform the department in charge of any changes therein, immediately.</em></b></div>
+						<div class="col pt-2"><form><input type="submit" class="btn btn-danger" form="emphome" style="display: inline-block;" value="Save Data"></form></div>	
+					<div/>
+				</div> -->
 		</nav>
-		</div>
+	</div>
 @endsection
 
 @section('content')
-<div class="container-fluid" id="sectionCon" style="height: auto; margin-bottom: 30px;">
-<div><form><input type="submit" class="btn btn-success" form="emphome" style="display: inline-block;" value="Save Data"></form></div>
-			<form id="emphome" name="emphome" action="/emphome" method="POST" style="height: auto;">
-				
+	<div class="container-fluid" id="sectionCon" style="height: auto; margin-bottom: 30px;">
+		<form id="emphome" name="emphome" action="/emphome" method="POST" style="height: auto;">			
 			@csrf
                 <?php
                     $section = "";
@@ -188,20 +190,20 @@
 					}
 					echo '</div>';
                 ?>
-			</form>	
-		</div>
-	@endsection
+		</form>	
+	</div>
+@endsection
 	
 
-	<!-- Popup for generated username after data submission -->
-	<?php
-		if(isset($user_comb)){
-			echo "<script>
-			alert('This is your username, please take note. ". $user_comb ."');
-			</script>";
-		}
-	?>
-	<!-- End of Popup -->
+<!-- Popup for generated username after data submission -->
+<?php
+	if(isset($user_comb)){
+		echo "<script>
+		alert('This is your username, please take note. ". $user_comb ."');
+		</script>";
+	}
+?>
+<!-- End of Popup -->
 
 
 </body>
