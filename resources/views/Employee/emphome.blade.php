@@ -202,6 +202,14 @@
 		alert('This is your username, please take note. ". $user_comb ."');
 		</script>";
 	}
+
+	if(isset($error_data)){
+		echo "<script>alert('Error data: ";
+			foreach($error_data as $value){
+				echo '\n' . $value;
+			}
+		echo "');</script>";
+	}
 ?>
 <!-- End of Popup -->
 
